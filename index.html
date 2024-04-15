@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en-us">
+	<head>
+		<title>UCC - University central Clubs</title>
+		<link href="css/style.css" rel="stylesheet" type="text/css" >
+		<meta>
+		<meta>
+		<meta>
+	</head>
+	<body>
+		<header>
+			<nav>
+				<h1><span class="underline">H</span>ome</h1>
+				<div class="search">
+					<input id="search-bar" type="text" placeholder="Search">
+					<button><img src="" alt="*magnifier icon*"></button>
+				</div>
+				<div class="menu">
+					<button><img src="" alt="*menu*"></button>
+					<ul>
+						<li>Home</li>
+						<li>My Clubs</li>
+						<li>Saved Events</li>
+						<li>Browse</li>
+						<li>Notification</li>
+						<li>Settings</li>
+					</ul>
+				</div>
+			</nav>
+		</header>	
+		<main>
+			<section class="search-assiss">
+				<div>
+					<button><img src="" alt="filters-icon">Filters</button>
+					<form>
+						<fieldset>
+							<legend>Date</legend>
+							<div>
+								<input type="Date" name="date" id="date">
+							</div>
+						</fieldset>
+						<fieldset>
+							<legend>Tags</legend>
+							<div>
+								<label>Workshop</label>
+								<input type="checkbox" name="Workshop" id="workshop" value="Workshop">
+							</div>
+							<div>
+								<label>Seminars</label>
+								<input type="checkbox" name="Seminars" id="seminars" value="Seminars">
+							</div>
+							<div>
+								<label>Volunteer</label>
+								<input type="checkbox" name="Volunteer" id="volunteer" value="Volunteer">
+							</div>
+						</fieldset>
+						<fieldset>
+							<legend>Categories</legend>
+							<div>
+								<label>Electrical Engineering</label>
+								<input type="checkbox" name="Electrical Engineering" id="ee" value="Electrical Engineering">
+							</div>
+							<div>
+								<label>Mechanical Engineering</label>
+								<input type="checkbox" name="Mechanical Engineering" id="me" value="Mechanical Engineering">
+							</div>
+							<div>
+								<label>Computer Science</label>
+								<input type="checkbox" name="Computer Science" id="cs" value="Computer Science">
+							</div>
+							<div>
+								<label>Computer Engineering</label>
+								<input type="checkbox" name="Computer Engineering" id="coe" value="Computer Engineering">
+							</div>
+						</fieldset>
+						<div>
+							<input type="submit" value="Filter">
+							<input type="button" value="Reset">
+						</div>
+					</form>
+				</div>
+				<div>
+					<button><img src="" alt="sort-icon">sort</button>
+					<select name="sortby" id="sort-select">
+						<option value="">---</option>
+					    <option value="newest">Newest</option>
+					    <option value="oldest">Oldest</option>
+					    <option value="nameAZ">Name [A-Z]</option>
+					    <option value="nameZA">Name [Z-A]</option>
+					    <option value="soonest">Soonest</option>
+						<option value="furthest">Furthest</option>
+					</select>
+				</div>
+			</section>
+			<section id="my-feed">
+				<h2>My Feed</h2>
+				<article>
+					<h4><a>Computer Club</a></h4>
+					<h2>Event Title</h2>
+					<div>
+						<div>
+							<p><img src="" alt="time"><datetime>DD/MM/YYYY</datetime></p>
+							<p><img src="" alt="location">#Building-#room</p>
+						</div>
+						<div>
+							<button>View Event</button>
+						</div>
+					</div>
+				</article>
+				<article>
+					<h4><a>Computer Club</a></h4>
+					<h2>Event Title</h2>
+					<div>
+						<div>
+							<p><img src="" alt="time"><datetime>DD/MM/YYYY</datetime></p>
+							<p><img src="" alt="location">Building-room</p>
+						</div>
+						<div>
+							<button>View Event</button>
+						</div>
+					</div>
+				</article>
+			</section>
+			<section id="explore">
+				<article>
+					<h4><a>Computer Club</a></h4>
+					<h2>Event Title</h2>
+					<div>
+						<div>
+							<p><img src="" alt="time"><datetime>DD/MM/YYYY</datetime></p>
+							<p><img src="" alt="location">Building-room</p>
+						</div>
+						<div>
+							<button>View Event</button>
+						</div>
+					</div>
+				</article>
+				<article>
+					<h4><a>Computer Club</a></h4>
+					<h2>Event Title</h2>
+					<div>
+						<div>
+							<p><img src="" alt="time"><datetime>DD/MM/YYYY</datetime></p>
+							<p><img src="" alt="location">Building-room</p>
+						</div>
+						<div>
+							<button>View Event</button>
+						</div>
+					</div>
+				</article>
+			</section>
+		</main>
+		<footer>
+			<p>&copy; 2024 University Central Clubs [Team 14] - All rights reserved.</p>
+		</footer>
+	</body>
+</html>
