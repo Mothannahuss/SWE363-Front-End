@@ -1,0 +1,72 @@
+<section id="search-assiss">
+	<div>
+		<button><img TODO src="https://avatars.githubusercontent.com/u/57153316?s=200&v=4" alt="filters-icon">Filters</button>
+		<button><img TODO src="https://avatars.githubusercontent.com/u/57153316?s=200&v=4" alt="sort-icon">sort</button>
+	</div>
+	<div id="filter">
+		<form>
+			<fieldset>
+				<legend>Date -From-</legend>
+				<div>
+					<input type="Date" name="date" id="date">
+				</div>
+			</fieldset>
+			<fieldset>
+				<legend>Tags</legend>
+				<div>
+					<label for="workshop">Workshop</label>
+					<input type="checkbox" name="Workshop" id="workshop" value="Workshop">
+				</div>
+				<div>
+					<label for="seminar">Seminar</label>
+					<input type="checkbox" name="Seminar" id="seminar" value="Seminar">
+				</div>
+				<div>
+					<label for="volunteer">Volunteer</label>
+					<input type="checkbox" name="Volunteer" id="volunteer" value="Volunteer">
+				</div>
+			</fieldset>
+			<fieldset>
+				<legend>Categories</legend>
+				<div>
+					<label for="ee">Electrical Engineering</label>
+					<input type="checkbox" name="Electrical Engineering" id="ee" value="Electrical Engineering">
+				</div>
+				<div>
+					<label for="me">Mechanical Engineering</label>
+					<input type="checkbox" name="Mechanical Engineering" id="me" value="Mechanical Engineering">
+				</div>
+				<div>
+					<label for="cs">Computer Science</label>
+					<input type="checkbox" name="Computer Science" id="cs" value="Computer Science">
+				</div>
+				<div>
+					<label for="coe">Computer Engineering</label>
+					<input type="checkbox" name="Computer Engineering" id="coe" value="Computer Engineering">
+				</div>
+			</fieldset>
+			<fieldset>
+				<legend>Type</legend>
+				<select name="sortby" id="sort-select">
+					<option value="event" selected>Event</option>
+					<option value="club">Club</option>
+				</select>
+			</fieldset>
+			<div>
+				<input type="submit" value="Filter">
+				<input type="button" value="Reset">
+			</div>
+		</form>
+	</div>
+	<div id="sort">
+		<select name="sortby" id="sort-select">
+			<option value="">---</option>
+			<option value="newest">Newest</option>
+			<option value="oldest">Oldest</option>
+			<option value="nameAZ">Name [A-Z]</option>
+			<option value="nameZA">Name [Z-A]</option>
+			<option value="soonest">Soonest</option>
+			<option value="furthest">Furthest</option>
+		</select>
+	</div>
+</section>
