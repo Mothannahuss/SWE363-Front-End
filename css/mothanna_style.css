@@ -1,111 +1,250 @@
-
-body, html {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #FFFFFF;
+body,
+html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #ffffff;
 }
-.header
-{
-    justify-content: left;
-    padding: 25% 3%;
+.header {
+  justify-content: left;
+  padding: 25% 3%;
 }
-
-
-.rectangle
-{
-    width: 10%;
-    height: 0.25rem;
-    border-radius: 8px;
-    background-color: #4178F3;
+.fas.fa-heart:hover {
+  color: #f44336 !important;
 }
 
-.signIn_form 
-{
-    padding: 0 10%;
+.fas.fa-share-alt:hover {
+  color: #0d47a1 !important;
+}
+.nav-link {
+  color: gray !important;
 }
 
-.signIn_form p
-{
-    text-align: center;
-}
-.signIn_form label
-{
-    
-        color: #8F92A1;
-        font-size: 14px;
-    
+.nav-link:hover {
+  color: #4178f3 !important;
 }
 
-
-
-input[type="submit"]
-{
-    background-color: #1B08DA;
-    color: #FFFFFF;
-    justify-content: center;
-    border-radius: 8px;
-    border: none;
-    width: 100%;
-    padding: 10px 16px;
+.dot {
+  height: 75px;
+  width: 75px;
+  background-color: #d9d9d9;
+  border-radius: 50%;
+  display: inline-block;
+  margin-top: calc((75px * 0.25));
+  margin-left: 2%;
 }
 
-
-footer
-{
-    padding-top: 80%;
-    margin-left: 20%;
+.dot-sm {
+  height: 50px;
+  width: 50px;
+  background-color: #d9d9d9;
+  border-radius: 50%;
+  /* margin-top: calc((75px * 0.25)); */
 }
 
-.link
-{
-    text-decoration: none;
-    color: #1B08DA;
-    font-size: 16px;
+.clubInfo {
+  /* margin-right:  2%;
+    margin-left: 2%;
+    position: relative;
+    margin-top: 5%; */
+  margin: 2% 5% 0 5%;
+  display: grid;
+  columns: 2;
+  justify-content: space-between;
 }
 
+.grid {
+  display: grid;
+  columns: 2;
+  justify-content: space-between;
+}
 
+.item1 {
+  grid-column: 1;
+}
+.item2 {
+  grid-column: 2;
+}
+
+.clubInfo button {
+  display: inline;
+  float: right;
+  background-color: #1b08da;
+  border-radius: 25px;
+}
+
+.search {
+  border-radius: 50px;
+  border-color: #d4d2e3;
+  border-style: solid;
+}
+.rectangle {
+  width: 10%;
+  height: 0.25rem;
+  border-radius: 8px;
+  background-color: #4178f3;
+}
+
+.space {
+  width: 100%;
+
+  background-color: #f4f4f4;
+
+  height: 10vh;
+}
+
+.signIn_form {
+  padding: 0 10%;
+}
+
+.signIn_form p {
+  text-align: center;
+}
+.signIn_form label {
+  color: #8f92a1;
+  font-size: 14px;
+}
+
+input[type="submit"] {
+  background-color: #1b08da;
+  color: #ffffff;
+  justify-content: center;
+  border-radius: 8px;
+  border: none;
+  width: 100%;
+  padding: 10px 16px;
+}
+
+footer {
+  padding-top: 80%;
+  margin-left: 20%;
+}
+
+.link {
+  text-decoration: none;
+  color: #1b08da;
+  font-size: 16px;
+}
 
 @media screen and (min-width: 1024px) {
-    .container {
-        display: flex;
-        flex-direction: row;
-        align-items: flex-start; /* Align items to the start of the flex container */
-        padding: 2% 10%; /* Add some padding to the left and right */
-        height: 100vh; /* Make the container full height */
-    }
+  .container {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start; /* Align items to the start of the flex container */
+    padding: 2% 10%; /* Add some padding to the left and right */
+    height: 100vh; /* Make the container full height */
+  }
 
-    .header {
-        flex-basis: 50%; /* Allocate 50% of the flex container width to the header */
-        /* Keep your existing header styles here */
-    }
+  .header {
+    flex-basis: 50%; /* Allocate 50% of the flex container width to the header */
+    /* Keep your existing header styles here */
+  }
 
-    .signIn_form {
-        flex-basis: 50%; /* Allocate 50% of the flex container width to the form */
-        max-width: 500px; /* Set a max-width to the form if necessary */
-        display: flex;
-        flex-direction: column;
-        justify-content: center; /* Center form vertically in the container */
-        padding: 0 5%; /* Add padding inside the form container */
-        margin-top: 15rem;
-    }
+  .signIn_form {
+    flex-basis: 50%; /* Allocate 50% of the flex container width to the form */
+    max-width: 500px; /* Set a max-width to the form if necessary */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center form vertically in the container */
+    padding: 0 5%; /* Add padding inside the form container */
+    margin-top: 15rem;
+  }
 
-    .signIn_form input[type="email"],
-    .signIn_form input[type="password"],
-    .signIn_form input[type="submit"] {
-        height: 50px; /* Increase the height of the input fields */
-        font-size: 1.25rem; /* Increase font size for better readability */
-        margin-bottom: 20px; /* Increase space between inputs */
-    }
+  .signIn_form input[type="email"],
+  .signIn_form input[type="password"],
+  .signIn_form input[type="submit"] {
+    height: 50px; /* Increase the height of the input fields */
+    font-size: 1.25rem; /* Increase font size for better readability */
+    margin-bottom: 20px; /* Increase space between inputs */
+  }
 
-    .signIn_form input[type="submit"] {
-        background-color: #1B08DA;
-        color: #FFFFFF;
-        border-radius: 8px;
-        border: none;
-        cursor: pointer;
-    }
+  .signIn_form input[type="submit"] {
+    background-color: #1b08da;
+    color: #ffffff;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+  }
+}
 
-    
+.event-card {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0.1, 0.1, 0.2, 0.2);
+  display: flex;
+  padding: 20px;
+  margin: 16px;
+  align-items: flex-start;
+  /* Align items to the top */
+  width: auto;
+  /* You can set a specific width if needed */
+  position: relative;
+  /* Needed for absolute positioning of the button */
+}
+
+.event-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  /* Ensure the content area fills the rest of the card */
+}
+
+.event-details {
+  flex-grow: 1;
+}
+
+.event-avatar {
+  background-color: #ccc;
+  border-radius: 50%;
+  width: 50px;
+  height: 44px;
+  margin-right: 16px;
+}
+
+.event-info {
+  color: #757575;
+  font-size: 14px;
+}
+
+.event-info i {
+  color: #595959;
+  margin-right: 8px;
+}
+
+.event-title {
+  color: #000;
+  margin: 0 0 4px 0;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.event-club {
+  color: #1b08da;
+  font-size: 14px;
+  font-weight: 600;
+}
+.view-event-btn {
+  font-size: 12px;
+  font-weight: 600;
+  padding: 12px 20px;
+  width: 102px;
+  /* Corrected width with units */
+  height: 42px;
+  /* Corrected height with units */
+  background-color: #1b08da;
+  color: white;
+  border: none;
+  border-radius: 30px;
+  white-space: nowrap;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  /* Position the button absolutely within the card */
+  bottom: 20px;
+  /* Distance from the bottom of the card */
+  right: 20px;
+  /* Distance from the right of the card */
 }

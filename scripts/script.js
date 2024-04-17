@@ -1,12 +1,17 @@
 document.addEventListener("DOMContentLoaded", function()
 {
+
+
+
+
+
+
+    // Input form validation for login page
     document.querySelector('#loginBtn').addEventListener("click", function(e)
     {
         let email = document.querySelector("#InputEmail1").value;
-
         let password = document.querySelector("#InputPassword").value;
 
-        console.log(email);
         if (email.length == 0 || password.length == 0)
         {
             e.preventDefault();
@@ -36,4 +41,7 @@ document.querySelector("#InputPassword").addEventListener("input", function()
         document.querySelector(".signIn_form").removeChild(node);
     }
 })
+
+
+
 })

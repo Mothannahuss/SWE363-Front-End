@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profile</title>
+    <link href="../css/mothanna_style.css" rel="stylesheet" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="../scripts/profileScript.js"></script>
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="container-fluid">
+        <button type="button" class="btn" style="border-radius: 90px; border-style: solid;">
+            <i class="bi bi-arrow-left-circle"></i>
+          </button>
+
+        <ul class="navbar-nav d-flex flex-row me-1">
+          <li class="nav-item me-0 me-lg-0">
+            <button class="btn" type="button" style="border-radius: 90px; border-style: solid;">
+                <i class="bi bi-search"></i>
+              </button>
+          </li>
+          
+           <li>
+            <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvasNavbar"
+            aria-controls="offcanvasNavbar"
+            aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+           </li>
+          </li>
+        </ul>
+        <div
+            class="offcanvas offcanvas-end"
+            tabindex="-1"
+            id="offcanvasNavbar"
+            aria-labelledby="offcanvasNavbarLabel"
+          >
+            <div class="offcanvas-header">
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="offcanvas"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="offcanvas-body">
+              <ul class="navbar-nav justify-content-end flex-grow-1">
+                <li class="nav-item">
+                  <a class="nav-link" aria-current="page" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" aria-current="page" href="#">My Clubs</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" aria-current="page" href="#"
+                    >Saved Events</a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Browse</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Notifications</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Settings</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <div class="space">
+        <span class="dot"></span>
+    </div>
+    <div class="clubInfo">
+        <h2 class="item1">Club Name</h2>
+        <button type="button" class="btn btn-primary item2">Follow</button>
+        <label style="color: #595959;">@ClubUserName</label>
+        <br>
+        <p class="item1">This club does this and that ...</p>
+        <br>
+        <p class="item1"><span style="color: #1B08DA;">178</span> Followers</p>
+
+        
+    </div>
+    <nav class="nav nav-justified">
+        <a class="nav-link" aria-current="page" href="#" id="upcoming">Upcoming</a>
+        <a class="nav-link" href="#" id="all">All</a>
+        <a class="nav-link" href="#" id="about">About</a>
+      </nav>
+
+
+
+      <!-- Event cards -->
+      <div id="contentHolder">
+      <div class="event-card">
+        <div class="event-avatar"></div>
+        <div class="event-content">
+            <div class="event-details">
+                <p class="event-club">Club Name</p>
+
+                <h2 class="event-title">Club Name</h2>
+                <div class="event-info">
+                    <p><i class="fas fa-calendar-alt"></i> Day, Date</p>
+                    <p><i class="fas fa-clock"></i> Time</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Location</p>
+                </div>
+            </div>
+            <button class="view-event-btn">View Event</button>
+        </div>
+    </div>
+
+    <div class="event-card">
+      <div class="event-avatar"></div>
+      <div class="event-content">
+          <div class="event-details">
+              <p class="event-club">Club Name</p>
+
+              <h2 class="event-title">Club Name</h2>
+              <div class="event-info">
+                  <p><i class="fas fa-calendar-alt"></i> Day, Date</p>
+                  <p><i class="fas fa-clock"></i> Time</p>
+                  <p><i class="fas fa-map-marker-alt"></i> Location</p>
+              </div>
+          </div>
+          <button class="view-event-btn">View Event</button>
+      </div>
+  </div>
+</div>
+  </body>
+</html>
