@@ -1,5 +1,9 @@
 document.addEventListener("DOMContentLoaded", function()
 {
+    document.querySelector("#search-btn").addEventListener("click", function()
+    {
+        window.location.href = "../html/search.html";
+    });
     document.querySelector("#about").addEventListener("click", function()
     {
         let div = document.querySelector("#contentHolder");
@@ -10,7 +14,14 @@ document.addEventListener("DOMContentLoaded", function()
         div.appendChild(card);
     });
 
+    document.querySelector("#back-btn").addEventListener("click", function()
+    {
+        console.log("Search");
+        history.back();
+    })
 
+
+    
 
     document.querySelector("#upcoming").addEventListener("click", function()
     {
@@ -19,7 +30,7 @@ document.addEventListener("DOMContentLoaded", function()
         <div class="event-avatar"></div>
         <div class="event-content">
             <div class="event-details">
-                <p class="event-club">Club Name</p>
+                <a href="profile.html" class="event-club">Club Name</p>
 
                 <h2 class="event-title">Club Name</h2>
                 <div class="event-info">
@@ -36,7 +47,7 @@ document.addEventListener("DOMContentLoaded", function()
       <div class="event-avatar"></div>
       <div class="event-content">
           <div class="event-details">
-              <p class="event-club">Club Name</p>
+              <a class="event-club" href="profile.html">Club Name</a>
 
               <h2 class="event-title">Club Name</h2>
               <div class="event-info">
@@ -58,7 +69,7 @@ document.addEventListener("DOMContentLoaded", function()
         <div class="event-avatar"></div>
         <div class="event-content">
             <div class="event-details">
-                <p class="event-club">Club Name</p>
+                <a href="profile.html" class="event-club">Club Name</p>
 
                 <h2 class="event-title">Club Name</h2>
                 <div class="event-info">
@@ -75,7 +86,7 @@ document.addEventListener("DOMContentLoaded", function()
       <div class="event-avatar"></div>
       <div class="event-content">
           <div class="event-details">
-              <p class="event-club">Club Name</p>
+              <a class="event-club" href="profile.html">Club Name</a>
 
               <h2 class="event-title">Club Name</h2>
               <div class="event-info">
@@ -86,7 +97,7 @@ document.addEventListener("DOMContentLoaded", function()
           </div>
           <button class="view-event-btn">View Event</button>
       </div>
-  </div>`;
+  </div>`;;
     })
 
 

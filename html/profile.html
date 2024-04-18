@@ -31,13 +31,13 @@
   <body>
     <nav class="navbar">
       <div class="container-fluid">
-        <button type="button" class="btn" style="border-radius: 90px; border-style: solid;">
+        <button type="button" class="btn" id="back-btn" style="border-radius: 90px; border-style: solid;">
             <i class="bi bi-arrow-left-circle"></i>
           </button>
 
         <ul class="navbar-nav d-flex flex-row me-1">
           <li class="nav-item me-0 me-lg-0">
-            <button class="btn" type="button" style="border-radius: 90px; border-style: solid;">
+            <button class="btn" id="search-btn" type="button" style="border-radius: 90px; border-style: solid;">
                 <i class="bi bi-search"></i>
               </button>
           </li>
@@ -92,6 +92,9 @@
                 <li class="nav-item">
                   <a class="nav-link" href="#">Settings</a>
                 </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="myProfile.html">My Profile</a>
+                </li>
               </ul>
             </div>
           </div>
@@ -127,7 +130,7 @@
         <div class="event-avatar"></div>
         <div class="event-content">
             <div class="event-details">
-                <p class="event-club">Club Name</p>
+                <a href="profile.html" class="event-club">Club Name</a>
 
                 <h2 class="event-title">Club Name</h2>
                 <div class="event-info">
@@ -144,7 +147,7 @@
       <div class="event-avatar"></div>
       <div class="event-content">
           <div class="event-details">
-              <p class="event-club">Club Name</p>
+              <a class="event-club" href="profile.html">Club Name</a>
 
               <h2 class="event-title">Club Name</h2>
               <div class="event-info">

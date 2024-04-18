@@ -82,6 +82,13 @@ html {
   border-radius: 25px;
 }
 
+.form-outline i {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
 #edit-btn {
   display: inline;
   float: right;
@@ -192,6 +199,23 @@ footer {
   }
 }
 
+a
+{
+  text-decoration: none !important;
+}
+
+
+.search-bar
+{
+  padding: 20px ;
+  width: auto;
+}
+
+.search-bar span, .search-bar input
+{
+  border:none ;
+  background-color: #f4f4f4 ;
+}
 .event-card {
   background-color: white;
   border-radius: 8px;
