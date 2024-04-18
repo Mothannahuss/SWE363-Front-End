@@ -21,6 +21,15 @@ html {
   color: gray !important;
 }
 
+.checked-box
+{
+  background-color: #1B08DA !important;
+}
+
+.unchecked-box
+{
+  background-color: white !important;
+}
 .nav-link:hover {
   color: #4178f3 !important;
 }
@@ -40,7 +49,6 @@ html {
   width: 50px;
   background-color: #d9d9d9;
   border-radius: 50%;
-  /* margin-top: calc((75px * 0.25)); */
 }
 
 .clubInfo {
@@ -72,6 +80,22 @@ html {
   float: right;
   background-color: #1b08da;
   border-radius: 25px;
+}
+
+#edit-btn {
+  display: inline;
+  float: right;
+  background-color: white !important;
+  border-color: #1b08da;
+  color: #1B08DA;
+  border-radius: 25px;
+}
+
+.clubInfo button:hover
+{
+  color: #1B08DA;
+  border-color: #1B08DA;
+  background-color: white;
 }
 
 .search {
