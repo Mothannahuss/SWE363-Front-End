@@ -1,193 +1,212 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en-us">
 	<head>
 		<title>UCC - University Central Clubs</title>
-		<link href="css/style.css" rel="stylesheet" type="text/css" >
-		<meta TODO>
-		<meta TODO>
-		<meta TODO>
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous"/>
+		<link href="../css/style.css" rel="stylesheet" type="text/css"/>
+		<meta TODO/>
+		<meta TODO/>
+		<meta TODO/>
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 	</head>
 	<body>
 		<header>
-			<nav>
-				<div id="menu"> 
-					<button><img src="../assets/menu.svg" alt="menu icon"></button>
-					<ul>
-						<li><a href="home.html">Home</a></li>
-						<li><a href="myClub.html">My Clubs</a></li>
-						<li><a href="savedEvent.html">Saved Events</a></li>
-						<li><a href ="https://www.google.com" id="change appearence-js - TODO">Browse</a></li>
-						<li><a href="notification.html">Notification</a></li>
-						<li><a href="setting.html">Settings</a></li>
-					</ul>
+			<nav class="navbar container-fluid">
+				<div class="d-flex flex-row">
+					<div id="menu">
+						<button type="button" class="btn" data-bs-toggle="offcanvas" data-bs-target="#offcanvas" aria-controls="offcanvas">
+							<span class="navbar-toggler-icon"></span>
+						</button>
+						<div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvas" aria-labelledby="offcanvasLabel">
+							<div class="offcanvas-header">
+								<button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+							</div>
+							<div class="offcanvas-body">
+								<ul class="navbar-nav">
+									<li class="nav-item">
+										<a class="nav-link active" href="home.html">Home</a>
+									</li>
+									<li class="nav-item">
+										<a class="nav-link" aria-current="page" href="myClub.html">My Clubs</a>
+									</li>
+									<li class="nav-item">
+										<a class="nav-link" href="savedEvent.html">Saved Events</a>
+									</li>
+									<li class="nav-item" data-bs-toggle="collapse" data-bs-target="#collapseSearch" aria-expanded="false" aria-controls="collapseSearch">
+										<a class="nav-link" data-bs-dismiss="offcanvas" href="">Browse</a>
+									</li>
+									<li class="nav-item">
+										<a class="nav-link" href="notification.html">Notification</a>
+									</li>
+									<li class="nav-item">
+										<a class="nav-link" href="setting.html">Settings</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<h2><span class="underline">H</span>ome</h2>
 				</div>
-				<h1>Home</h1>
-				<div id="search">
-					<input id="search-bar" type="text" placeholder="Search">
-					<button><img src="../assets/magnifer.svg" alt="magnifier icon"></button>
+				<div id="search" class="d-flex flex-row justify-content-end gap-1">
+					<div class="collapse collapse-horizontal" id="collapseSearch">
+						<input id="search-bar" type="search" placeholder="Search"/> <!--It has to have width in CSS-->
+					</div>
+					<button class="btn" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSearch" aria-expanded="false" aria-controls="collapseSearch">
+						<img src="../assets/search.svg" alt="magnifier icon"/>
+					</button>
 				</div>
 			</nav>
-		</header>	
+		</header>
 		<main>
-			<section class="tabs">
-				<button><h4>My Feed</h4></button>
-				<button><h4>Explore</h4></button>
+			<section id="tabs" class="d-flex flex-row justify-content-between align-items-center">
+				<ul class="nav navbar">
+					<li class="nav-item">
+						<a class="nav-link active">My Feed</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link">Explore</a>
+					</li>
+				</ul>
+				<div class="btn-group" role="group">
+					<button class="btn-org btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#filter" aria-expanded="false" aria-controls="filter">
+						<img src="../assets/filter-white.svg" alt="filters-icon"/>
+					</button>
+					<button class="btn-org btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#sort" aria-expanded="false" aria-controls="sort">
+						<img src="../assets/sort-up-white.svg" alt="sort-icon"/>
+					</button>
+				</div>
 			</section>
 			<section id="search-assiss">
-				<div>
-					<button><img src="../assets/filter.svg" alt="filters-icon">Filters</button>
-					<button><img src="../assets/sort.svg" alt="sort-icon">sort</button>
-				</div>
-				<div id="filter">
-					<form>
-						<fieldset>
-							<legend>Date -From-</legend>
+				<div class="collapse container-fluid" id="filter">
+					<form class="d-flex flex-column gap-1">
+						<fieldset class="form-group">
+							<div class="btn justify-content-between" data-bs-toggle="collapse" data-bs-target="#date" aria-expanded="false" aria-controls="date">
+								<span>Date</span>
+								<img class="icon-hover" src="../assets/caret-down.svg" alt="down arrow">
+							</div>
 							<div>
-								<input type="Date" name="date" id="date">
+								<input type="Date" name="date" id="date" class="collapse"/>
 							</div>
 						</fieldset>
-						<fieldset>
-							<legend>Tags</legend>
-							<div>
-								<label for="workshop">Workshop</label>
-								<input type="checkbox" name="Workshop" id="workshop" value="Workshop">
+						<fieldset class="form-group">
+							<div class="btn justify-content-between" data-bs-toggle="collapse" data-bs-target="#tags" aria-expanded="false" aria-controls="tags">
+								<span>Tags</span>
+								<img class="icon-hover" src="../assets/caret-down.svg" alt="down arrow">
 							</div>
-							<div>
-								<label for="seminar">Seminar</label>
-								<input type="checkbox" name="Seminar" id="seminar" value="Seminar">
-							</div>
-							<div>
-								<label for="volunteer">Volunteer</label>
-								<input type="checkbox" name="Volunteer" id="volunteer" value="Volunteer">
-							</div>
-						</fieldset>
-						<fieldset>
-							<legend>Categories</legend>
-							<div>
-								<label for="ee">Electrical Engineering</label>
-								<input type="checkbox" name="Electrical Engineering" id="ee" value="Electrical Engineering">
-							</div>
-							<div>
-								<label for="me">Mechanical Engineering</label>
-								<input type="checkbox" name="Mechanical Engineering" id="me" value="Mechanical Engineering">
-							</div>
-							<div>
-								<label for="cs">Computer Science</label>
-								<input type="checkbox" name="Computer Science" id="cs" value="Computer Science">
-							</div>
-							<div>
-								<label for="coe">Computer Engineering</label>
-								<input type="checkbox" name="Computer Engineering" id="coe" value="Computer Engineering">
+							<div id="tags">
+								<div class="m-1">
+									<input type="checkbox" name="Workshop" id="workshop" value="Workshop" class="btn-check" autocomplete="off"/>
+									<label class="btn btn-outline-secondary" for="workshop">Workshop</label>
+								</div>
+								<div class="m-1">
+									<input type="checkbox" name="Seminar" id="seminar" value="Seminar" class="btn-check" autocomplete="off"/>
+									<label class="btn btn-outline-secondary" for="seminar">Seminar</label>
+								</div>
+								<div class="m-1">
+									<input type="checkbox" name="Volunteer" id="volunteer" value="Volunteer" class="btn-check" autocomplete="off"/>
+									<label class="btn btn-outline-secondary" for="volunteer">Volunteer</label>
+								</div>
 							</div>
 						</fieldset>
-						<fieldset>
-							<legend>Type</legend>
-							<select name="sortby" id="sort-select">
+						<fieldset class="form-group">
+							<div class="btn justify-content-between" data-bs-toggle="collapse" data-bs-target="#categories" aria-expanded="false" aria-controls="categories">
+								<span>Categories</span>
+								<img class="icon-hover" src="../assets/caret-down.svg" alt="down arrow">
+							</div>
+							<div id="categories">
+								<div class="m-1">
+									<input type="checkbox" name="Electrical Engineering" id="ee" value="Electrical Engineering" class="btn-check" autocomplete="off"/>
+									<label class="btn btn-outline-secondary" for="ee">Electrical Engineering</label>
+								</div>
+								<div class="m-1">
+									<input type="checkbox" name="Mechanical Engineering" id="me" value="Mechanical Engineering" class="btn-check" autocomplete="off"/>
+									<label class="btn btn-outline-secondary" for="me">Mechanical Engineering</label>
+								</div>
+								<div class="m-1">
+									<input type="checkbox" name="Computer Science" id="cs" value="Computer Science" class="btn-check" autocomplete="off"/>
+									<label class="btn btn-outline-secondary" for="cs">Computer Science</label>
+								</div>
+								<div class="m-1">
+									<input type="checkbox" name="Computer Engineering" id="coe" value="Computer Engineering" class="btn-check" autocomplete="off"/>
+									<label class="btn btn-outline-secondary" for="coe">Computer Engineering</label>
+								</div>
+							</div>
+						</fieldset>
+						<fieldset class="form-group">
+							<div class="btn justify-content-between" data-bs-toggle="collapse" data-bs-target="#type" aria-expanded="false" aria-controls="type">
+								<span>Type</span>
+								<img class="icon-hover" src="../assets/caret-down.svg" alt="down arrow">
+							</div>
+							<select name="type" id="type" class="form-select form-select-sm">
 								<option value="event" selected>Event</option>
 								<option value="club">Club</option>
 							</select>
 						</fieldset>
-						<div>
-							<input type="submit" value="Filter">
-							<input type="button" value="Reset">
+						<div class="row m-3 gap-3">
+							<input type="submit" value="Filter" class="col btn btn-primary" data-bs-toggle="collapse" data-bs-target="#filter" aria-expanded="false" aria-controls="filter"/>
+							<input type="button" value="Reset" class="col btn btn-danger" data-bs-toggle="collapse" data-bs-target="#filter" aria-expanded="false" aria-controls="filter"/>
 						</div>
 					</form>
 				</div>
-				<div id="sort">
-					<select name="sortby" id="sort-select">
-						<option value="">---</option>
-					    <option value="newest">Newest</option>
-					    <option value="oldest">Oldest</option>
-					    <option value="nameAZ">Name [A-Z]</option>
-					    <option value="nameZA">Name [Z-A]</option>
-					    <option value="soonest">Soonest</option>
-						<option value="furthest">Furthest</option>
-					</select>
+				<div class="collapse container-fluid" id="sort">
+					<div class="m-3">
+						<select name="sortby" id="sortby" class="form-select form-select-sm">
+							<option value="">---</option>
+							<option value="newest">Newest</option>
+							<option value="oldest">Oldest</option>
+							<option value="nameAZ">Name [A-Z]</option>
+							<option value="nameZA">Name [Z-A]</option>
+							<option value="soonest">Soonest</option>
+							<option value="furthest">Furthest</option>
+						</select>
+					</div>
 				</div>
 			</section>
-			<section id="my-feed">
-				<article class="event-card" id="11">
-					<div>
-						<img src="https://avatars.githubusercontent.com/u/57153316?s=200&v=4" alt="club logo">
-						<h4><a href="clubPage.html">Computer Club</a></h4>
+			<section id="my-feed" class="container-fluid">
+				<article class="event-card" id="22">
+					<div class="d-flex justify-content-start align-items-center">
+						<img class="club-avatar" src="../assets/image.svg" alt="club avatar">
+						<a href="clubPage.html">Computer Club</a>
 					</div>
-					<h2>Event Title</h2>
-					<div>
+					<div class="event-card-body">
 						<div>
-							<p><img src="../assets/clock.svg" alt="time"><datetime>DD/MM/YYYY</datetime></p>
-							<p><img src="../assets/point-on-map.svg" alt="location">#Building-#room</p>
+							<h2>Event Title</h2>
+							<div class="event-details d-flex flex-column gap-1">
+								<div class="d-flex align-items-center gap-1">
+									<img src="../assets/calendar-event.svg" alt="time">
+									<datetime>DD/MM/YYYY</datetime>
+								</div>
+								<div class="d-flex align-items-center gap-1">
+									<img src="../assets/clock-fill.svg" alt="time">
+									<time>00:00:--</time>
+								</div>
+								<div class="d-flex align-items-center gap-1">
+									<img src="../assets/geo-alt-fill.svg" alt="time">
+									<span>#Building-#room</span>
+								</div>
+							</div>
 						</div>
-						<div>
-							<button>View Event</button>
-						</div>
-					</div>
-				</article>
-				<article class="event-card" id="11">
-					<div>
-						<img src="https://avatars.githubusercontent.com/u/57153316?s=200&v=4" alt="club logo">
-						<h4><a href="clubPage.html">Computer Club</a></h4>
-					</div>
-					<h2>Event Title</h2>
-					<div>
-						<div>
-							<p><img src="../assets/clock.svg" alt="time"><datetime>DD/MM/YYYY</datetime></p>
-							<p><img src="../assets/point-on-map.svg" alt="location">#Building-#room</p>
-						</div>
-						<div>
-							<button>View Event</button>
-						</div>
-					</div>
-				</article>
-			</section>
-			<section id="explore">
-				<article class="event-card" id="11">
-					<div>
-						<img src="https://avatars.githubusercontent.com/u/57153316?s=200&v=4" alt="club logo">
-						<h4><a href="clubPage.html">Computer Club</a></h4>
-					</div>
-					<h2>Event Title</h2>
-					<div>
-						<div>
-							<p><img src="../assets/clock.svg" alt="time"><datetime>DD/MM/YYYY</datetime></p>
-							<p><img src="../assets/point-on-map.svg" alt="location">#Building-#room</p>
-						</div>
-						<div>
-							<button>View Event</button>
-						</div>
+						<button type="button" class="btn-org btn btn-primary">View Event</button>
 					</div>
 				</article>
 				<article class="club-card" id="00">
-					<div>
-						<img src="https://avatars.githubusercontent.com/u/57153316?s=200&v=4" alt="club logo">
-					</div>
-					<div>
+					<div class="d-flex justify-content-start align-items-center">
+						<img class="club-avatar" src="../assets/image.svg" alt="club avatar">
 						<div>
 							<h2><a href="clubPage.html">Computer Club</a></h2>
-							<button>Unfollow</button> <!--JS Req TODO-->
-						</div>
-						<p>club's info/description/...</p>
+							<p>club's info/description/...</p>
+						</div> 
 					</div>
-				</article>
-				<article class="event-card" id="11">
-					<div>
-						<img src="https://avatars.githubusercontent.com/u/57153316?s=200&v=4" alt="club logo">
-						<h4><a href="clubPage.html">Computer Club</a></h4>
-					</div>
-					<h2>Event Title</h2>
-					<div>
-						<div>
-							<p><img src="../assets/clock.svg" alt="time"><datetime>DD/MM/YYYY</datetime></p>
-							<p><img src="../assets/point-on-map.svg" alt="location">#Building-#room</p>
-						</div>
-						<div>
-							<button>View Event</button>
-						</div>
-					</div>
+					<button type="button" class="btn-org btn btn-primary">Follow</button> <!--JS Req TODO-->
 				</article>
 			</section>
+			<section id="explore" class="container-fluid"></section>
 		</main>
-		<footer>
-			<p>&copy; 2024 University Central Clubs [Team 14] - All rights reserved.</p>
+		<footer class="container-fluid" hidden>
+			<p>
+				&copy; 2024 University Central Clubs [Team 14] - All rights reserved.
+			</p>
 		</footer>
 	</body>
 </html>
