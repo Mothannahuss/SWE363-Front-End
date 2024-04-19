@@ -100,6 +100,13 @@ h1::after {
   height: 44px;
   margin-right: 16px;
 }
+.event-avatar-lg {
+  background-color: #ccc;
+  border-radius: 50%;
+  width: 100px !important;
+  height: 88px !important;
+  margin-right: 16px;
+}
 
 .event-info {
   color: #757575;
@@ -127,7 +134,6 @@ h1::after {
 a {
   text-decoration: none !important;
 }
-
 .view-event-btn {
   font-size: 12px;
   font-weight: 600;
@@ -150,4 +156,54 @@ a {
   /* Distance from the bottom of the card */
   right: 20px;
   /* Distance from the right of the card */
+}
+#registerButton {
+  font-size: 12px;
+  font-weight: 600;
+  padding: 12px 20px;
+
+  /* Corrected height with units */
+  background-color: #1b08da;
+  color: white;
+  border: none;
+  border-radius: 30px;
+  white-space: nowrap;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#saveEventButton {
+  font-size: 12px;
+  font-weight: 600;
+  padding: 12px 20px;
+  width: 102px !important;
+  /* Corrected width with units */
+  height: 42px;
+  /* Corrected height with units */
+  background-color: white;
+  color: #1b08da;
+  border: 1px #1b08da solid;
+  border-radius: 30px;
+  white-space: nowrap;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  /* Position the button absolutely within the card */
+  top: 70px;
+  /* Distance from the bottom of the card */
+  right: 30px;
+  /* Distance from the right of the card */
+}
+#descriptionBox {
+  border: 3px solid #ccc;
+  border-radius: 10px;
+  min-height: 100px;
+}
+
+.imageBackground {
+  background-color: #ccc;
+  height: 250px;
+  border: none;
+  border-radius: 20px;
 }

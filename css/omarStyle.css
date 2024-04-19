@@ -151,6 +151,9 @@ nav {
   width: 24px;
   height: 24px;
   border-radius: 50%;
-  background: blue;
+  background: #1b08da;
 }
 /* end of settings checkbox implementation */
+.button-radius {
+  border: #1b08da;
+}
