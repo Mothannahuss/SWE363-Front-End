@@ -1,0 +1,153 @@
+body {
+  margin: 0;
+  font-family: "Inter";
+  background-color: white;
+}
+
+.header {
+  background-color: white;
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 40px 20px 0px 20px;
+}
+
+.header-icons {
+  display: flex;
+  align-items: center;
+}
+
+.header-icons .fa-search,
+.header-icons .fa-bars {
+  font-size: 24px;
+  color: #757575;
+  margin-left: 16px;
+}
+
+h1 {
+  color: #1e1f20;
+  font-size: 30px;
+  font-weight: 600;
+  margin: 0;
+  position: relative;
+}
+
+h1::after {
+  content: "";
+  display: block;
+  width: 27px;
+  height: 3px;
+  background-color: #4178f3;
+  position: absolute;
+  bottom: -9px;
+  left: 0;
+  border-radius: 2px;
+}
+
+.tab-nav {
+  display: flex;
+  justify-content: space-around;
+  background-color: white;
+}
+
+.tab-nav a {
+  color: #757575;
+  text-decoration: none;
+  padding: 35px;
+  display: block;
+  font-weight: 300;
+}
+
+.tab-nav a.active {
+  color: #4178f3;
+  font-weight: 600;
+}
+
+.event-card {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0.1, 0.1, 0.2, 0.2);
+  display: flex;
+  padding: 20px;
+  margin: 16px;
+  align-items: flex-start;
+  /* Align items to the top */
+  width: auto;
+  /* You can set a specific width if needed */
+  position: relative;
+  /* Needed for absolute positioning of the button */
+}
+
+.event-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  /* Ensure the content area fills the rest of the card */
+}
+
+.event-details {
+  flex-grow: 1;
+}
+
+.event-avatar {
+  background-color: #ccc;
+  border-radius: 50%;
+  width: 50px;
+  height: 44px;
+  margin-right: 16px;
+}
+
+.event-info {
+  color: #757575;
+  font-size: 14px;
+}
+
+.event-info i {
+  color: #595959;
+  margin-right: 8px;
+}
+
+.event-title {
+  color: #000;
+  margin: 0 0 4px 0;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.event-club {
+  color: #1b08da;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+a {
+  text-decoration: none !important;
+}
+
+.view-event-btn {
+  font-size: 12px;
+  font-weight: 600;
+  padding: 12px 20px;
+  width: 102px;
+  /* Corrected width with units */
+  height: 42px;
+  /* Corrected height with units */
+  background-color: #1b08da;
+  color: white;
+  border: none;
+  border-radius: 30px;
+  white-space: nowrap;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  /* Position the button absolutely within the card */
+  bottom: 20px;
+  /* Distance from the bottom of the card */
+  right: 20px;
+  /* Distance from the right of the card */
+}

@@ -1,7 +1,6 @@
-html,
 body {
-  margin: 5%;
-  font-family: Inter;
+  margin: 0;
+  font-family: "Inter";
   background-color: white;
 }
 
@@ -44,19 +43,15 @@ button {
   }
 }
 
-#account,
-#apperance,
-#preference {
+.settingsTitle {
   padding: 10px;
 }
-#account *,
-#apperance *,
-#preference * {
+.settingsTitle * {
   padding-left: 20px;
 }
 
-#sign-out button {
-  width: 100%;
+#sign-out {
+  margin: 16px;
 }
 
 #sign-out h2 {
@@ -100,3 +95,62 @@ nav {
 #newPost textarea {
   background-color: #f6f7f8;
 }
+
+.form-switch.form-switch-lg .form-check-input {
+  /* to change the checkbox size dynamicaly to a larger size than the defualt bootstrap size */
+  height: 2rem;
+  width: calc(3rem + 0.75rem);
+  border-radius: 4rem;
+}
+
+.event-card {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0.1, 0.1, 0.2, 0.2);
+  display: flex;
+  padding: 20px;
+  margin: 16px;
+  align-items: flex-start;
+  /* Align items to the top */
+  width: auto;
+  /* You can set a specific width if needed */
+  position: relative;
+  /* Needed for absolute positioning of the button */
+}
+
+/* settings checkbox implementation */
+
+.radioTheme input {
+  display: none;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.check {
+  position: absolute;
+  top: 60px;
+  border: 1px solid lightgray;
+  height: 30px;
+  width: 30px;
+  background-color: white;
+  border-radius: 50%;
+}
+
+.check:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.radioTheme input:checked ~ .check:after {
+  display: block;
+}
+.radioTheme .check:after {
+  top: 2px;
+  left: 2px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: blue;
+}
+/* end of settings checkbox implementation */
