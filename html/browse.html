@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>myClubs</title>
+    <title>Browse</title>
     <meta charset="UTF-8" />
     	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link href="../css/style.css" rel="stylesheet" type="text/css" >
@@ -45,7 +45,7 @@
         <nav class="navbar">
             <div class="container-fluid">
               <div >
-                  <h1>My Clubs</h1>
+                  <h1>Browse</h1>
                   <div class="rectangle"></div>
                 </div>
               <ul class="navbar-nav d-flex flex-row me-1">
@@ -97,7 +97,7 @@
                         >
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" href="browse.html">Browse</a>
+                        <a class="nav-link" href="#">Browse</a>
                       </li>
                       <li class="nav-item">
                         <a class="nav-link" href="notification.html">Notifications</a>
@@ -114,15 +114,27 @@
               </div>
           </nav>
     </div>
+        <div class="selection-container">
+            <select class="form-select" aria-label="Default select example">
+                <option selected>Categories: All</option>
+                <option value="1">Sports</option>
+                <option value="2">Gaming</option>
+                <option value="3">Technology</option>
+              </select>
+        </div>
+
     <div class="club-card">
         <div class="event-avatar"></div>
         <div class="club-detail"><h2><a href="profile.html">Club Name</a></h2><p>This club does this and thi</p></div>
-        <button>Unfollow</button>
+        <button class="follow-btn">Follow</button>
     </div>
     <div class="club-card">
         <div class="club-avatar"></div>
         <div class="club-detail"><h2><a href="profile.html">Club Name</a></h2><p>This club </p></div>
-        <div><button>Unfollow</button></div>
+        <div><button class="follow-btn">Follow</button></div>
     </div>
+
+
+
 </body>
 </html>

@@ -52,10 +52,7 @@ html {
 }
 
 .clubInfo {
-  /* margin-right:  2%;
-    margin-left: 2%;
-    position: relative;
-    margin-top: 5%; */
+
   margin: 2% 5% 0 5%;
   display: grid;
   columns: 2;

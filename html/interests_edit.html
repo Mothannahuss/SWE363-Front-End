@@ -26,19 +26,20 @@
     />
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <script src="../scripts/profileScript.js"></script>
+    <script src="../scripts/signUpScript.js"></script>
     <script src="../scripts/searchBtnScript.js"></script>
+    <script src="../scripts/backArrowScript.js"></script>
   </head>
   <body>
     <nav class="navbar">
       <div class="container-fluid">
-        <div >
-            <h1>My profile</h1>
-            <div class="rectangle"></div>
-          </div>
+        <button type="button" class="btn" id="back-btn" style="border-radius: 90px; border-style: solid;">
+            <i class="bi bi-arrow-left-circle"></i>
+          </button>
+
         <ul class="navbar-nav d-flex flex-row me-1">
           <li class="nav-item me-0 me-lg-0">
-            <button class="btn" type="button" id="search-btn" style="border-radius: 90px; border-style: solid;">
+            <button class="btn" id="search-btn" type="button" style="border-radius: 90px; border-style: solid;">
                 <i class="bi bi-search"></i>
               </button>
           </li>
@@ -85,7 +86,7 @@
                   >
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="browse.html">Browse</a>
+                  <a class="nav-link" href="#">Browse</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="notification.html">Notifications</a>
@@ -103,63 +104,53 @@
       </div>
     </nav>
 
-    <div class="space">
-        <span class="dot"></span>
-    </div>
-    <div class="clubInfo">
-        <h2 class="item1">Club Name</h2>
-        <button type="button" id="edit-btn" class="btn btn-outline-primary item2">Edit profile</button>
-        <label style="color: #595959;">@ClubUserName</label>
-        <br>
-        <p class="item1">This club does this and that ...</p>
-        <br>
-        <p class="item1"><span style="color: #1B08DA;">178</span> Followers</p>
-
+    <div class="container" style="margin-top: 5%;">
         
-    </div>
-    <nav class="nav nav-justified">
-        <a class="nav-link" aria-current="page" href="#" id="upcoming">Upcoming</a>
-        <a class="nav-link" href="#" id="all">All</a>
-        <a class="nav-link" href="#" id="about">About</a>
-      </nav>
-
-
-
-      <!-- Event cards -->
-      <div id="contentHolder">
-      <div class="event-card">
-        <div class="event-avatar"></div>
-        <div class="event-content">
-            <div class="event-details">
-                <a class="event-club" href="profile.html">Club Name</a>
-
-                <h2 class="event-title">Event Title</h2>
-                <div class="event-info">
-                    <p><i class="fas fa-calendar-alt"></i> Day, Date</p>
-                    <p><i class="fas fa-clock"></i> Time</p>
-                    <p><i class="fas fa-map-marker-alt"></i> Location</p>
-                </div>
+        <div class="signIn_form">
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value=""
+                id="opt1"
+              />
+              <label class="form-check-label" for="opt1"> Sports </label>
             </div>
-            <button class="view-event-btn">View Event</button>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value=""
+                id="opt2"
+              />
+              <label class="form-check-label" for="opt2"> Technology </label>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value=""
+                id="opt3"
+              />
+              <label class="form-check-label" for="opt3">
+                Electrical Engineering
+              </label>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value=""
+                id="opt4"
+              />
+              <label class="form-check-label" for="opt4"> Gaming </label>
+            </div>
         </div>
-    </div>
-
-    <div class="event-card">
-      <div class="event-avatar"></div>
-      <div class="event-content">
-          <div class="event-details">
-              <a class="event-club" href="profile.html">Club Name</a>
-
-              <h2 class="event-title">Event Title</h2>
-              <div class="event-info">
-                  <p><i class="fas fa-calendar-alt"></i> Day, Date</p>
-                  <p><i class="fas fa-clock"></i> Time</p>
-                  <p><i class="fas fa-map-marker-alt"></i> Location</p>
-              </div>
-          </div>
-          <button class="view-event-btn">View Event</button>
       </div>
-  </div>
-</div>
+    
+
+
+
+
   </body>
 </html>

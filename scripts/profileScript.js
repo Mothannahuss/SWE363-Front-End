@@ -1,9 +1,6 @@
 document.addEventListener("DOMContentLoaded", function()
 {
-    document.querySelector("#search-btn").addEventListener("click", function()
-    {
-        window.location.href = "../html/search.html";
-    });
+
     document.querySelector("#about").addEventListener("click", function()
     {
         let div = document.querySelector("#contentHolder");
@@ -14,11 +11,6 @@ document.addEventListener("DOMContentLoaded", function()
         div.appendChild(card);
     });
 
-    document.querySelector("#back-btn").addEventListener("click", function()
-    {
-        console.log("Search");
-        history.back();
-    })
 
 
     
