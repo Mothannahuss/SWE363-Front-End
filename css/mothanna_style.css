@@ -197,8 +197,26 @@ footer {
     border: none;
     cursor: pointer;
   }
+
+  
 }
 
+#cont
+{
+  margin-top: 15vh;
+}
+
+.form-check-label
+{
+  font-size:larger !important;
+  color: #000 !important;
+}
+
+
+.form-check
+{
+  padding: 3% 0;
+}
 a
 {
   text-decoration: none !important;
