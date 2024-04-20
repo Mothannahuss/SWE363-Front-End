@@ -95,7 +95,17 @@ In this section, we will take a look at the different pages in our application.
   
 * ![image](https://github.com/Mothannahuss/SWE363-Front-End/assets/38408919/70b29140-beba-4733-b0ad-cec01abea360)
 
+# CSS
+In this section, we will discuss various important CSS implementations
 
+## font setting
+* We uses `Inter` font family in our application
+* All headers uses font weight 600 **Semi-Bold**
+  
+## Colors
+* Background color is always `White`
+* for light blue we uses `#4178f3`
+* for dark blue we uses `#1b08da`
 
 
 
