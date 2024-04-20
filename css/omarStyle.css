@@ -1,0 +1,156 @@
+body {
+    margin: 0;
+    font-family: "Inter";
+    background-color: white;
+  }
+  
+  #logoBox {
+    width: 30px;
+    height: 0.25rem;
+    border-radius: 8px;
+    background-color: #4178f3;
+    margin-left: 1%;
+    margin-top: 0px;
+  }
+  
+  .pageTitle {
+    margin-bottom: 0px;
+    margin-left: 1%;
+    font-weight: 600;
+  }
+  header {
+    margin-bottom: 50px;
+    background-color: white;
+    width: 100%;
+  }
+  
+  button {
+    background: none;
+    border: none;
+    outline: none;
+    box-shadow: none;
+  }
+  
+  #searchButton {
+    padding: 3% 3%;
+    border: 1px solid;
+    color: #d4d2e3;
+    border-radius: 100%;
+  }
+  @media (max-width: 500px) {
+    #searchButton {
+      padding: 8% 8%;
+    }
+  }
+  
+  .settingsTitle {
+    padding: 10px;
+  }
+  .settingsTitle * {
+    padding-left: 20px;
+  }
+  
+  #sign-out {
+    margin: 16px;
+  }
+  
+  #sign-out h2 {
+    text-align: center;
+  }
+  
+  h2 {
+    text-align: left;
+  }
+  p {
+    text-align: left;
+  }
+  
+  nav {
+    justify-content: end;
+  }
+  
+  .headerButton * {
+    text-align: center;
+    margin: auto;
+  }
+  
+  .headerButton {
+    justify-content: end;
+  }
+  
+  #newPostButtons {
+    /* the div that contain control buttons for the new post i.e. Post and Cancel buttons in newPost HTML */
+    justify-content: end;
+  }
+  
+  #newPost label {
+    /* all labesl in the form should have a unifed style */
+    font-weight: 600;
+    font-size: 20px;
+    color: #1b08da;
+    margin-top: 20px;
+  }
+  
+  #newPost input,
+  #newPost textarea {
+    background-color: #f6f7f8;
+  }
+  
+  .form-switch.form-switch-lg .form-check-input {
+    /* to change the checkbox size dynamicaly to a larger size than the defualt bootstrap size */
+    height: 2rem;
+    width: calc(3rem + 0.75rem);
+    border-radius: 4rem;
+  }
+  
+  .event-card {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0.1, 0.1, 0.2, 0.2);
+    display: flex;
+    padding: 20px;
+    margin: 16px;
+    align-items: flex-start;
+    /* Align items to the top */
+    width: auto;
+    /* You can set a specific width if needed */
+    position: relative;
+    /* Needed for absolute positioning of the button */
+  }
+  
+  /* settings checkbox implementation */
+  
+  .radioTheme input {
+    display: none;
+    opacity: 0;
+    cursor: pointer;
+  }
+  
+  .check {
+    position: absolute;
+    top: 60px;
+    border: 1px solid lightgray;
+    height: 30px;
+    width: 30px;
+    background-color: white;
+    border-radius: 50%;
+  }
+  
+  .check:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+  
+  .radioTheme input:checked ~ .check:after {
+    display: block;
+  }
+  .radioTheme .check:after {
+    top: 2px;
+    left: 2px;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: blue;
+  }
+  /* end of settings checkbox implementation */

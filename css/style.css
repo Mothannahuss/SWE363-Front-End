@@ -1,176 +1,186 @@
-:root {
-    --background-color: white;
-    --primary-color: #1B08DA;
-    --secondry-color: #4178F3;
-    --instruction-color: #595959;
-    --aproved-color: #38D79F;
-    --error-color: #FF0000;
-}
-
-/* Common Pages Style */
-
-/* Mobile Style */
-
-html {
+body {
+    margin: 0;
     font-family: 'Inter';
+    background-color: white;
 }
 
-header,
-#tabs {
-    margin: 8px 16px 8px 16px;
+.header {
+    background-color: white;
 }
 
-header h2 {
-    font-weight: 600;
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 40px 20px 0px 20px;
 }
 
-.underline {
-    border-bottom: 3px solid var(--secondry-color);
-}
-
-.offcanvas {
-    max-width: 45%;
-}
-
-header .btn {
-    border-radius: 90px;
-}
-
-.btn {
+.header-icons {
     display: flex;
     align-items: center;
-    justify-content: center;
-    padding-left: 8px;
-    padding-right: 8px;
+
 }
 
-#search-bar {
-    width: 100%;
-    height: 100%;
-    float: right;
-    margin-left: 10px;
+.header-icons .fa-search,
+.header-icons .fa-bars {
+    font-size: 24px;
+    color: #757575;
+    margin-left: 16px;
 }
 
-.nav-link.active {
-    color: var(--secondry-color);
+h1 {
+    color: #1E1F20;
+    font-size: 30px;
     font-weight: 600;
+    margin: 0;
+    position: relative;
 }
 
-.nav-link {
-    color: var(--instruction-color);
+h1::after {
+    content: '';
+    display: block;
+    width: 27px;
+    height: 3px;
+    background-color: #4178F3;
+    position: absolute;
+    bottom: -9px;
+    left: 0;
+    border-radius: 2px;
+}
+
+.tab-nav {
+    display: flex;
+    justify-content: space-around;
+    background-color: white;
+}
+
+.tab-nav a {
+    color: #757575;
+    text-decoration: none;
+    padding: 35px;
+    display: block;
     font-weight: 300;
 }
 
+.tab-nav a.active {
+    color: #4178F3;
+    font-weight: 600;
+}
+
 .event-card {
-    background-color: var(--background-color);
+    background-color: white;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0.1, 0.1, 0.2, 0.2);
+    display: flex;
     padding: 20px;
     margin: 16px;
+    align-items: flex-start;
+    /* Align items to the top */
+    width: auto;
+    /* You can set a specific width if needed */
+    position: relative;
+    /* Needed for absolute positioning of the button */
+}
+
+
+.event-content {
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-}
-
-.event-card-body {
-    display: flex;
-    flex-direction: row;
     justify-content: space-between;
-    align-items: flex-end;
-    margin-left: 70px;
-}
-
-.club-avatar {
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    margin-right: 20px;
+    width: 100%;
+    /* Ensure the content area fills the rest of the card */
 }
 
 .event-details {
-    color: var(--instruction-color);
-    font-size: 0.75rem;
+    flex-grow: 1;
 }
 
-.event-card h2 {
+
+
+.event-avatar {
+    background-color: #ccc;
+    border-radius: 50%;
+    width: 50px;
+    height: 44px;
+    margin-right: 16px;
+}
+
+.event-info {
+    color: #757575;
+    font-size: 14px;
+}
+
+.event-info i {
+    color: #595959;
+    margin-right: 8px;
+}
+
+.event-title {
+    color: #000;
+    margin: 0 0 4px 0;
+    font-size: 16px;
     font-weight: 600;
 }
 
-.event-card a,
-.club-card a,
-.notification-card a {
-    color: var(--primary-color);
-    text-decoration: none;
+.event-club {
+    color: #1B08DA;
+    font-size: 14px;
     font-weight: 600;
-    padding-left: 0px;
 }
 
-.btn-org.btn-primary {
-    background-color: var(--primary-color);
-    border-color: var(--primary-color);
+a
+{
+    text-decoration: none !important;
+}
+
+
+
+.view-event-btn {
+    font-size: 12px;
+    font-weight: 600;
+    padding: 12px 20px;
+    width: 102px;
+    /* Corrected width with units */
+    height: 42px;
+    /* Corrected height with units */
+    background-color: #1B08DA;
+    color: white;
+    border: none;
     border-radius: 30px;
-    font-weight: 600;
-}
-
-.btn-org.btn-outline-primary {
-    color: var(--primary-color);
-    border-color: var(--primary-color);
-    border-radius: 30px;
-    font-weight: 600;
-}
-
-.event-card .btn,
-.club-card .btn {
-    padding: 10px 20px;
-    font-size: 0.75rem;
-}
-
-.club-card {
-    background-color: var(--background-color);
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0.1, 0.1, 0.2, 0.2);
-    padding: 20px;
-    margin: 16px;
-    overflow:auto;
+    white-space: nowrap;
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: flex-start;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    /* Position the button absolutely within the card */
+    bottom: 20px;
+    /* Distance from the bottom of the card */
+    right: 20px;
+    /* Distance from the right of the card */
+
+}
+.search-bar
+{
+  padding: 20px ;
+  width: auto;
 }
 
-.club-card-body {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: flex-start;
+.search-bar span, .search-bar input
+{
+  border:none ;
+  background-color: #f4f4f4 ;
 }
-
-.club-card p,
-.notification-card p {
-    color: var(--instruction-color);
-    font-size: 0.75rem;
-    padding-left: 3px;
+.club-card .btn-primary {
+    background-color: #1B08DA !important;
+    border-color: #1B08DA;
+    color: white !important;
 }
-
-.notification-card {
-    background-color: var(--background-color);
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0.1, 0.1, 0.2, 0.2);
-    padding: 20px;
-    margin: 16px;
-    overflow:auto;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: flex-start;
+.club-card .btn-outline-primary {
+    color: #1B08DA;
+    border-color: #1B08DA;
+    background-color: white;
 }
-
-/* Tablet Style */
-
-@media screen and (min-width: 420px) {
-}
-
-/* Desktop Style */
-
-@media screen and (min-width: 920px){
+.club-card .btn-outline-primary:hover {
+    background-color: #1B08DA !important;
+    border-color: #1B08DA !important;
 }

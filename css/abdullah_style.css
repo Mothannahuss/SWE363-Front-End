@@ -1,0 +1,101 @@
+.post-notification {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0.1, 0.1, 0.2, 0.2);
+    display: flex;
+    padding: 20px;
+    margin: 16px;
+    align-items: flex-start;
+    width: auto;
+    height: 84px;
+    position: relative;
+}
+.post-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 100%;
+    
+}
+
+
+
+.post-content a {
+    color: black;
+}
+.post-content p {
+    color: #595959;
+}
+.post-content h2 {
+    margin-bottom: 1px;
+}
+.header {
+    margin-top: 30px;
+}
+.club-card {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0.1, 0.1, 0.2, 0.2);
+    display: flex;
+    padding: 20px;
+    margin: 16px;
+    align-items: flex-start;
+    width: auto;
+    position: relative;
+}
+
+
+.club-card .btn-primary {
+    background-color: #1B08DA !important;
+    border-color: #1B08DA;
+    color: white !important;
+}
+.club-card .btn-outline-primary {
+    color: #1B08DA;
+    border-color: #1B08DA;
+    background-color: white;
+}
+.club-card .btn-outline-primary:hover {
+    background-color: #1B08DA !important;
+    border-color: #1B08DA !important;
+}
+
+select
+{
+    border-color: #1B08DA !important;
+    border-radius: 30px !important;
+}
+
+.selection-container
+{
+    padding: 20px;
+    width: 212px;
+}
+.club-card button {
+    font-weight: 600;
+    color: #1B08DA;
+    border-color: #1B08DA;
+    background-color: white;
+    border-radius: 30px;
+    padding: 6px 12px;
+    position: absolute;
+    right: 10px;
+}
+.club-card h2 a {
+    color: #1B08DA;
+}
+.club-card p {
+    color: #595959;
+}
+
+.club-name p {
+    line-height: 15px;
+}
+.club-avatar {
+    background-color: #ccc;
+    border-radius: 50%;
+    width: 50px;
+    height: 44px;
+    margin-right: 16px;
+    position: relative;
+}

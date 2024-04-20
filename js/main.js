@@ -1,17 +1,6 @@
-const loginForm = document.getElementById("login");
-const signupForm = document.getElementById("sign-up");
-const login = document.getElementById("to-sign-up");
-const signup = document.getElementById("to-login");
-const forgotPass = document.getElementById("forgot-pass");
-const email = document.getElementsByClassName("email");
-const pass = document.getElementsByClassName("pass");
-const repass = document.getElementsByClassName("repass");
-const eyePass = document.getElementById("show-pass");
-const myfeed = document.getElementById("my-feed");
-const explore = document.getElementById("explore");
-const upcoming = document.getElementById("show-pass");
-const all = document.getElementById("show-pass");
-const nnew = document.getElementById("show-pass");
-const previous = document.getElementById("show-pass");
-const about = document.getElementById("show-pass");
-const follow = document.getElementById("show-pass");
+document.addEventListener("DOMContentLoaded", function () {
+    const sec1 = document.getElementById("sec1");
+    const sec2 = document.getElementById("sec2");
+    const sec1tog = document.getElementById("sec1tog");
+    const sec2tog = document.getElementById("sec2tog");
+});
