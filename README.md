@@ -17,7 +17,7 @@ In this section, we will take a look at the different pages in our application.
 2. Forget password button will send a password to the entered email. This will be done in the backend phase.
 3. The sign-up button will open the signup form and hide the sign-in form by using the CSS property `display: none;`.
    
-![image](https://github.com/Mothannahuss/SWE363-Front-End/assets/38408919/c746111c-c566-45d6-a191-f2912b522abf)
+![image](https://github.com/Mothannahuss/SWE363-Front-End/assets/38408919/067b72ec-9d6b-47c4-ab29-8e2d611606dc)
 ![image](https://github.com/Mothannahuss/SWE363-Front-End/assets/38408919/ea791431-5f5d-452d-8282-ee69db950059)
 
 ## interest selection
