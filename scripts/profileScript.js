@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", function()
     document.querySelector("#upcoming").addEventListener("click", function()
     {
         let div = document.querySelector("#contentHolder");
-        div.innerHTML = `      <div class="event-card">
+        div.innerHTML = `<div class="event-card">
         <div class="event-avatar"></div>
         <div class="event-content">
             <div class="event-details">
@@ -89,7 +89,7 @@ document.addEventListener("DOMContentLoaded", function()
           </div>
           <button class="view-event-btn">View Event</button>
       </div>
-  </div>`;;
+  </div>`;
     })
 
 
