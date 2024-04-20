@@ -45,21 +45,11 @@
 }
 
 
-.club-card .btn-primary {
+.follow-btn
+{
     background-color: #1B08DA !important;
-    border-color: #1B08DA;
     color: white !important;
 }
-.club-card .btn-outline-primary {
-    color: #1B08DA;
-    border-color: #1B08DA;
-    background-color: white;
-}
-.club-card .btn-outline-primary:hover {
-    background-color: #1B08DA !important;
-    border-color: #1B08DA !important;
-}
-
 select
 {
     border-color: #1B08DA !important;

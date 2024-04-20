@@ -75,6 +75,7 @@ html {
 .clubInfo button {
   display: inline;
   float: right;
+  background-color: #1b08da;
   border-radius: 25px;
 }
 
@@ -93,19 +94,12 @@ html {
   color: #1B08DA;
   border-radius: 25px;
 }
-.clubInfo .btn-primary {
-  background-color: #1B08DA !important;
-  border-color: #1B08DA;
-  color: white !important;
-}
-.clubInfo .btn-outline-primary {
+
+.clubInfo button:hover
+{
   color: #1B08DA;
   border-color: #1B08DA;
   background-color: white;
-}
-.clubInfo .btn-outline-primary:hover {
-  background-color: #1B08DA !important;
-  border-color: #1B08DA !important;
 }
 
 .search {
@@ -119,6 +113,8 @@ html {
   border-radius: 8px;
   background-color: #4178f3;
 }
+
+
 
 .space {
   width: 100%;
@@ -316,31 +312,4 @@ a
   /* Distance from the bottom of the card */
   right: 20px;
   /* Distance from the right of the card */
-}
-
-form .bi {
-  position: absolute;
-  right: 2rem;
-  top: 0.25rem;
-  cursor: pointer;
-}
-
-
-.tab-nav {
-  display: flex;
-  justify-content: space-around;
-  background-color: white;
-}
-
-.tab-nav a {
-  color: #757575;
-  text-decoration: none;
-  padding: 35px;
-  display: block;
-  font-weight: 300;
-}
-
-.tab-nav a.active {
-  color: #4178F3;
-  font-weight: 600;
 }

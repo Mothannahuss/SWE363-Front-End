@@ -21,7 +21,7 @@
       crossorigin="anonymous"
     ></script>
 
-    <script src="../scripts/signUpScript.js"></script>
+    <script src="../js/auth-val.js"></script>
   </head>
   <body>
     <div class="container">
@@ -73,5 +73,18 @@
         </form>
       </div>
     </div>
+    <script>
+      let opts = document.querySelectorAll(".form-check-input");
+
+      opts.forEach((opt) =>
+        opt.addEventListener("change", function (e) {
+          if (e.target.checked) {
+            this.style.backgroundColor = "#1B08DA";
+          } else {
+            this.style.backgroundColor = "white";
+          }
+        })
+      );
+    </script>
   </body>
 </html>

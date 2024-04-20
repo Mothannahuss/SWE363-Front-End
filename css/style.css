@@ -1,73 +1,72 @@
 body {
     margin: 0;
-    font-family: 'Inter';
+    font-family: "Inter";
     background-color: white;
-}
-
-.header {
+  }
+  
+  .header {
     background-color: white;
-}
-
-.header-content {
+  }
+  
+  .header-content {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 40px 20px 0px 20px;
-}
-
-.header-icons {
+  }
+  
+  .header-icons {
     display: flex;
     align-items: center;
-
-}
-
-.header-icons .fa-search,
-.header-icons .fa-bars {
+  }
+  
+  .header-icons .fa-search,
+  .header-icons .fa-bars {
     font-size: 24px;
     color: #757575;
     margin-left: 16px;
-}
-
-h1 {
-    color: #1E1F20;
+  }
+  
+  h1 {
+    color: #1e1f20;
     font-size: 30px;
     font-weight: 600;
     margin: 0;
     position: relative;
-}
-
-h1::after {
-    content: '';
+  }
+  
+  h1::after {
+    content: "";
     display: block;
     width: 27px;
     height: 3px;
-    background-color: #4178F3;
+    background-color: #4178f3;
     position: absolute;
     bottom: -9px;
     left: 0;
     border-radius: 2px;
-}
-
-.tab-nav {
+  }
+  
+  .tab-nav {
     display: flex;
     justify-content: space-around;
     background-color: white;
-}
-
-.tab-nav a {
+  }
+  
+  .tab-nav a {
     color: #757575;
     text-decoration: none;
     padding: 35px;
     display: block;
     font-weight: 300;
-}
-
-.tab-nav a.active {
-    color: #4178F3;
+  }
+  
+  .tab-nav a.active {
+    color: #4178f3;
     font-weight: 600;
-}
-
-.event-card {
+  }
+  
+  .event-card {
     background-color: white;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0.1, 0.1, 0.2, 0.2);
@@ -80,62 +79,159 @@ h1::after {
     /* You can set a specific width if needed */
     position: relative;
     /* Needed for absolute positioning of the button */
-}
-
-
-.event-content {
+  }
+  
+  .event-content {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     width: 100%;
+    margin-bottom: 3%;
     /* Ensure the content area fills the rest of the card */
-}
-
-.event-details {
+  }
+  
+  .btn-reg {
+    background-color: #1b08da;
+    border-radius: 30px;
+    color: white;
+    width: 89px;
+    height: 42px;
+    margin-left: calc(50% - (89px / 2));
+    bottom: 0;
+  }
+  
+  #registerButton {
+    font-size: 12px;
+    font-weight: 600;
+    padding: 12px 20px;
+  
+    /* Corrected height with units */
+    background-color: #1b08da;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    white-space: nowrap;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  #saveEventButton {
+    font-size: 12px;
+    font-weight: 600;
+    padding: 12px 20px;
+    width: 102px !important;
+    /* Corrected width with units */
+    height: 42px;
+    /* Corrected height with units */
+    background-color: white;
+    color: #1b08da;
+    border: 1px #1b08da solid;
+    border-radius: 30px;
+    white-space: nowrap;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    /* Position the button absolutely within the card */
+    top: 70px;
+    /* Distance from the bottom of the card */
+    right: 30px;
+    /* Distance from the right of the card */
+  }
+  #descriptionBox {
+    border: 3px solid #ccc;
+    border-radius: 10px;
+    min-height: 100px;
+  }
+  
+  .btn-save {
+    border-radius: 30px;
+    background-color: white;
+    color: #1b08da;
+    border-color: #1b08da;
+    width: 89px;
+    height: 29px;
+    font-size: 10px;
+    display: inline;
+  }
+  
+  .poster-content {
+    background-color: #a09f9f;
+    width: 148px;
+    height: 190px;
+    margin-left: calc(50% - (148px / 2));
+    border-radius: 20px;
+  }
+  
+  .event-content label {
+    font-weight: bold;
+    color: #1b08da;
+  }
+  
+  textarea {
+    border-radius: 25px !important;
+  }
+  
+  .card {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0.1, 0.1, 0.2, 0.2);
+    padding: 20px;
+    margin: 16px;
+    /* Align items to the top */
+    width: auto;
+    /* You can set a specific width if needed */
+    position: relative;
+    /* Needed for absolute positioning of the button */
+  }
+  
+  .event-details {
     flex-grow: 1;
-}
-
-
-
-.event-avatar {
-    background-color: #ccc;
+  }
+  
+  .event-fields {
+    display: block;
+    width: 100%;
+    height: 44px;
+    margin-right: 16px;
+  }
+  
+  .event-avatar {
+    background-color: #8f8e8e;
     border-radius: 50%;
     width: 50px;
     height: 44px;
     margin-right: 16px;
-}
-
-.event-info {
+  }
+  
+  .event-info {
     color: #757575;
     font-size: 14px;
-}
-
-.event-info i {
+  }
+  
+  .event-info i {
     color: #595959;
     margin-right: 8px;
-}
-
-.event-title {
+  }
+  
+  .event-title {
     color: #000;
     margin: 0 0 4px 0;
     font-size: 16px;
     font-weight: 600;
-}
-
-.event-club {
-    color: #1B08DA;
+  }
+  
+  .event-club {
+    color: #1b08da;
     font-size: 14px;
     font-weight: 600;
-}
-
-a
-{
+  }
+  
+  a {
     text-decoration: none !important;
-}
-
-
-
-.view-event-btn {
+  }
+  
+  .view-event-btn {
     font-size: 12px;
     font-weight: 600;
     padding: 12px 20px;
@@ -143,7 +239,7 @@ a
     /* Corrected width with units */
     height: 42px;
     /* Corrected height with units */
-    background-color: #1B08DA;
+    background-color: #1b08da;
     color: white;
     border: none;
     border-radius: 30px;
@@ -157,30 +253,4 @@ a
     /* Distance from the bottom of the card */
     right: 20px;
     /* Distance from the right of the card */
-
-}
-.search-bar
-{
-  padding: 20px ;
-  width: auto;
-}
-
-.search-bar span, .search-bar input
-{
-  border:none ;
-  background-color: #f4f4f4 ;
-}
-.club-card .btn-primary {
-    background-color: #1B08DA !important;
-    border-color: #1B08DA;
-    color: white !important;
-}
-.club-card .btn-outline-primary {
-    color: #1B08DA;
-    border-color: #1B08DA;
-    background-color: white;
-}
-.club-card .btn-outline-primary:hover {
-    background-color: #1B08DA !important;
-    border-color: #1B08DA !important;
-}
+  }
