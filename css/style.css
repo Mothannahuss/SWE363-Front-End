@@ -91,11 +91,111 @@ h1::after {
     /* Ensure the content area fills the rest of the card */
 }
 
+.btn-reg {
+    background-color: #1b08da;
+    border-radius: 30px;
+    color: white;
+    width: 89px;
+    height: 42px;
+    margin-left: calc(50% - (89px / 2));
+    bottom: 0;
+  }
+  
+  #registerButton {
+    font-size: 12px;
+    font-weight: 600;
+    padding: 12px 20px;
+  
+    /* Corrected height with units */
+    background-color: #1b08da;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    white-space: nowrap;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  #saveEventButton {
+    font-size: 12px;
+    font-weight: 600;
+    padding: 12px 20px;
+    width: 102px !important;
+    /* Corrected width with units */
+    height: 42px;
+    /* Corrected height with units */
+    background-color: white;
+    color: #1b08da;
+    border: 1px #1b08da solid;
+    border-radius: 30px;
+    white-space: nowrap;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    /* Position the button absolutely within the card */
+    top: 70px;
+    /* Distance from the bottom of the card */
+    right: 30px;
+    /* Distance from the right of the card */
+  }
+  #descriptionBox {
+    border: 3px solid #ccc;
+    border-radius: 10px;
+    min-height: 100px;
+  }
+  
+  .btn-save {
+    border-radius: 30px;
+    background-color: white;
+    color: #1b08da;
+    border-color: #1b08da;
+    width: 89px;
+    height: 29px;
+    font-size: 10px;
+    display: inline;
+  }
+  
+  .poster-content {
+    background-color: #a09f9f;
+    width: 148px;
+    height: 190px;
+    margin-left: calc(50% - (148px / 2));
+    border-radius: 20px;
+  }
+  
+  .event-content label {
+    font-weight: bold;
+    color: #1b08da;
+  }
+  
+  textarea {
+    border-radius: 25px !important;
+  }
+  
+  .card {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0.1, 0.1, 0.2, 0.2);
+    padding: 20px;
+    margin: 16px;
+    /* Align items to the top */
+    width: auto;
+    /* You can set a specific width if needed */
+    position: relative;
+    /* Needed for absolute positioning of the button */
+  }
+
 .event-details {
     flex-grow: 1;
 }
-
-
+  
+  .event-fields {
+    display: block;
+    width: 100%;
+    height: 44px;
+    margin-right: 16px;
+  }
 
 .event-avatar {
     background-color: #ccc;
