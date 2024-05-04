@@ -1,0 +1,228 @@
+{% extends "base.njk" %}
+
+
+{% block styles %}
+<link rel="stylesheet" href="/css/style.css" />
+{%endblock %}
+{% block scripts %}
+    <script src="/js/search-header.js"></script>
+    <script src="/js/tab-nav2.js"></script>
+{% endblock %}
+
+
+{% block content %}
+    <div class="header" id="header1">
+      <nav class="navbar">
+        <div class="container-fluid">
+          <div>
+            <h1>Home</h1>
+            <div class="rectangle"></div>
+          </div>
+          <ul class="navbar-nav d-flex flex-row me-1">
+            <li class="nav-item me-0 me-lg-0">
+              <button
+                class="btn"
+                type="button"
+                id="search-btn"
+                style="border-radius: 90px; border-style: solid"
+              >
+                <i class="bi bi-search"></i>
+              </button>
+            </li>
+
+            <li>
+              <button
+                class="navbar-toggler"
+                type="button"
+                data-bs-toggle="offcanvas"
+                data-bs-target="#offcanvasNavbar"
+                aria-controls="offcanvasNavbar"
+                aria-label="Toggle navigation"
+              >
+                <span class="navbar-toggler-icon"></span>
+              </button>
+            </li>
+          </ul>
+          <div
+            class="offcanvas offcanvas-end"
+            tabindex="-1"
+            id="offcanvasNavbar"
+            aria-labelledby="offcanvasNavbarLabel"
+          >
+            <div class="offcanvas-header">
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="offcanvas"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="offcanvas-body">
+              <ul class="navbar-nav justify-content-end flex-grow-1">
+                <li class="nav-item">
+                  <a class="nav-link" href="home.html">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="myClubs.html">My Clubs</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="savedEvent.html">Saved Events</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="browse.html">Browse Clubs</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="notification.html">Notifications</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="settings.html">Settings</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="myProfile.html">My Profile</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      <div class="tab-nav">
+        <a id="sec1tog" href="" class="active">My Feed</a>
+        <a id="sec2tog" href="">Explore</a>
+      </div>
+    </div>
+    <div id="header2" hidden>
+      <nav class="navbar">
+        <div class="container-fluid">
+          <button
+            type="button"
+            class="btn"
+            id="back-btn"
+            style="border-radius: 90px; border-style: solid"
+          >
+            <i class="bi bi-arrow-left-circle"></i>
+          </button>
+
+          <ul class="navbar-nav d-flex flex-row me-1">
+            <li class="nav-item me-0 me-lg-0">
+              <button
+                class="btn"
+                type="button"
+                id="search-btn"
+                style="border-radius: 90px; border-style: solid"
+              >
+                <i class="bi bi-search"></i>
+              </button>
+            </li>
+
+            <li>
+              <button
+                class="navbar-toggler"
+                type="button"
+                data-bs-toggle="offcanvas"
+                data-bs-target="#offcanvasNavbar"
+                aria-controls="offcanvasNavbar"
+                aria-label="Toggle navigation"
+              >
+                <span class="navbar-toggler-icon"></span>
+              </button>
+            </li>
+          </ul>
+          <div
+            class="offcanvas offcanvas-end"
+            tabindex="-1"
+            id="offcanvasNavbar"
+            aria-labelledby="offcanvasNavbarLabel"
+          >
+            <div class="offcanvas-header">
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="offcanvas"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="offcanvas-body">
+              <ul class="navbar-nav justify-content-end flex-grow-1">
+                <li class="nav-item">
+                  <a class="nav-link" href="home.html">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="myClubs.html">My Clubs</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="savedEvent.html">Saved Events</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="browse.html">Browse Clubs</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="notification.html">Notifications</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="settings.html">Settings</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="myProfile.html">My Profile</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div class="input-group flex-nowrap search-bar">
+        <span class="input-group-text" id="addon-wrapping"
+          ><i class="bi bi-search"></i
+        ></span>
+        <input
+          type="search"
+          class="form-control"
+          placeholder="Search"
+          aria-label="Search"
+          aria-describedby="addon-wrapping"
+        />
+      </div>
+    </div>
+    <section id="sec1">
+
+    {% for event in events %}
+        <div class="event-card">
+            <div class="event-avatar"></div>
+            <div class="event-content">
+            <div class="event-details">
+                <a class="event-club" href="profile.html">{{event.club}}</a>
+                <h2 class="event-title">{{event.title}}</h2>
+                <div class="event-info">
+                <p><i class="fas fa-calendar-alt"></i> {{event.date}}</p>
+                <p><i class="fas fa-clock"></i> {{event.time}}</p>
+                <p><i class="fas fa-map-marker-alt"></i> {{event.location}}</p>
+                </div>
+            </div>
+            <a class="view-event-btn" href="eventDetails.html">View Event</a>
+            </div>
+      </div>
+    {% endfor %}
+      
+    </section>
+    <section id="sec2" hidden>
+      {% if allEvents %}
+        {% for event in allEvents %}
+        <div class="event-card">
+            <div class="event-avatar"></div>
+            <div class="event-content">
+            <div class="event-details">
+                <a class="event-club" href="profile.html">{{event.club}}</a>
+                <h2 class="event-title">{{event.title}}</h2>
+                <div class="event-info">
+                <p><i class="fas fa-calendar-alt"></i> {{event.date}}</p>
+                <p><i class="fas fa-clock"></i> {{event.time}}</p>
+                <p><i class="fas fa-map-marker-alt"></i> {{event.location}}</p>
+                </div>
+            </div>
+            <a class="view-event-btn" href="eventDetails.html">View Event</a>
+            </div>
+      </div>
+      {% endfor %}
+     {% endif %}
+    </section>
+{% endblock %}
