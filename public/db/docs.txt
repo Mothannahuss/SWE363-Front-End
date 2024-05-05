@@ -1,0 +1,37 @@
+users:
+	"email": ,
+	"password": ,
+	"is_club": ,
+	"join_date": ,
+	"intersets": [],
+	"following": [ObjectId(""), ObjectId("")],
+	"allow_notification": 
+
+events:
+	"club_id": ObjectId(""),
+	"club_name": ,
+	"date": ,
+	"location": ,
+	"description": ,
+	"poster": ObjectId(""),
+	"link": 
+	
+clubs:
+	"name": ,
+	"user": ObjectId(""),
+	"handler": ,
+	"avatar": ObjectId(""),
+	"background": ObjectId(""),
+	"bio": ,
+	"about": ,
+	"followers#": ,
+	"events#":
+	
+saved_events:
+	"user": ObjectId(""),
+	"event": ObjectId("")
+
+notifications:
+	"event": ObjectId(""),
+	"users": ObjectId(""),
+	"read": 

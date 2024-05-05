@@ -9,12 +9,6 @@
       {
         "button-name": "off"
       }
-    ],
-    "axe/parsing": [
-      "default",
-      {
-        "duplicate-id-aria": "off"
-      }
     ]
   }
 }

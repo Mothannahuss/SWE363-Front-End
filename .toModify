@@ -1,0 +1,20 @@
+THE FOLLOWING FILES TREE IS NOT PART OF OUR-
+PROJECT & SHOULD BE MODIFYED THEN DELETED!!!
+
+config:
+    -roles_list.js
+controllers:
+    -logoutController.js
+    -usersController.js
+middleware:
+    -verifyRoles.js
+routes:
+    api:
+        -employees.js
+        -users.js
+    -auth.js
+    -eventPost.js
+    -logout.js
+    -refresh.js
+    -register.js
+    -root.js
