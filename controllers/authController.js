@@ -1,10 +1,10 @@
-const User = require('../model/User');
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
+const User = require("../model/User");
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
 const handleLogin = async (req, res) => {
     const { email, pwd } = req.body;
-    if (!email || !pwd) return res.status(400).json({ 'message': 'Email and password are required.' });
+    if (!email || !pwd) return res.status(400).json({ "message": "Email and password are required." });
 
     const user = await User.findOne({ email: email }).exec();
     if (!user) return res.sendStatus(401); //Unauthorized 
@@ -20,7 +20,7 @@ const handleLogin = async (req, res) => {
                 }
             },
             process.env.ACCESS_TOKEN_SECRET,
-            { expiresIn: '20m' }
+            { expiresIn: "20m" }
         );
         const refreshToken = jwt.sign(
             {
@@ -30,7 +30,7 @@ const handleLogin = async (req, res) => {
                 }
             },
             process.env.REFRESH_TOKEN_SECRET,
-            { expiresIn: '1d' }
+            { expiresIn: "1d" }
         );
         // Saving refreshToken with current user
         user.refreshToken = refreshToken;
@@ -38,7 +38,7 @@ const handleLogin = async (req, res) => {
         console.log(result);
 
         // Creates Secure Cookie with refresh token
-        res.cookie('jwt', refreshToken, { httpOnly: true, secure: true, sameSite: 'None', maxAge: (24 * 60 * 60 * 1000) });
+        res.cookie("jwt", refreshToken, { httpOnly: true, secure: true, sameSite: "None", maxAge: (24 * 60 * 60 * 1000) });
         
         // Send authorization roles and access token to user
         delete user.password;
@@ -59,7 +59,7 @@ const handleLogin = async (req, res) => {
 const forgotPassword = async (req, res) => {
     const email = req.body.email;
     const pwd = email.split("@")[0] + ".12345678"
-    if (!email) return res.status(400).json({ 'message': 'Email is required.' });
+    if (!email) return res.status(400).json({ "message": "Email is required." });
 
     // check for duplicate usernames in the db
     const user = await User.findOne({ email: email }).exec();
@@ -77,9 +77,9 @@ const forgotPassword = async (req, res) => {
         
         // Send new password via email>>> TODO
 
-        res.status(201).json({ 'success': `New password Sent to your E-mail!` });
+        res.status(201).json({ "success": `New password Sent to your E-mail!` });
     } catch (err) {
-        res.status(500).json({ 'message': err.message });
+        res.status(500).json({ "message": err.message });
     }
 };
 

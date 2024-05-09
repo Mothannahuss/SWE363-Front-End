@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const savedEventSchema = new Schema({
@@ -12,4 +12,4 @@ const savedEventSchema = new Schema({
     }
 });
 
-module.exports = mongoose.model('Savedevent', savedEventSchema);
+module.exports = mongoose.model("Savedevent", savedEventSchema);

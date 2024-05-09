@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", function()
 
 
     // Input form validation for login page
-    document.querySelector('#loginBtn').addEventListener("click", function(e)
+    document.querySelector("#loginBtn").addEventListener("click", function(e)
     {
         let email = document.querySelector("#InputEmail1").value;
         let password = document.querySelector("#InputPassword").value;

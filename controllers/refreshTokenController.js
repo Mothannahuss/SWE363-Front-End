@@ -1,5 +1,5 @@
-const User = require('../model/User');
-const jwt = require('jsonwebtoken');
+const User = require("../model/User");
+const jwt = require("jsonwebtoken");
 
 const handleRefreshToken = async (req, res) => {
     const cookies = req.cookies;
@@ -22,7 +22,7 @@ const handleRefreshToken = async (req, res) => {
                     }
                 },
                 process.env.ACCESS_TOKEN_SECRET,
-                { expiresIn: '20m' }
+                { expiresIn: "20m" }
             );
             delete foundUser.password;
             delete foundUser.refreshToken;

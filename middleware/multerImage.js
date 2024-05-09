@@ -1,8 +1,8 @@
-const multer = require('multer');
+const multer = require("multer");
 
 const storage = multer.diskStorage({ // Storage for posters uploading
   destination: (req, file, cb) => {
-    cb(null, '../uplaods/');
+    cb(null, "../uplaods/");
   },
   filename: (req, file, cb) => {
     cb(null, `${Date.now()}-${file.originalname}`);

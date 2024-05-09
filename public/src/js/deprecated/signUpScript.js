@@ -46,7 +46,7 @@ document.addEventListener("DOMContentLoaded", function()
 
 
         // Input form validation for sing up page
-        document.querySelector('#signUpBtn').addEventListener("click", function(e)
+        document.querySelector("#signUpBtn").addEventListener("click", function(e)
         {
             let email = document.querySelector("#InputEmail1").value;
             let password = document.querySelector("#InputPassword").value;
