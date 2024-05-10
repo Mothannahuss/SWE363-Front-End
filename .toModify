@@ -3,9 +3,6 @@ PROJECT & SHOULD BE MODIFYED THEN DELETED!!!
 
 config:
     -roles_list.js
-controllers:
-    -logoutController.js
-    -usersController.js
 middleware:
     -verifyRoles.js
 routes:
