@@ -2,12 +2,12 @@ const { Storage } = require("megajs");
 
 const connectCloudStorage = async () => {
     try {
-        const storage = await new Storage({
+        let storage = await new Storage({
             email: process.env.MEGA_EMAIL,
             password: process.env.MEGA_PASSWORD,
             userAgent: null
         }).ready;
-        return storage;
+        return storage.root.children[0].filter(folder => folder.name.match(process.env.MEGA_FOLDER_NAME));
     } catch (err) {
         console.error(err);
     }

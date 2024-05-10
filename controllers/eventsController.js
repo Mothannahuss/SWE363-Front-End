@@ -1,190 +1,183 @@
 const { default: mongoose } = require("mongoose");
 const Event = require("../model/Event");
 const Savedevent = require("../model/Savedevent");
-const Image = require("../model/Image");
-const mega = require("megajs");
+const User = require("../model/User");
+const { cloudStorage } = require("../server");
 const fs = require("fs");
 
-const getUpcomingEventsForClubs = async (req, res) => { // My Feed & Club's upcoming
-    if (!req?.params?.today || !re?.params?.clubs) return res.status(400).json({ "message": "Date and Clubs list are required." });
+const getUpcomingAndAllEventsForClubs = async (req, res) => {
+    /*
+    The request should contain the user id and the date of today (from user region) in QUERY part. 
+    It return all upcoming event for "my feed" page. It used also in "profile". If "today" is null, then it return all events.
+    */ 
+    if (!req?.query?.today || !req?.query?.userId) return res.status(400).json({ "message": "Date and User id are required." });
+    if (!mongoose.Types.ObjectId.isValid(req.query.userId)) return res.status(400).json({ "message": "User id is not valid." });
+    
+    const clubs = await User.findById(req.query.userId).select("following");
+    if (!clubs) return res.status(204).json({ "message": "No followd clubs found." });
 
-    const events = await Event.find({club_name: {"$in": req.params.clubs}, date: {"$gte": req.params.today}});
+    const events = (!req.query.today) ? await Event.find({club_name: {"$in": clubs}, date: {"$gte": req.query.today}})
+                    : await Event.find({club_name: {"$in": clubs}});
+    if (!events) return res.status(204).json({ "message": "No events found." });
+    res.json(events);
+};
+
+const getUpcomingEvents = async (req, res) => { 
+    /*
+    The request should contain the date of today (from user region) in QUERY part. 
+    It return all upcoming event for "explore" page.
+    */ 
+    if (!req?.query?.today) return res.status(400).json({ "message": "Date is required." });
+
+    const events = await Event.find({date: {"$gte": req.query.today}});
     if (!events) return res.status(204).json({ "message": "No upcoming events found." });
     res.json(events);
 };
 
-const getAllEventsForClubs = async (req, res) => { // Club's all
-    if (!re?.params?.clubs) return res.status(400).json({ "message": "Clubs list is required." });
+const getUpcomingAndAllSavedEvents = async (req, res) => { 
+    /*
+    The request should contain the user id and the date of today (from user region) in QUERY part. 
+    It return all saved upcoming event for "saved events" page. If "today" is null, then it return all events.
+    */ 
+    if (!req?.query?.today || !req?.query?.userId) return res.status(400).json({ "message": "Date and User id are required." });
+    if (!mongoose.Types.ObjectId.isValid(req.query.userId)) return res.status(400).json({ "message": "User id is not valid." });
+    
+    const eventsIds = await Savedevent.find({user: req.query.userId}).select("event");
+    if (!eventsIds) return res.status(204).json({ "message": "No Saved events found." });
 
-    const events = await Event.find({club_name: {"$in": req.params.clubs}});
-    if (!events) return res.status(204).json({ "message": "No matched events found." });
-    res.json(events);
-};
-
-const getUpcomingEvents = async (req, res) => { // Explore
-    if (!req?.params?.today) return res.status(400).json({ "message": "Date is required." });
-
-    const events = await Event.find({date: {"$gte": req.params.today}});
-    if (!events) return res.status(204).json({ "message": "No upcoming events found." });
-    res.json(events);
-};
-
-const getUpcomingSavedEvents = async (req, res) => { // Upcoming saved events
-    if (!req?.params?.today || !re?.params?.userId) return res.status(400).json({ "message": "Date and user id are required." });
-
-    const eventsIds = await Savedevent.find({user: req.params.userId}).select("event");
-    const events = await Event.find({_id: {"$in": eventsIds}, date: {"$gte": req.params.today}});
-    if (!events) return res.status(204).json({ "message": "No upcoming events found." });
-    res.json(events);
-};
-
-const getAllSavedEvents = async (req, res) => { // All saved events
-    if (!re?.params?.userId) return res.status(400).json({ "message": "User id is required." });
-
-    const eventsIds = await Savedevent.find({user: userId}).select("event");
-    const events = await Event.find({_id: {"$in": eventsIds}});
-    if (!events) return res.status(204).json({ "message": "No matched events found." });
+    const events = (!req.query.today) ? await Event.find({_id: {"$in": eventsIds}, date: {"$gte": req.query.today}})
+                    : await Event.find({_id: {"$in": eventsIds}});
+    if (!events) return res.status(204).json({ "message": "No events found." });
     res.json(events);
 };
 
 const saveEvent = async (req, res) => {
-    if (!req?.body?.userId || !req?.body?.eventId) {
-        return res.status(400).json({ "message": "User and event ids are required" });
-    }
+    /*
+    The request should contain the user id and event id in BODY part.
+    It return the success then user should be redirected to update saved events page.
+    */
+    if (!req?.body?.userId || !req?.body?.eventId) return res.status(400).json({ "message": "User and event ids are required" });
+    if (!mongoose.Types.ObjectId.isValid(req.body.userId)) return res.status(400).json({ "message": "User id is not valid." });
+    if (!mongoose.Types.ObjectId.isValid(req.body.eventId)) return res.status(400).json({ "message": "Event id is not valid." });
 
     try {
         const result = await Savedevent.create({
             user: req.body.userId,
             event: req.body.eventId
         });
-
-        res.status(201).json(result);
+        res.json(result);
     } catch (err) {
         console.error(err);
     }
 };
 
 const deleteSavedEvent = async (req, res) => {
-    if (!req?.body?.userId || !req?.body?.eventId) {
-        return res.status(400).json({ "message": "User and event ids are required" });
-    }
+    /*
+    The request should contain the user id and event id in PARAMS part.
+    It return the success then user should be redirected to update saved events page.
+    */
+    if (!req?.params?.userId || !req?.params?.eventId) return res.status(400).json({ "message": "User and event ids are required" });
+    if (!mongoose.Types.ObjectId.isValid(req.params.userId)) return res.status(400).json({ "message": "User id is not valid." });
+    if (!mongoose.Types.ObjectId.isValid(req.params.eventId)) return res.status(400).json({ "message": "Event id is not valid." });
 
-    const savedEvent = await Savedevent.findOne({ user: req.body.userId, event: req.body.eventId }).exec();
-    if (!employee) {
-        return res.status(204).json({ "message": "No matched saved event found." });
-    }
-    const result = await savedEvent.deleteOne(); //{ _id: req.body.id }
+    const savedEvent = await Savedevent.findOne({ user: req.params.userId, event: req.params.eventId }).exec();
+    if (!savedEvent) return res.status(204).json({ "message": "No matched saved event found." });
+    const result = await savedEvent.deleteOne();
     res.json(result);
 };
 
 const createEvent = async (req, res) => {
-    if (!req?.body?.club_id || !req?.body?.club_name || !req?.params?.date || !req?.params?.location) {
-        return res.status(400).json({ "message": "Date, location, club id and name are required" });
-    }
+    /*
+    The request should contain the club id, club name, date, location and title in BODY part.
+    It return the new event then user should be redirected to update events page.
+    */
+    if (!req?.body?.club_id || !req?.body?.club_name || !req?.params?.date || !req?.params?.location || !req.body.title) 
+        return res.status(400).json({ "message": "Date, title, location, club id and name are required" });
+    if (!mongoose.Types.ObjectId.isValid(req.body.club_id)) return res.status(400).json({ "message": "Club id is not valid." });
 
     try {
-        const imgID = mongoose.Types.ObjectId();
+        const imageUrl = (!req?.file?.path) ? await uploadImageToMega(req.file.path) : "";
+        const desc = (!req?.body?.description) ? req.body.description: "";
         const result = await Event.create({
             club_id: req.body.club_id,
             club_name: req.body.club_name,
             title: req.body.title,
             date: req.body.date,
             location: req.body.location,
-            description: req.body.description,
-            poster: imgID, // TODO
-            link: req.body.link
+            description: desc,
+            poster: imageUrl,
+            link: req?.body?.link
         });
-
-        const data = fs.readFileSync(req.file.path) 
-        const img = await Image.create({
-            _id: imgID,
-            ownerId: result._id,
-            img: {
-                data: data,
-                contentType: "image/png"
-            }
-        });
-
-        res.status(201).json(result + img);
+        res.json(result);
     } catch (err) {
         console.error(err);
     }
 };
 
 const updateEvent = async (req, res) => {
-    if (!req?.body?._id) {
-        return res.status(400).json({ "message": "ID parameter is required." });
-    }
+    /*
+    The request should contain the whole event object in BODY part.
+    It return the updated event then user should be redirected to update events page.
+    */
+    if (!req?.body?._id) return res.status(400).json({ "message": "Event id is required." });
+    if (!req?.body?.club_id || !req?.body?.club_name || !req?.params?.date || !req?.params?.location || !req.body.title) 
+        return res.status(400).json({ "message": "Date, title, location, club id and name are required" });
+    if (!mongoose.Types.ObjectId.isValid(req.body.club_id)) return res.status(400).json({ "message": "Club id is not valid." });
+    if (!mongoose.Types.ObjectId.isValid(req.body._id)) return res.status(400).json({ "message": "Event id is not valid." });
 
-    const event = await Event.findOne({ _id: req.body._id }).exec();
-    if (!event) {
-        return res.status(204).json({ "message": `No matched event found.` });
-    }
+    const event = await Event.findById(req.body._id);
+    if (!event) return res.status(204).json({ "message": "No matched event found." });
 
-    const data = fs.readFileSync(req.file.path) 
-
-    if (req.body?.title) event.title = req.body.title;
-    if (req.body?.date) event.date = req.body.date;
-    if (req.body?.location) event.location = req.body.location;
-    event.description = req.body.description;
-    if (data) {        
-        const imgID = mongoose.Types.ObjectId();
-        event.poster = imgID;// TODO
-        const img = await Image.create({
-            _id: imgID,
-            ownerId: result._id,
-            img: {
-                data: data,
-                contentType: "image/png"
-            }
-        });
-        console.log(img);
-    }
-    event.link = req.body.link;
+    event.title = req.body.title;
+    event.date = req.body.date;
+    event.location = req.body.location;
+    event.description = (req?.body?.description) ? req.body.description : "";
+    event.link = (req?.body?.link) ? req.body.link : "";
+    event.poster = (!req?.file?.path) ? await uploadImageToMega(req.file.path) : "";
 
     const result = await event.save();
     res.json(result);
 };
 
 const deleteEvent = async (req, res) => {
-    if (!req?.body?._id) {
-        return res.status(400).json({ "message": "Event id is required" });
-    }
+    /*
+    The request should contain the event id in PARAMS part.
+    It return the success then user should be redirected to update events page.
+    */
+    if (!req?.params?._id) return res.status(400).json({ "message": "Event id is required" });
+    if (!mongoose.Types.ObjectId.isValid(req.params._id)) return res.status(400).json({ "message": "Event id is not valid." });
 
-    const event = await Event.findOne({ _id: req.body._id }).exec();
-    const img = await Image.findOne({ ownerId: event._id }).exec();
-    if (!event) {
-        return res.status(204).json({ "message": "No matched event found." });
-    }
-    const result = await event.deleteOne(); //{ _id: req.body.id }
-    const result2 = await img.deleteOne();
-    res.json(result + result2);
+    const event = await Event.findOne({ _id: req.params._id }).exec();
+    if (!event) return res.status(204).json({ "message": "No matched event found." });
+    const result = await event.deleteOne();
+    const poster = (!event.poster) ? await deleteImageFromMega(event.poster) : "";
+    res.json(result + poster);
 };
 
 const uploadImageToMega = async (filePath) => {
-    await mega.upload(filePath).complete // Assuming no destination folder is specified
+    const file = await cloudStorage.upload(filePath).complete
     .then(file => {
         console.log('File uploaded successfully:', file.name);
-        res.json({ message: 'File uploaded to MEGA' });
 
         // Cleanup the temporary file after successful upload
-        fs.unlinkSync(filePath); // Replace with appropriate error handling
-    })
-    .catch(error => {
-        console.error('Error uploading file:', error);
-        res.status(500).json({ message: 'Error during upload' });
+        fs.unlink(filePath);
     });
+    return file.link();
+};
+
+const deleteImageFromMega = async (fileUrl) => {
+    const file = cloudStorage.filter(file => file.shareURL.match(fileUrl));
+    const del = await file.delete(permanent)
+    .then(file => {
+        console.log('File deleted successfully:', file.name);
+    });
+    return del;
 };
 
 module.exports = { 
-    getUpcomingEventsForClubs,
-    getAllEventsForClubs,
+    getUpcomingAndAllEventsForClubs,
     getUpcomingEvents,
-    getUpcomingSavedEvents,
-    getAllEventsForClubs,
-    getUpcomingEvents,
-    getUpcomingSavedEvents,
-    getAllSavedEvents,
+    getUpcomingAndAllSavedEvents,
     saveEvent,
     deleteSavedEvent,
     createEvent,

@@ -2,24 +2,27 @@ const User = require("../model/User");
 const bcrypt = require("bcrypt");
 
 const handleRegister = async (req, res) => {
-    const { email, pwd, repwd, terms, interests } = req.body;
-    if (!email || !pwd || !repwd || !terms) return res.status(400).json({ "message": "Email and password are required." });
+    /*
+    TODO
+    */
+    if (!req?.body?.email || !req?.body?.password || !req?.body?.rePassword || !req?.body?.terms) 
+        return res.status(400).json({ "message": "Email, passwords and terms are required." });
 
     // check for duplicate usernames in the db
-    const duplicate = await User.findOne({ email: email }).exec();
+    const duplicate = await User.findOne({ email: req.body.email }).exec();
     if (duplicate) return res.status(409).json({"message": "User already registered."}); //Conflict 
 
     try {
         //encrypt the password
-        const hashedPwd = await bcrypt.hash(pwd, 10);
-        const hashedRePwd = await bcrypt.hash(repwd, 10);
+        const hashedPwd = await bcrypt.hash(req.body.password, 10);
+        const hashedRePwd = await bcrypt.hash(req.body.rePassword, 10);
         if (hashedPwd != hashedRePwd) res.status(401).json({"message": "Passwords do not match."});
 
         //create and store the new user
         const result = await User.create({
-            "email": email,
+            "email": req.body.email,
             "password": hashedPwd,
-            "intersets": interests,
+            "intersets": (!req?.body?.interests) ? req.body.interests : [],
             "following": []
         });
 

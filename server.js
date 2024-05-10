@@ -10,8 +10,7 @@ const cookieParser = require("cookie-parser");
 const credentials = require("./middleware/credentials");
 const mongoose = require("mongoose");
 const connectDB = require("./config/dbConn");
-const { Storage } = require("megajs");
-const mega = require("./config/megaConn");
+const connectMega = require("./config/megaConn");
 
 
 const PORT = process.env.PORT || 8001; 
@@ -20,7 +19,8 @@ const PORT = process.env.PORT || 8001;
 connectDB.connectDBLocal();
 //connectDB.connectDBAtlas();
 
-const cloudStorage = mega.connectCloudStorage();
+const cloudStorage = connectMega.connectCloudStorage();
+module.exports = cloudStorage;
 
 const app = express();
 
@@ -69,6 +69,7 @@ app.use("*", (req, res) => {
 mongoose.connection.once("open", () => {
     console.log("\tConnected to MongoDB");
     cloudStorage.then(() => {
+        console.log(cloudStorage);
         console.log("\tConnected to MEGA");
         app.listen(PORT, () => console.log(`Server running on http://127.0.0.1:${PORT}`));
     });

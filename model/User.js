@@ -22,7 +22,7 @@ const userSchema = new Schema({
         type: [String],
         default: []
     },
-	following: {
+	following: { // Each club should follow itself.
         type: [String],
         default: []
     },

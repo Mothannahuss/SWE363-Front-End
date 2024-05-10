@@ -1,15 +1,18 @@
 const User = require("../model/User");
+const Club = require("../model/Club");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
 const handleLogin = async (req, res) => {
-    const { email, pwd } = req.body;
-    if (!email || !pwd) return res.status(400).json({ "message": "Email and password are required." });
+    /*
+    TODO
+    */
+    if (!req?.body?.email || !req?.body?.password) return res.status(400).json({ "message": "Email and password are required." });
 
-    const user = await User.findOne({ email: email }).exec();
+    const user = await User.findOne({ email: req.body.email }).exec();
     if (!user) return res.sendStatus(401); //Unauthorized 
     // evaluate password 
-    const match = await bcrypt.compare(pwd, user.password);
+    const match = await bcrypt.compare(req.body.password, user.password);
     if (match) {
         // create JWTs
         const accessToken = jwt.sign(
@@ -44,26 +47,27 @@ const handleLogin = async (req, res) => {
         delete user.password;
         delete user.refreshToken;
         if (user.is_club){
-            const club = await User.findOne({ user: user._id }).exec();
+            const club = await Club.findOne({ user: user._id }).exec();
             if (!club) return res.sendStatus(401); //Unauthorized - No club assigned yet
             res.json({ user, club, accessToken }); 
         } else {
             res.json({ user, accessToken });
         }
-
     } else {
         res.sendStatus(401);
     }
 };
 
 const forgotPassword = async (req, res) => {
-    const email = req.body.email;
-    const pwd = email.split("@")[0] + ".12345678"
-    if (!email) return res.status(400).json({ "message": "Email is required." });
+    /*
+    TODO
+    */
+    if (!req?.body?.email) return res.status(400).json({ "message": "Email is required." });
 
-    // check for duplicate usernames in the db
-    const user = await User.findOne({ email: email }).exec();
-    if (!user) return res.sendStatus(401); //Conflict 
+    const user = await User.findOne({ email: req.body.email }).exec();
+    if (!user) return res.status(401).json({ "message": "Email does not exist." }); //Conflict 
+    
+    const pwd = req.body.email.split("@")[0] + ".12345678"
 
     try {
         //encrypt the password
