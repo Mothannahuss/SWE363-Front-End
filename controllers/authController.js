@@ -131,7 +131,7 @@ const handleRegister = async (req, res) => {
         const result = await User.create({
             "email": req.body.email,
             "password": hashedPwd,
-            "intersets": (!req?.body?.interests) ? req.body.interests : [],
+            "interests": (!req?.body?.interests) ? req.body.interests : [],
             "following": []
         });
 

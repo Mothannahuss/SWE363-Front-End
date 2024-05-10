@@ -69,7 +69,6 @@ app.use("*", (req, res) => {
 mongoose.connection.once("open", () => {
     console.log("\tConnected to MongoDB");
     cloudStorage.then(() => {
-        console.log(cloudStorage);
         console.log("\tConnected to MEGA");
         app.listen(PORT, () => console.log(`Server running on http://127.0.0.1:${PORT}`));
     });

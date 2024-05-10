@@ -18,7 +18,7 @@ const userSchema = new Schema({
         type: Date,
         default: Date.now
     },
-	intersets: {
+	interests: {
         type: [String],
         default: []
     },

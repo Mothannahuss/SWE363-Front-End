@@ -3,7 +3,7 @@ users:
 	"password": ,
 	"is_club": ,
 	"join_date": ,
-	"intersets": [],
+	"interests": [],
 	"following": [ObjectId(""), ObjectId("")],
 	"allow_notification": 
 
