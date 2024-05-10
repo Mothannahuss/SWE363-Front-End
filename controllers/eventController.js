@@ -151,7 +151,7 @@ const deleteEvent = async (req, res) => {
     if (!event) return res.status(204).json({ "message": "No matched event found." });
     const result = await event.deleteOne();
     const poster = (!event.poster) ? await deleteImageFromMega(event.poster) : "";
-    res.json(result + poster);
+    res.json({ result, poster });
 };
 
 const uploadImageToMega = async (filePath) => {
