@@ -3,11 +3,13 @@ const Schema = mongoose.Schema;
 
 const notificationSchema = new Schema({
 	event: {
-        type: mongoose.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Event",
         required: true
     },
 	user: {
-        type: mongoose.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
         required: true
     },
     read: {

@@ -7,7 +7,8 @@ const clubSchema = new Schema({
         required: true
     },
 	user: {
-        type: mongoose.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
         required: true
     },
 	handler: {
@@ -15,12 +16,12 @@ const clubSchema = new Schema({
         required: true
     },
 	avatar: {
-        type: mongoose.ObjectId,
-        default: undefined
+        type: String,
+        default: ""
     },
 	background: {
-        type: mongoose.ObjectId,
-        default: undefined
+        type: String,
+        default: ""
     },
 	bio: {
         type: String,
@@ -30,13 +31,17 @@ const clubSchema = new Schema({
         type: String,
         default: ""
     },
-	"followers#": {
+	followers: {
         type: Number,
         default: 0
     },
-	"events#": {
+	events: {
         type: Number,
         default: 0
+    },
+    categories: {
+        type: [String],
+        default: []
     }
 });
 

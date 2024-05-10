@@ -3,11 +3,13 @@ const Schema = mongoose.Schema;
 
 const savedEventSchema = new Schema({
 	event: {
-        type: mongoose.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Event",
         required: true
     },
 	user: {
-        type: mongoose.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
         required: true
     }
 });

@@ -19,11 +19,11 @@ const userSchema = new Schema({
         default: Date.now
     },
 	intersets: {
-        type: Array,
+        type: [String],
         default: []
     },
 	following: {
-        type: Array,
+        type: [String],
         default: []
     },
 	allow_notification: {

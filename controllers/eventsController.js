@@ -2,6 +2,8 @@ const { default: mongoose } = require("mongoose");
 const Event = require("../model/Event");
 const Savedevent = require("../model/Savedevent");
 const Image = require("../model/Image");
+const mega = require("megajs");
+const fs = require("fs");
 
 const getUpcomingEventsForClubs = async (req, res) => { // My Feed & Club's upcoming
     if (!req?.params?.today || !re?.params?.clubs) return res.status(400).json({ "message": "Date and Clubs list are required." });
@@ -157,6 +159,21 @@ const deleteEvent = async (req, res) => {
     const result = await event.deleteOne(); //{ _id: req.body.id }
     const result2 = await img.deleteOne();
     res.json(result + result2);
+};
+
+const uploadImageToMega = async (filePath) => {
+    await mega.upload(filePath).complete // Assuming no destination folder is specified
+    .then(file => {
+        console.log('File uploaded successfully:', file.name);
+        res.json({ message: 'File uploaded to MEGA' });
+
+        // Cleanup the temporary file after successful upload
+        fs.unlinkSync(filePath); // Replace with appropriate error handling
+    })
+    .catch(error => {
+        console.error('Error uploading file:', error);
+        res.status(500).json({ message: 'Error during upload' });
+    });
 };
 
 module.exports = { 

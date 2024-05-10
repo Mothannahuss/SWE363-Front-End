@@ -3,7 +3,8 @@ const Schema = mongoose.Schema;
 
 const eventSchema = new Schema({
 	club_id: {
-        type: mongoose.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Club",
         required: true
     },
 	club_name: {
@@ -27,8 +28,8 @@ const eventSchema = new Schema({
         default: ""
     },
 	poster: {
-        type: mongoose.ObjectId,
-        default: undefined
+        type: String,
+        default: ""
     },
 	link: {
         type: String,
