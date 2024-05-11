@@ -14,13 +14,16 @@ const toggleClubFollow = async (req, res) => {
         const user = await User.findById(req.body.userId);
         if (!user) return res.status(204).json({ "message": "No user found." });
     
-        if (toggle) {
+        if (req.body.toggle) {
             user.following.slice(user.following.indexOf(req.body.club_name), 1);
         } else {
             user.following.push(req.body.club_name);
         }
         const result = await user.save();
-        res.json(result);
+        const club = await Club.find({ name: req.body.club_name });
+        club.followers += (req.body.toggle) ? 1 : -1;
+        const clubUp = await club.save();
+        res.json({ result, clubUp });
     } catch (err) {
         console.log(err);
         res.sendStatus(500);

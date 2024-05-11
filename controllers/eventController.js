@@ -1,7 +1,8 @@
 const { default: mongoose } = require("mongoose");
-const Event = require("../model/Event");
-const Savedevent = require("../model/Savedevent");
-const User = require("../model/User");
+const Event = require("../models/Event");
+const Savedevent = require("../models/Savedevent");
+const User = require("../models/User");
+const Club = require("../models/Club");
 const { cloudStorage } = require("../server");
 const fs = require("fs");
 
@@ -148,7 +149,10 @@ const createEvent = async (req, res) => {
             poster: imageUrl,
             link: link
         });
-        res.json(result);
+        const club = await Club.findById(req.body.club_id);
+        club.events += 1;
+        const clubUp = await club.save();
+        res.json({ result, clubUp });
     } catch (err) {
         console.log(err);
         res.sendStatus(500);
@@ -198,15 +202,18 @@ const deleteEvent = async (req, res) => {
     The request should contain the event id in PARAMS part.
     It return the success then user should be redirected to update events page.
     */
-    if (!req?.params?._id) return res.status(400).json({ "message": "Event id is required" });
-    if (!mongoose.Types.ObjectId.isValid(req.params._id)) return res.status(400).json({ "message": "Event id is not valid." });
+    if (!req?.params?.eventId) return res.status(400).json({ "message": "Event id is required" });
+    if (!mongoose.Types.ObjectId.isValid(req.params.eventId)) return res.status(400).json({ "message": "Event id is not valid." });
 
     try {
-        const event = await Event.findOne({ _id: req.params._id }).exec();
+        const event = await Event.findOne({ _id: req.params.eventId }).exec();
         if (!event) return res.status(204).json({ "message": "No matched event found." });
         const result = await event.deleteOne();
         const poster = (event.poster) ? await deleteImageFromMega(event.poster) : "";
-        res.json({ result, poster });
+        const club = await Club.findById(event.club_id);
+        club.events -= 1;
+        const clubUp = await club.save();
+        res.json({ result, poster, clubUp });
     } catch (err) {
         console.log(err);
         res.sendStatus(500);

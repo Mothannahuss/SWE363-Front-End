@@ -1,5 +1,5 @@
-const User = require("../model/User");
-const Club = require("../model/Club");
+const User = require("../models/User");
+const Club = require("../models/Club");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
