@@ -13,13 +13,18 @@ const getUpcomingAndAllEventsForClubs = async (req, res) => {
     if (!req?.query?.today || !req?.query?.userId) return res.status(400).json({ "message": "Date and User id are required." });
     if (!mongoose.Types.ObjectId.isValid(req.query.userId)) return res.status(400).json({ "message": "User id is not valid." });
     
-    const clubs = await User.findById(req.query.userId).select("following");
-    if (!clubs) return res.status(204).json({ "message": "No followd clubs found." });
-
-    const events = (req.query.today) ? await Event.find({club_name: {"$in": clubs}, date: {"$gte": req.query.today}})
-                    : await Event.find({club_name: {"$in": clubs}});
-    if (!events) return res.status(204).json({ "message": "No events found." });
-    res.json(events);
+    try {
+        const clubs = await User.findById(req.query.userId).select("following");
+        if (!clubs) return res.status(204).json({ "message": "No followd clubs found." });
+    
+        const events = (req.query.today) ? await Event.find({club_name: {"$in": clubs}, date: {"$gte": req.query.today}})
+                        : await Event.find({club_name: {"$in": clubs}});
+        if (!events) return res.status(204).json({ "message": "No events found." });
+        res.json(events);
+    } catch (err) {
+        console.log(err);
+        res.sendStatus(500);
+    }
 };
 
 const getUpcomingEvents = async (req, res) => { 
@@ -29,9 +34,14 @@ const getUpcomingEvents = async (req, res) => {
     */ 
     if (!req?.query?.today) return res.status(400).json({ "message": "Date is required." });
 
-    const events = await Event.find({date: {"$gte": req.query.today}});
-    if (!events) return res.status(204).json({ "message": "No upcoming events found." });
-    res.json(events);
+    try {
+        const events = await Event.find({date: {"$gte": req.query.today}});
+        if (!events) return res.status(204).json({ "message": "No upcoming events found." });
+        res.json(events);
+    } catch (err) {
+        console.log(err);
+        res.sendStatus(500);
+    }
 };
 
 const getUpcomingAndAllSavedEvents = async (req, res) => { 
@@ -42,13 +52,18 @@ const getUpcomingAndAllSavedEvents = async (req, res) => {
     if (!req?.query?.today || !req?.query?.userId) return res.status(400).json({ "message": "Date and User id are required." });
     if (!mongoose.Types.ObjectId.isValid(req.query.userId)) return res.status(400).json({ "message": "User id is not valid." });
     
-    const eventsIds = await Savedevent.find({user: req.query.userId}).select("event");
-    if (!eventsIds) return res.status(204).json({ "message": "No Saved events found." });
-
-    const events = (req.query.today) ? await Event.find({_id: {"$in": eventsIds}, date: {"$gte": req.query.today}})
-                    : await Event.find({_id: {"$in": eventsIds}});
-    if (!events) return res.status(204).json({ "message": "No events found." });
-    res.json(events);
+    try {
+        const eventsIds = await Savedevent.find({user: req.query.userId}).select("event");
+        if (!eventsIds) return res.status(204).json({ "message": "No Saved events found." });
+    
+        const events = (req.query.today) ? await Event.find({_id: {"$in": eventsIds}, date: {"$gte": req.query.today}})
+                        : await Event.find({_id: {"$in": eventsIds}});
+        if (!events) return res.status(204).json({ "message": "No events found." });
+        res.json(events);
+    } catch (err) {
+        console.log(err);
+        res.sendStatus(500);
+    }
 };
 
 const getEventById = async (req, res) => {
@@ -59,9 +74,14 @@ const getEventById = async (req, res) => {
     if (!req?.query?.eventId) return res.status(400).json({ "message": "Event id is required." });
     if (!mongoose.Types.ObjectId.isValid(req.query.eventId)) return res.status(400).json({ "message": "Event id is not valid." });
 
-    const event = await Event.findById(req.query.eventId);
-    if (!event) return res.status(204).json({ "message": "No event found." });
-    res.json(event);
+    try {
+        const event = await Event.findById(req.query.eventId);
+       if (!event) return res.status(204).json({ "message": "No event found." });
+       res.json(event);
+    } catch (err) {
+        console.log(err);
+        res.sendStatus(500);
+    }
 };
 
 const saveEvent = async (req, res) => {
@@ -80,7 +100,8 @@ const saveEvent = async (req, res) => {
         });
         res.json(result);
     } catch (err) {
-        console.error(err);
+        console.log(err);
+        res.sendStatus(500);
     }
 };
 
@@ -93,10 +114,15 @@ const deleteSavedEvent = async (req, res) => {
     if (!mongoose.Types.ObjectId.isValid(req.params.userId)) return res.status(400).json({ "message": "User id is not valid." });
     if (!mongoose.Types.ObjectId.isValid(req.params.eventId)) return res.status(400).json({ "message": "Event id is not valid." });
 
-    const savedEvent = await Savedevent.findOne({ user: req.params.userId, event: req.params.eventId }).exec();
-    if (!savedEvent) return res.status(204).json({ "message": "No matched saved event found." });
-    const result = await savedEvent.deleteOne();
-    res.json(result);
+    try {
+        const savedEvent = await Savedevent.findOne({ user: req.params.userId, event: req.params.eventId }).exec();
+        if (!savedEvent) return res.status(204).json({ "message": "No matched saved event found." });
+        const result = await savedEvent.deleteOne();
+        res.json(result);
+    } catch (err) {
+        console.log(err);
+        res.sendStatus(500);
+    }
 };
 
 const createEvent = async (req, res) => {
@@ -124,7 +150,8 @@ const createEvent = async (req, res) => {
         });
         res.json(result);
     } catch (err) {
-        console.error(err);
+        console.log(err);
+        res.sendStatus(500);
     }
 };
 
@@ -139,26 +166,31 @@ const updateEvent = async (req, res) => {
     if (!mongoose.Types.ObjectId.isValid(req.body.club_id)) return res.status(400).json({ "message": "Club id is not valid." });
     if (!mongoose.Types.ObjectId.isValid(req.body._id)) return res.status(400).json({ "message": "Event id is not valid." });
 
-    const event = await Event.findById(req.body._id);
-    if (!event) return res.status(204).json({ "message": "No matched event found." });
-
-    event.title = req.body.title;
-    event.date = req.body.date;
-    event.location = req.body.location;
-    event.description = (req?.body?.description) ? req.body.description : "";
-    event.link = (req?.body?.link) ? req.body.link : "";
-
-    if (!event.poster && req?.file?.path){
-        event.poster = await uploadImageToMega(req.file.path);
-    } else if (event.poster && req?.file?.path) {
-        await deleteImageFromMega(event.poster);
-        event.poster = await uploadImageToMega(req.file.path);
-    } else {
-        event.poster = "";
+    try {
+        const event = await Event.findById(req.body._id);
+        if (!event) return res.status(204).json({ "message": "No matched event found." });
+    
+        event.title = req.body.title;
+        event.date = req.body.date;
+        event.location = req.body.location;
+        event.description = (req?.body?.description) ? req.body.description : "";
+        event.link = (req?.body?.link) ? req.body.link : "";
+    
+        if (!event.poster && req?.file?.path){
+            event.poster = await uploadImageToMega(req.file.path);
+        } else if (event.poster && req?.file?.path) {
+            await deleteImageFromMega(event.poster);
+            event.poster = await uploadImageToMega(req.file.path);
+        } else {
+            event.poster = "";
+        }
+    
+        const result = await event.save();
+        res.json(result);
+    } catch (err) {
+        console.log(err);
+        res.sendStatus(500);
     }
-
-    const result = await event.save();
-    res.json(result);
 };
 
 const deleteEvent = async (req, res) => {
@@ -169,11 +201,16 @@ const deleteEvent = async (req, res) => {
     if (!req?.params?._id) return res.status(400).json({ "message": "Event id is required" });
     if (!mongoose.Types.ObjectId.isValid(req.params._id)) return res.status(400).json({ "message": "Event id is not valid." });
 
-    const event = await Event.findOne({ _id: req.params._id }).exec();
-    if (!event) return res.status(204).json({ "message": "No matched event found." });
-    const result = await event.deleteOne();
-    const poster = (event.poster) ? await deleteImageFromMega(event.poster) : "";
-    res.json({ result, poster });
+    try {
+        const event = await Event.findOne({ _id: req.params._id }).exec();
+        if (!event) return res.status(204).json({ "message": "No matched event found." });
+        const result = await event.deleteOne();
+        const poster = (event.poster) ? await deleteImageFromMega(event.poster) : "";
+        res.json({ result, poster });
+    } catch (err) {
+        console.log(err);
+        res.sendStatus(500);
+    }
 };
 
 const uploadImageToMega = async (filePath) => {

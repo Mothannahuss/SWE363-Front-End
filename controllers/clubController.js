@@ -10,12 +10,17 @@ const getMyClubs = async (req, res) => {
     if (!req?.query?.userId) return res.status(400).json({ "message": "User id is required." });
     if (!mongoose.Types.ObjectId.isValid(req.query.userId)) return res.status(400).json({ "message": "User id is not valid." });
     
-    const followed = await User.findById(req.query.userId);
-    if (!followed) return res.status(204).json({ "message": "No followd clubs found." });
-
-    const clubs = await Club.find({ name: {"$in": followed} });
-    if (!clubs) return res.status(204).json({ "message": "No clubs found." });
-    res.json(clubs);
+    try {
+        const followed = await User.findById(req.query.userId);
+        if (!followed) return res.status(204).json({ "message": "No followd clubs found." });
+    
+        const clubs = await Club.find({ name: {"$in": followed} });
+        if (!clubs) return res.status(204).json({ "message": "No clubs found." });
+        res.json(clubs);
+    } catch (err) {
+        console.log(err);
+        res.sendStatus(500);
+    }
 };
 
 const getClubsByCategory = async (req, res) => { 
@@ -25,10 +30,15 @@ const getClubsByCategory = async (req, res) => {
     */ 
     if (!req?.query?.category) return res.status(400).json({ "message": "category is required." });
 
-    const clubs = (req.query.category) ? await Club.find({ categories: req.query.category }) 
-                    : await Club.find();
-    if (!clubs) return res.status(204).json({ "message": "No clubs found." });
-    res.json(clubs);
+    try {
+        const clubs = (req.query.category) ? await Club.find({ categories: req.query.category }) 
+                        : await Club.find();
+        if (!clubs) return res.status(204).json({ "message": "No clubs found." });
+        res.json(clubs);
+    } catch (err) {
+        console.log(err);
+        res.sendStatus(500);
+    }
 };
 
 const updateClubDetails = async (req, res) => {
@@ -41,16 +51,21 @@ const updateClubDetails = async (req, res) => {
         return res.status(400).json({ "message": "Handler, bio, about, and categories are required" });
     if (!mongoose.Types.ObjectId.isValid(req.body._id)) return res.status(400).json({ "message": "Club id is not valid." });
 
-    const club = await Club.findById(req.body._id);
-    if (!club) return res.status(204).json({ "message": "No matched club found." });
-
-    club.bio = req.body.bio;
-    club.about = req.body.about;
-    club.handler = req.body.handler;
-    club.categories = req.body.categories;
-
-    const result = await club.save();
-    res.json(result);
+    try {
+        const club = await Club.findById(req.body._id);
+        if (!club) return res.status(204).json({ "message": "No matched club found." });
+    
+        club.bio = req.body.bio;
+        club.about = req.body.about;
+        club.handler = req.body.handler;
+        club.categories = req.body.categories;
+    
+        const result = await club.save();
+        res.json(result);
+    } catch (err) {
+        console.log(err);
+        res.sendStatus(500);
+    }
 };
 
 module.exports = { getMyClubs, getClubsByCategory, updateClubDetails };

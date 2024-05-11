@@ -44,9 +44,11 @@ app.use(express.json());
 app.use(cookieParser());
 
 //serve static files
-app.get("/", express.static(path.join(__dirname, "/public")));
+app.use("/", express.static(path.join(__dirname, "public")));
 
 // routes
+app.use("/test", require("./routes/test"));
+
 app.use("/", require("./routes/root"));
 app.use("/register", require("./routes/register"));
 app.use("/auth", require("./routes/auth"));

@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const refreshTokenController = require("../controllers/refreshTokenController");
+const refreshTokenController = require("../controllers/authController");
 
 router.get("/", refreshTokenController.handleRefreshToken);
 
