@@ -1,0 +1,90 @@
+{% extends "base2.njk" %}
+
+{% block title %}
+<title>settings</title>
+{% endblock %}
+
+{% block styles %}
+<link href="../public/src/css/omarStyle.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="../public/src/css/style.css" />
+<link
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css"
+    rel="stylesheet"
+/>
+
+<link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+/>
+<link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap"
+    rel="stylesheet"
+/>
+<link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+/>
+<link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+/>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+
+<link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+/>
+{% endblock %}
+
+{% block scripts %}
+<script src="../public/src/js/search-header.js"></script>
+{% endblock %}
+
+{% block pageName %}
+<h1>Sotification</h1>
+{% endblock %}
+
+{% block tabNav %}
+{% endblock %}
+    
+{% block content %}
+      <main class="row">
+        <button class="event-card btn col-11">
+          <section class="settingsTitle">
+            <h2>Your Acount</h2>
+            <p>see your account info.</p>
+          </section>
+        </button>
+        <label class="event-card col-11 radioTheme" for="notificationSwitch">
+          <section class="m-1 row">
+            <div class="col-1 align-self-center justify-content-center d-flex">
+              <input type="checkbox" id="notificationSwitch" />
+              <span class="check"></span>
+            </div>
+            <div class="col-9">
+              <h2>Notifications</h2>
+              <p>Receive Notifications</p>
+            </div>
+          </section>
+        </label>
+        <a
+          class="event-card btn col-11"
+          id="interests-btn"
+          href="./interests_edit.html"
+        >
+          <section class="settingsTitle">
+            <h2>Interests</h2>
+            <p>Select your interests</p>
+          </section>
+        </a>
+
+        <button id="sign-out" class="btn btn-outline-danger col-11">
+          <h2>Sign Out</h2>
+        </button>
+      </main>
+{% endblock %}
