@@ -3,7 +3,10 @@ const router = express.Router();
 const eventHandler = require("./../models/Event.js");
 const clubHandler = require("./../models/Club.js")
 var mongoose = require('mongoose')
-
+/**
+ * @description a route that gets an eventID from the url, then get the events detalis and render "Eventdetails.njk" using that informations
+ * @link domain.com/events/[ID]
+ */
 router.get("/:eventId", async (req, res) =>{
     if(!mongoose.isValidObjectId(req.params["eventId"])){
         res.send("This is an invalid link")
