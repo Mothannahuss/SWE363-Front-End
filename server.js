@@ -11,6 +11,8 @@ const credentials = require("./middleware/credentials");
 const mongoose = require("mongoose");
 const connectDB = require("./config/dbConn");
 const connectMega = require("./config/megaConn");
+const nunjucks = require("nunjucks");
+const debugFunctions = require("./Utilities/debugFunctions.js")
 
 
 const PORT = process.env.PORT || 8001; 
@@ -19,10 +21,18 @@ const PORT = process.env.PORT || 8001;
 connectDB.connectDBLocal();
 //connectDB.connectDBAtlas();
 
+
+
 const cloudStorage = connectMega.connectCloudStorage();
 module.exports = cloudStorage;
 
 const app = express();
+
+//Inject nunjucks for dynamic pages
+nunjucks.configure("views", {
+    express: app
+  })
+  app.set('view engine', 'njk');
 
 // custom middleware logger
 app.use(logger);
@@ -50,10 +60,13 @@ app.use("/", express.static(path.join(__dirname, "public")));
 app.use("/test", require("./routes/test"));
 
 app.use("/", require("./routes/root"));
+app.use("/events", require("./routes/events"));
 app.use("/register", require("./routes/register"));
 app.use("/auth", require("./routes/auth"));
 app.use("/refresh", require("./routes/refresh"));
 app.use("/logout", require("./routes/logout"));
+app.use("api/events", require("./routes/api/events"));
+app.use("/profile", require("./routes/profile.js"))
 
 app.use(verifyJWT);
 //app.use("/employees", require("./routes/api/employees"));

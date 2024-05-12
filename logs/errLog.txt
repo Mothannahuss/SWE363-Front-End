@@ -5,3 +5,36 @@
 20240511	15:39:18	59f4151a-f9aa-4951-9e46-1cd7e63ba440	Error: ENOENT: no such file or directory, stat 'T:\Downloads\232\SWE363\Project\SWE363-Back-End-mothanna\index.html'
 20240511	15:39:52	2540e4cc-25c4-4888-8b76-2cb8b3ddd75d	Error: ENOENT: no such file or directory, stat 'T:\Downloads\232\SWE363\Project\SWE363-Back-End-mothanna\index.html'
 20240511	15:39:53	db798fb3-198f-4551-8be4-d155ca8be6a7	Error: ENOENT: no such file or directory, stat 'T:\Downloads\232\SWE363\Project\SWE363-Back-End-mothanna\index.html'
+20240511	22:05:55	8c98eb69-5be0-4df8-bbb5-1915cf6a693f	Error: ENOENT: no such file or directory, stat 'C:\Users\omerr\OneDrive\سطح المكتب\232\SWE 363\Project\SWE363-Front-End\index.html'20240512	20:23:43	b54bfb67-5c29-4c42-86ae-3de4740cc71e	Error: ENOENT: no such file or directory, stat 'C:\Users\omerr\OneDrive\سطح المكتب\232\SWE 363\Project\SWE363-Front-End\index.html'
+20240512	20:49:45	7a787a35-c386-4508-a5d0-60217851644d	Error: ENOENT: no such file or directory, stat 'C:\Users\omerr\OneDrive\سطح المكتب\232\SWE 363\Project\SWE363-Front-End\index.html'
+20240512	20:52:22	4fd5bd5a-d8da-42d8-ad54-c4c942473ae7	Error: template not found: eventDetalis.njk
+20240512	20:53:06	7ca4073a-2d6a-4cac-b574-28ba76656b7f	Template render error: (C:\Users\omerr\OneDrive\سطح المكتب\232\SWE 363\Project\SWE363-Front-End\views\eventDetails.njk) [Line 28, Column 4]
+  unknown block tag: enblock
+20240512	20:53:28	6b028d60-0374-487c-a127-e886ad5bf14e	Template render error: (C:\Users\omerr\OneDrive\سطح المكتب\232\SWE 363\Project\SWE363-Front-End\views\eventDetails.njk) [Line 28, Column 4]
+  unknown block tag: enblock
+20240512	20:53:35	b4724edb-22eb-4ceb-90c2-8cc6f5e70e5e	Template render error: (C:\Users\omerr\OneDrive\سطح المكتب\232\SWE 363\Project\SWE363-Front-End\views\eventDetails.njk) [Line 45, Column 81]
+  expected variable end
+20240512	20:54:07	7f12840f-9811-417d-95de-40bb7da11d7a	Template render error: (C:\Users\omerr\OneDrive\سطح المكتب\232\SWE 363\Project\SWE363-Front-End\views\eventDetails.njk) [Line 75, Column 4]
+  unknown block tag: end
+20240512	20:54:15	53275004-4d91-4eef-890c-60926d7dcf5e	Template render error: (C:\Users\omerr\OneDrive\سطح المكتب\232\SWE 363\Project\SWE363-Front-End\views\eventDetails.njk) [Line 75, Column 4]
+  unknown block tag: end
+20240512	20:54:21	565cb13c-91db-4e65-8f5a-7ac5ce58ee0b	Template render error: (C:\Users\omerr\OneDrive\سطح المكتب\232\SWE 363\Project\SWE363-Front-End\views\eventDetails.njk) [Line 45, Column 84]
+  expected variable end
+20240512	20:54:23	0915aadb-3e50-497d-8980-830dbe315653	Template render error: (C:\Users\omerr\OneDrive\سطح المكتب\232\SWE 363\Project\SWE363-Front-End\views\eventDetails.njk) [Line 45, Column 84]
+  expected variable end
+20240512	20:54:33	35eeceb3-412e-4048-9a14-d944409ab5cf	Template render error: (C:\Users\omerr\OneDrive\سطح المكتب\232\SWE 363\Project\SWE363-Front-End\views\eventDetails.njk) [Line 45, Column 84]
+  expected variable end
+20240512	20:54:40	c1b6cfff-6149-4515-a469-f88017552e5d	Template render error: (C:\Users\omerr\OneDrive\سطح المكتب\232\SWE 363\Project\SWE363-Front-End\views\eventDetails.njk) [Line 43, Column 70]
+  Error: Unable to call `date["getDay"]`, which is undefined or falsey
+20240512	21:11:55	76b5f829-285b-4ec0-a3fa-cfc2dd521fd2	Error: ENOENT: no such file or directory, stat 'C:\Users\omerr\OneDrive\سطح المكتب\232\SWE 363\Project\SWE363-Front-End\index.html'
+20240512	21:19:54	31347e50-34eb-47ce-a685-d56b6ac2ed2d	Error: ENOENT: no such file or directory, stat 'C:\Users\omerr\OneDrive\سطح المكتب\232\SWE 363\Project\SWE363-Front-End\index.html'
+20240513	00:20:36	33120c84-302e-413d-b52f-90e91b803e77	Template render error: (C:\Users\omerr\OneDrive\سطح المكتب\232\SWE 363\Project\SWE363-Front-End\views\profile.njk) [Line 54, Column 31]
+  Error: Unable to call `Date["now"]`, which is undefined or falsey
+20240513	00:21:47	000bad8a-be00-4f55-8adc-ddfb81e6142c	Template render error: (C:\Users\omerr\OneDrive\سطح المكتب\232\SWE 363\Project\SWE363-Front-End\views\profile.njk) [Line 54, Column 31]
+  Error: Unable to call `Date["now"]`, which is undefined or falsey
+20240513	00:21:48	4e5d9029-2984-48f1-b073-60d5ece7d42d	Template render error: (C:\Users\omerr\OneDrive\سطح المكتب\232\SWE 363\Project\SWE363-Front-End\views\profile.njk) [Line 54, Column 31]
+  Error: Unable to call `Date["now"]`, which is undefined or falsey
+20240513	00:21:53	f6874124-2f28-47fb-8064-937522d7d162	Template render error: (C:\Users\omerr\OneDrive\سطح المكتب\232\SWE 363\Project\SWE363-Front-End\views\profile.njk) [Line 54, Column 31]
+  Error: Unable to call `date["now"]`, which is undefined or falsey
+20240513	00:22:02	32d5d00e-7971-492e-8a7a-35c02440858e	Template render error: (C:\Users\omerr\OneDrive\سطح المكتب\232\SWE 363\Project\SWE363-Front-End\views\profile.njk) [Line 54, Column 31]
+  Error: Unable to call `date["now"]`, which is undefined or falsey
