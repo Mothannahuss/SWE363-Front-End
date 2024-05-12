@@ -37,13 +37,13 @@
             ></div>
             <div class="event-content col-8">
               <div class="event-details">
-                <a href="./profile.html" class="event-club">{{club_name}}</a>
+                <a href="profile/{{club.handler}}" class="event-club">{{club.name}}</a>
 
                 <h2 class="event-title fs-3">{{title}}</h2>
                 <div class="event-info">
-                  <p><i class="fas fa-calendar-alt"></i> {{date}}, {{date}}</p>
-                  <p><i class="fas fa-clock"></i> {{date}}</p>
-                  <p><i class="fas fa-map-marker-alt"></i> {{location}}</p>
+                  <p><i class="fas fa-calendar-alt"></i> {{ event.date.toLocaleDateString(locale, { weekday: 'long' }) }}, {{event.date.getDate() +"/" + (event.date.getMonth() + 1 )}}</p>
+                  <p><i class="fas fa-clock"></i> {{event.date.toLocaleTimeString([], { hour: 'numeric', minute: 'numeric', hour12: true })}}</p>
+                  <p><i class="fas fa-map-marker-alt"></i> {{event.location}}</p>
                 </div>
               </div>
               <div class="col-2">
@@ -54,13 +54,13 @@
           <h2 class="event-club mt-2 fs-5">Description</h2>
           <div class="row">
             <div id="descriptionBox" class="h-25">
-              <p class="text-wrap">{{description}}</p>
+              <p class="text-wrap">{{event.description}}</p>
             </div>
           </div>
           <h2 class="event-club mt-2 fs-5">Posters</h2>
           <div class="row h-25">
             <div class="col imageBackground m-1">
-              <img src={{poster}} alt="Event Poster" height="200px">
+              <img src={{event.poster}} alt="Event Poster" height="200px">
             </div>
             <div class="col imageBackground m-1"></div>
           </div>

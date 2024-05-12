@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const eventHandler = require("./../models/Event.js");
+const clubHandler = require("./../models/Club.js")
 var mongoose = require('mongoose')
 
 router.get("/:eventId", async (req, res) =>{
@@ -9,7 +10,12 @@ router.get("/:eventId", async (req, res) =>{
         return
     }
     let event = await eventHandler.findById(req.params["eventId"])
-    res.render("eventDetails", event)
+    let club = await clubHandler.findById(event.club_id)
+    console.log(club)
+    res.render("eventDetails", {
+        event: event,
+        club: club
+    })
 })
 
 
