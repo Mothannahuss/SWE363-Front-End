@@ -16,11 +16,11 @@ const connectMega = require("./config/megaConn");
 const PORT = process.env.PORT || 8001; 
 
 // Connect to MongoDB, if you are not Abdulghani then use "connectDBAtlas" function instead of "connectDBLocal":
-connectDB.connectDBLocal();
-//connectDB.connectDBAtlas();
+//connectDB.connectDBLocal();
+connectDB.connectDBAtlas();
 
 const cloudStorage = connectMega.connectCloudStorage();
-module.exports = cloudStorage;
+module.exports = { cloudStorage };
 
 const app = express();
 
@@ -68,10 +68,15 @@ app.use("*", (req, res) => {
     });
 });
 
-mongoose.connection.once("open", () => {
-    console.log("\tConnected to MongoDB");
-    cloudStorage.then(() => {
-        console.log("\tConnected to MEGA");
-        app.listen(PORT, () => console.log(`Server running on http://127.0.0.1:${PORT}`));
+
+try {
+    mongoose.connection.once("open", () => {
+        console.log("\tConnected to MongoDB");
+        cloudStorage.then(() => {
+            console.log("\tConnected to MEGA");
+            app.listen(PORT, () => console.log(`Server running on http://127.0.0.1:${PORT}`));
+        });
     });
-});
+} catch (err) {
+    console.log("Cannot start the server due to: ", err);
+}

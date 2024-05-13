@@ -25,7 +25,7 @@ const getNewNotifications = async (req, res) => {
             events.forEach(async (event) => {
                 await Notification.create({
                     event: event._id,
-                    user: req.query.userId,
+                    user: new mongoose.Schema.Types.ObjectId(req.query.userId),
                     read: false
                 });
                 all.push(event);

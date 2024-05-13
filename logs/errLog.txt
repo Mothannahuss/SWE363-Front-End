@@ -5,3 +5,8 @@
 20240511	15:39:18	59f4151a-f9aa-4951-9e46-1cd7e63ba440	Error: ENOENT: no such file or directory, stat 'T:\Downloads\232\SWE363\Project\SWE363-Back-End-mothanna\index.html'
 20240511	15:39:52	2540e4cc-25c4-4888-8b76-2cb8b3ddd75d	Error: ENOENT: no such file or directory, stat 'T:\Downloads\232\SWE363\Project\SWE363-Back-End-mothanna\index.html'
 20240511	15:39:53	db798fb3-198f-4551-8be4-d155ca8be6a7	Error: ENOENT: no such file or directory, stat 'T:\Downloads\232\SWE363\Project\SWE363-Back-End-mothanna\index.html'
+20240512	21:54:12	2552eb43-bbdb-42bd-86d8-6500a1fba095	Error: ENOENT: no such file or directory, stat 'T:\Downloads\232\SWE363\Project\SWE363-Back-End-mothanna\index.html'
+20240512	21:56:23	9376d8a3-3e01-41fe-9fb9-61129b11af0e	Error: ENOENT: no such file or directory, stat 'T:\Downloads\232\SWE363\Project\SWE363-Back-End-mothanna\routes\src\html-toGoToViews\index.html'
+20240512	21:56:42	fc5ab9cf-9a09-4b80-961c-ca829f9d0a02	Error: ENOENT: no such file or directory, stat 'T:\Downloads\232\SWE363\Project\SWE363-Back-End-mothanna\src\html-toGoToViews\index.html'
+20240513	01:15:16	e5b24985-d899-4884-aef5-486c14654e35	Error: Not allowed by CORS
+20240513	01:16:13	2ffd3fff-d970-40cf-8d70-ad9416003cdd	Error: Not allowed by CORS

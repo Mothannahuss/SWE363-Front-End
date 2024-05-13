@@ -7,7 +7,7 @@ const connectCloudStorage = async () => {
             password: process.env.MEGA_PASSWORD,
             userAgent: null
         }).ready;
-        return storage.root.children.filter(folder => folder.name.match(process.env.MEGA_FOLDER_NAME));
+        return storage.root.children.find(folder => folder.name.match(process.env.MEGA_FOLDER_NAME));
     } catch (err) {
         console.error(err);
     }
