@@ -22,10 +22,13 @@ document.addEventListener("DOMContentLoaded", function () {
      let location = (room.value == "") ? "Building: " + building.value: "Building: " + building.value + ", Room: " + room.value
      let dateobj = new Date(date.value +" " + time.value)
      date = dateobj.toISOString()
-     fetch("/api/events", {
+     fetch("/api/events/", {
          method: "POST",
+         headers: {
+            "Content-type": "application/json; charset=UTF-8"
+          },
          body: JSON.stringify({
-             clubId: clubId.value,
+             club_id: clubId.value,
              club_name: clubName.value,
              title: title.value,
              date: date,

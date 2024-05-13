@@ -25,6 +25,16 @@
       .header {
         padding: 0% 5% !important
       }
+      .space{
+        height: 25vh;
+        width: 100%;
+        height: 300px; 
+        background-color: black; 
+        background-image: url({{club.background}}); 
+        background-size: contain; 
+        background-repeat: no-repeat; 
+        background-position: center; 
+      }
     </style>
 {% endblock %}
 
@@ -41,9 +51,8 @@
 {% endblock %}
 
 {% block content %}
-    <div class="space">
-      <span class="dot"></span>
-    </div>
+    <div class="space"></div>
+    <img src="{{club.avatar}}" class="dot">
     <div class="clubInfo">
       <h2 class="item1">{{club.name}}</h2>
       {% if admin %}
@@ -57,7 +66,7 @@
       <br />
       <p class="item1">{{club.bio}}</p>
       <br />
-      <p class="item1"><span style="color: #1b08da">{{club.followers}}</span> Followers</p>
+      <p class="item1"><span style="color: #1b08da">{{club.followers}}</span> Followers&nbsp;&nbsp;&nbsp;<span style="color: #1b08da">{{club.events}}</span> Events</p>
     </div>
     <div class="tab-nav">
       <a class="active" href="/" id="sec1tog">Upcoming</a>
@@ -66,9 +75,9 @@
     </div>
     <section id="sec1">
     {% for event in events %}
-    {% if event.date %}
+    {% if event.date.isUpcoming %}
     <div class="event-card">
-        <div class="event-avatar"></div>
+        <img src="{{club.avatar}}" class="event-avatar">
         <div class="event-content">
         <div class="event-details">
             <a class="event-club" href="/">{{ event.club_name }}</a>
@@ -88,7 +97,7 @@
     <section id="sec2" hidden>
     {% for event in events %}
     <div class="event-card">
-        <div class="event-avatar"></div>
+        <img src="{{club.avatar}}" class="event-avatar">
         <div class="event-content">
         <div class="event-details">
             <a class="event-club" href="/">{{ event.club_name }}</a>
@@ -101,8 +110,8 @@
         </div>
         <a class="view-event-btn" href="/events/{{event._id}}">View Event</a>
         </div>
-    {% endfor %}
     </div>
+    {% endfor %}
     </section>
     <section id="sec3" hidden>
       <div class="event-card">

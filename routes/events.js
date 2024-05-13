@@ -17,12 +17,21 @@ router.get("/:eventId", async (req, res) =>{
         res.send("Incorrect event ID")
         return
     }
-    event.date = new Date(event.date)
-    console.log(event)
     let club = await clubHandler.findById(event.club_id)
-    console.log(club)
+    let customDate = new Date(event.date)
+    customDate.isUpcoming = (customDate > new Date())
     res.render("eventDetails", {
-        event: event,
+        event: {
+            _id: event._id,
+            club_id: event.club_id,
+            club_name: event.club_name,
+            title: event.title,
+            date: customDate,
+            location: event.location,
+            description: event.description,
+            poster: event.poster,
+            link: event.link,
+        },
         club: club
     })
 })

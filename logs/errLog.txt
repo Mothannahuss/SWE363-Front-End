@@ -10,3 +10,37 @@
 20240512	21:56:42	fc5ab9cf-9a09-4b80-961c-ca829f9d0a02	Error: ENOENT: no such file or directory, stat 'T:\Downloads\232\SWE363\Project\SWE363-Back-End-mothanna\src\html-toGoToViews\index.html'
 20240513	01:15:16	e5b24985-d899-4884-aef5-486c14654e35	Error: Not allowed by CORS
 20240513	01:16:13	2ffd3fff-d970-40cf-8d70-ad9416003cdd	Error: Not allowed by CORS
+20240513	21:23:20	bc6b638a-87f7-4cb1-96a5-5ef70e0dd872	Template render error: (C:\Users\omerr\OneDrive\سطح المكتب\232\SWE 363\Project\SWE363-Front-End\views\eventDetails.njk) [Line 43, Column 89]
+  Error: Unable to call `event["date"]["toLocaleDateString"]`, which is undefined or falsey
+20240513	21:23:26	13426784-ec25-420e-b061-69bd60959fbb	Template render error: (C:\Users\omerr\OneDrive\سطح المكتب\232\SWE 363\Project\SWE363-Front-End\views\eventDetails.njk) [Line 43, Column 89]
+  Error: Unable to call `event["date"]["toLocaleDateString"]`, which is undefined or falsey
+20240513	21:23:29	f34b48f4-6e99-47b7-89f5-afa62ed7bb33	Template render error: (C:\Users\omerr\OneDrive\سطح المكتب\232\SWE 363\Project\SWE363-Front-End\views\eventDetails.njk) [Line 43, Column 89]
+  Error: Unable to call `event["date"]["toLocaleDateString"]`, which is undefined or falsey
+20240513	21:23:33	3b7acd8d-6956-489a-a176-6350f77e620b	Template render error: (C:\Users\omerr\OneDrive\سطح المكتب\232\SWE 363\Project\SWE363-Front-End\views\eventDetails.njk) [Line 43, Column 89]
+  Error: Unable to call `event["date"]["toLocaleDateString"]`, which is undefined or falsey
+20240513	21:25:02	60d63fee-6cae-4b51-ad1a-3bab555d6491	Template render error: (C:\Users\omerr\OneDrive\سطح المكتب\232\SWE 363\Project\SWE363-Front-End\views\eventDetails.njk) [Line 43, Column 89]
+  Error: Unable to call `event["date"]["toLocaleDateString"]`, which is undefined or falsey
+20240513	21:25:53	42d57ab6-aa46-43cd-b7fd-72249c176618	Template render error: (C:\Users\omerr\OneDrive\سطح المكتب\232\SWE 363\Project\SWE363-Front-End\views\eventDetails.njk) [Line 43, Column 89]
+  Error: Unable to call `event["date"]["toLocaleDateString"]`, which is undefined or falsey
+20240513	21:26:10	b3368510-8f6e-4e87-9b86-2bf80de5a4e0	Template render error: (C:\Users\omerr\OneDrive\سطح المكتب\232\SWE 363\Project\SWE363-Front-End\views\eventDetails.njk) [Line 43, Column 89]
+  Error: Unable to call `event["date"]["toLocaleDateString"]`, which is undefined or falsey
+20240513	21:26:18	355467be-a487-4dae-80f5-fa1555ab4133	Template render error: (C:\Users\omerr\OneDrive\سطح المكتب\232\SWE 363\Project\SWE363-Front-End\views\eventDetails.njk) [Line 43, Column 89]
+  Error: Unable to call `event["date"]["toLocaleDateString"]`, which is undefined or falsey
+20240513	21:27:11	062cbf4e-6b31-484a-af7c-0c948042d81a	Template render error: (C:\Users\omerr\OneDrive\سطح المكتب\232\SWE 363\Project\SWE363-Front-End\views\eventDetails.njk) [Line 43, Column 89]
+  Error: Unable to call `event["date"]["toLocaleDateString"]`, which is undefined or falsey
+20240513	21:27:28	703729f6-3c74-4068-b044-f218a72add7a	Template render error: (C:\Users\omerr\OneDrive\سطح المكتب\232\SWE 363\Project\SWE363-Front-End\views\eventDetails.njk) [Line 43, Column 89]
+  Error: Unable to call `event["date"]["toLocaleDateString"]`, which is undefined or falsey
+20240513	21:27:41	52fa9bcd-28a4-40ac-acc6-768518bfeb0d	Template render error: (C:\Users\omerr\OneDrive\سطح المكتب\232\SWE 363\Project\SWE363-Front-End\views\eventDetails.njk) [Line 43, Column 89]
+  Error: Unable to call `event["date"]["toLocaleDateString"]`, which is undefined or falsey
+20240513	21:29:04	a95d117f-8bae-4d94-9cc0-27b89dd380d1	Template render error: (C:\Users\omerr\OneDrive\سطح المكتب\232\SWE 363\Project\SWE363-Front-End\views\eventDetails.njk) [Line 43, Column 89]
+  Error: Unable to call `event["date"]["toLocaleDateString"]`, which is undefined or falsey
+20240513	21:29:58	d13f57a5-d07c-4822-8be0-30fd3ccb1589	Template render error: (C:\Users\omerr\OneDrive\سطح المكتب\232\SWE 363\Project\SWE363-Front-End\views\eventDetails.njk) [Line 43, Column 89]
+  Error: Unable to call `event["date"]["toLocaleDateString"]`, which is undefined or falsey
+20240513	21:32:23	b2d8fc28-d9bc-4372-8b2a-64604e7597e8	Template render error: (C:\Users\omerr\OneDrive\سطح المكتب\232\SWE 363\Project\SWE363-Front-End\views\eventDetails.njk) [Line 43, Column 89]
+  Error: Unable to call `event["date"]["toLocaleDateString"]`, which is undefined or falsey
+20240513	21:42:00	0fd5d480-e4cd-43e7-90c8-8ef2c040d879	Template render error: (C:\Users\omerr\OneDrive\سطح المكتب\232\SWE 363\Project\SWE363-Front-End\views\profile.njk) [Line 69, Column 12]
+  parseAggregate: expected colon after dict key
+20240513	21:42:23	2cc0ffbe-fa97-4ac5-9e49-634e1515de89	Template render error: (C:\Users\omerr\OneDrive\سطح المكتب\232\SWE 363\Project\SWE363-Front-End\views\profile.njk) [Line 69, Column 32]
+  expected block end in if statement
+20240513	21:42:25	858f0b22-d554-4323-9205-0708cda8d0d5	Template render error: (C:\Users\omerr\OneDrive\سطح المكتب\232\SWE 363\Project\SWE363-Front-End\views\profile.njk) [Line 69, Column 32]
+  expected block end in if statement

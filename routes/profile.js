@@ -15,9 +15,27 @@ router.get("/:club_handler", async (req, res) =>{
         return
     }
     let clubEvents = await eventHandler.find({club_id:{$eq: clubs._id}})
+    let events = []
+    for(i = 0; i < clubEvents.length; ++i){
+        let event = clubEvents.at(i)
+        let customDate = new Date(event.date)
+        customDate.isUpcoming = (customDate > new Date())
+        events.push({
+            _id: event._id,
+            club_id: event.club_id,
+            club_name: event.club_name,
+            title: event.title,
+            date: customDate,
+            location: event.location,
+            description: event.description,
+            poster: event.poster,
+            link: event.link,
+        })
+    }
+    console.log(events)
     res.render("profile", {
         club: clubs,
-        events: clubEvents
+        events: events
     })
 })
 
