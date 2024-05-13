@@ -41,7 +41,7 @@
     </div>
     <div class="clubInfo">
       <h2 class="item1">{{club.name}}</h2>
-      {% if admin %}
+      {% if User.is_club %}
       <button type="button" id="edit-btn" class="btn btn-outline-primary item2">
         Edit profile
       </button>
@@ -60,48 +60,12 @@
       <a class="" href="/" id="sec3tog">About</a>
     </div>
     <section id="sec1">
-    {% for event in events %}
-    {% if event.date %}
-    <div class="event-card">
-        <div class="event-avatar"></div>
-        <div class="event-content">
-        <div class="event-details">
-            <a class="event-club" href="/">{{ event.club_name }}</a>
-            <h2 class="event-title">{{ event.title }}</h2>
-            <div class="event-info">
-                <p><i class="fas fa-calendar-alt"></i>{{ event.date}}, {{event.date}}</p>
-                <p><i class="fas fa-clock"></i> {{ event.date }}</p>
-                <p><i class="fas fa-map-marker-alt"></i> {{event.location}}</p>
-            </div>
-        </div>
-        <a class="view-event-btn" href="./events/{{event._id}}">View Event</a>
-        </div>
-    </div>
-    {% endif %}
-    {% endfor %}   
     </section>
     <section id="sec2" hidden>
-    {% for event in club.event %}
-    <div class="event-card">
-        <div class="event-avatar"></div>
-        <div class="event-content">
-        <div class="event-details">
-            <a class="event-club" href="/">{{ event.club_name }}</a>
-            <h2 class="event-title">{{ event.title }}</h2>
-            <div class="event-info">
-                <p><i class="fas fa-calendar-alt"></i>{{ event.date}}, {{event.date}}</p>
-                <p><i class="fas fa-clock"></i> {{ event.date }}</p>
-                <p><i class="fas fa-map-marker-alt"></i> {{event.location}}</p>
-            </div>
-        </div>
-        <a class="view-event-btn" href="./events/{{event._id}}">View Event</a>
-        </div>
-    </div>
-    {% endfor %}
     </section>
     <section id="sec3" hidden>
       <div class="event-card">
-        <p>{{club.about}}.</p>
+        <p>{{club.about}}</p>
       </div>
     </section>
 {% endblock %}
