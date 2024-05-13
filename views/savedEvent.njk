@@ -36,8 +36,8 @@
 
 {% block tabNav %}
 <div class="tab-nav">
-    <a id="sec1tog" href="#" class="active">Upcoming</a>
-    <a id="sec2tog" href="#">All</a>
+    <a id="sec1tog" href="/" class="active">Upcoming</a>
+    <a id="sec2tog" href="/">All</a>
 </div>
 {% endblock %}
 
@@ -49,7 +49,7 @@
         <div class="event-avatar"></div>
         <div class="event-content">
           <div class="event-details">
-            <a class="event-club" href="./profile.html">{{ event.club }}</a>
+            <a class="event-club" href="/">{{ event.club }}</a>
             <h2 class="event-title">{{ event.title }}</h2>
             <div class="event-info">
                 <p><i class="fas fa-calendar-alt"></i>{{ event.day}}, {{event.date}}</p>
@@ -57,7 +57,7 @@
                 <p><i class="fas fa-map-marker-alt"></i> {{event.location}}</p>
                 </div>
             </div>
-            <a class="view-event-btn" href="./eventDetails.html">View Event</a>
+            <a class="view-event-btn" href="/">View Event</a>
           </div>
         </div>
         {% endif %}
@@ -66,7 +66,7 @@
         <div class="event-avatar"></div>
         <div class="event-content">
         <div class="event-details">
-            <a class="event-club" href="./profile.html">{{ event.club }}</a>
+            <a class="event-club" href="/">{{ event.club }}</a>
             <h2 class="event-title">{{ event.title }}</h2>
             <div class="event-info">
                 <p><i class="fas fa-calendar-alt"></i>{{ event.day}}, {{event.date}}</p>
@@ -74,7 +74,7 @@
                 <p><i class="fas fa-map-marker-alt"></i> {{event.location}}</p>
             </div>
         </div>
-        <a class="view-event-btn" href="./eventDetails.html">View Event</a>
+        <a class="view-event-btn" href="/">View Event</a>
         </div>
     </div>    
     {% endif %}
