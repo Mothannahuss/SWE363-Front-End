@@ -32,13 +32,22 @@
 {% block pageName %}
 {% endblock %}
 
+{% block tapnav %}
+{% endblock %}
+
 {% block content %}
     <div class="space">
       <span class="dot"></span>
     </div>
     <div class="clubInfo">
       <h2 class="item1">{{club.name}}</h2>
+      {% if admin %}
+      <button type="button" id="edit-btn" class="btn btn-outline-primary item2">
+        Edit profile
+      </button>
+      {% else %}      
       <button type="button" class="btn btn-primary item2 follow-btn">Follow</button>
+      {% endif %}
       <label style="color: #595959">{{club.handler}}</label>
       <br />
       <p class="item1">{{club.bio}}</p>
