@@ -37,7 +37,7 @@ function showEvents (eventList, section){
                 <p><i class="fas fa-map-marker-alt"></i> ${event.location}</p>
             </div>
         </div>
-        <a class="view-event-btn" href="./events/{{event._id}}">View Event</a>
+        <a class="view-event-btn" href="./events/${event._id}">View Event</a>
         </div>
     </div>`
     events.innerHTML += eventCard;
