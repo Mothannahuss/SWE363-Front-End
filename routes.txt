@@ -24,6 +24,7 @@
 
 /myprofile - myprofile:
     / [GET]
+    /?ClubId [GET] -query
     / [POST] -body
     /post [POST] -body
     /edit [POST] -body
