@@ -23,6 +23,24 @@ const getMyClubs = async (req, res) => {
     }
 };
 
+const getClubById = async (req, res) => {
+    /*
+    The request should contain the club id in QUERY part.
+    It return the event.
+    */
+    if (!req?.query?.clubId) return res.status(400).json({ "message": "Club id is required." });
+    if (!mongoose.Types.ObjectId.isValid(req.query.clubId)) return res.status(400).json({ "message": "Club id is not valid." });
+
+    try {
+        const club = await Club.findById(req.query.clubId);
+       if (!club) return res.status(204).json({ "message": "No event found." });
+       res.json(club);
+    } catch (err) {
+        console.log(err);
+        res.sendStatus(500);
+    }
+};
+
 const getClubsByCategory = async (req, res) => { 
     /*
     The request should contain the category of the club in QUERY part. 
