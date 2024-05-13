@@ -17,7 +17,7 @@
       crossorigin="anonymous"
     ></script>
     <script src="/src/js/post-val.js"></script>
-    <script src="/src/js/newPost.js"></script>
+    <script src="/src/js/editPost.js"></script>
   </head>
 
   <body>
@@ -157,6 +157,13 @@
                 name="clubName"
                 id="clubName"
                 value="{{ club.name }}"
+                required
+              />
+              <input
+                type="hidden"
+                name="eventId"
+                id="eventId"
+                value="{{ event._id }}"
                 required
               />
             </div>

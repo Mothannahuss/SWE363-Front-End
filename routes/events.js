@@ -47,6 +47,7 @@ router.get("/:eventId/edit", async (req, res) =>{
         return
     }
     let customDate = new Date(event.date)
+    let club = await clubHandler.findById(event.club_id)
     customDate.isUpcoming = (customDate > new Date())
     res.render("editPost", {
         event: {
@@ -59,7 +60,8 @@ router.get("/:eventId/edit", async (req, res) =>{
             description: event.description,
             poster: event.poster,
             link: event.link,
-        }
+        },
+        club: club
     })
 })
 
