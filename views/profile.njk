@@ -83,8 +83,8 @@
             <a class="event-club" href="/">{{ event.club_name }}</a>
             <h2 class="event-title">{{ event.title }}</h2>
             <div class="event-info">
-                <p><i class="fas fa-calendar-alt"></i>{{ event.date}}, {{event.date}}</p>
-                <p><i class="fas fa-clock"></i> {{ event.date }}</p>
+                <p><i class="fas fa-calendar-alt"></i>{{ event.date.toLocaleDateString(locale, { weekday: 'long' }) }}, {{event.date.getDate() +"/" + (event.date.getMonth() + 1 )}}</p>
+                <p><i class="fas fa-clock"></i> {{ event.date.toLocaleTimeString([], { hour: 'numeric', minute: 'numeric', hour12: true }) }}</p>
                 <p><i class="fas fa-map-marker-alt"></i> {{event.location}}</p>
             </div>
         </div>
@@ -103,8 +103,8 @@
             <a class="event-club" href="/">{{ event.club_name }}</a>
             <h2 class="event-title">{{ event.title }}</h2>
             <div class="event-info">
-                <p><i class="fas fa-calendar-alt"></i>{{ event.date}}, {{event.date}}</p>
-                <p><i class="fas fa-clock"></i> {{ event.date }}</p>
+                <p><i class="fas fa-calendar-alt"></i>{{ event.date.toLocaleDateString(locale, { weekday: 'long' }) }}, {{event.date.getDate() +"/" + (event.date.getMonth() + 1 )}}</p>
+                <p><i class="fas fa-clock"></i> {{ event.date.toLocaleTimeString([], { hour: 'numeric', minute: 'numeric', hour12: true }) }}</p>
                 <p><i class="fas fa-map-marker-alt"></i> {{event.location}}</p>
             </div>
         </div>

@@ -47,6 +47,34 @@ router.get("/:club_handler/newpost", async (req, res) =>{
     })
 })
 
+router.get("/:club_handler/events", async (req, res) =>{
+    let clubs = await clubHandler.findOne({handler: {$eq: req.params["club_handler"]}})
+    if(clubs == null){
+        res.send("Could not find the club")
+        return
+    }
+    let clubEvents = await eventHandler.find({club_id:{$eq: clubs._id}})
+    let events = []
+    for(i = 0; i < clubEvents.length; ++i){
+        let event = clubEvents.at(i)
+        let customDate = new Date(event.date)
+        customDate.isUpcoming = (customDate > new Date())
+        events.push({
+            _id: event._id,
+            club_id: event.club_id,
+            club_name: event.club_name,
+            title: event.title,
+            date: customDate,
+            location: event.location,
+            description: event.description,
+            poster: event.poster,
+            link: event.link,
+        })
+    }
+    res.send(events)
+})
+
+
 
 module.exports = router
 
