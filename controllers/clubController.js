@@ -1,6 +1,6 @@
 const { default: mongoose } = require("mongoose");
-const Club = require("../model/Club");
-const User = require("../model/User");
+const Club = require("../models/Club");
+const User = require("../models/User");
 
 const getMyClubs = async (req, res) => {
     /*
@@ -11,11 +11,11 @@ const getMyClubs = async (req, res) => {
     if (!mongoose.Types.ObjectId.isValid(req.query.userId)) return res.status(400).json({ "message": "User id is not valid." });
     
     try {
-        const followed = await User.findById(req.query.userId);
-        if (!followed) return res.status(204).json({ "message": "No followd clubs found." });
+        const user = await User.findById(req.query.userId);
+        if (!user) return res.status(204).json({ "message": "No followd clubs found." });
     
-        const clubs = await Club.find({ name: {"$in": followed} });
-        if (!clubs) return res.status(204).json({ "message": "No clubs found." });
+        const clubs = await Club.find({ name: {"$in": user.following} });
+        if (!clubs.length) return res.status(204).json({ "message": "No clubs found." });
         res.json(clubs);
     } catch (err) {
         console.log(err);
@@ -31,9 +31,9 @@ const getClubsByCategory = async (req, res) => {
     if (!req?.query?.category) return res.status(400).json({ "message": "category is required." });
 
     try {
-        const clubs = (req.query.category) ? await Club.find({ categories: req.query.category }) 
-                        : await Club.find();
-        if (!clubs) return res.status(204).json({ "message": "No clubs found." });
+        const clubs = (req.query.category === "null") ? await Club.find()
+                        : await Club.find({ categories: req.query.category });
+        if (!clubs.length) return res.status(204).json({ "message": "No clubs found." });
         res.json(clubs);
     } catch (err) {
         console.log(err);
@@ -47,7 +47,7 @@ const updateClubDetails = async (req, res) => {
     It return the updated club info then user should be redirected to update club page.
     */
     if (!req?.body?._id) return res.status(400).json({ "message": "Club id is required." });
-    if (!req?.body?.hanlder || !req?.body?.about || !req?.body?.bio || !req?.body?.categories) 
+    if (!req?.body?.handler || !req?.body?.about || !req?.body?.bio || !req?.body?.categories) 
         return res.status(400).json({ "message": "Handler, bio, about, and categories are required" });
     if (!mongoose.Types.ObjectId.isValid(req.body._id)) return res.status(400).json({ "message": "Club id is not valid." });
 

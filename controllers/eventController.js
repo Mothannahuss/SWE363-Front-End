@@ -55,7 +55,7 @@ const getUpcomingAndAllSavedEvents = async (req, res) => {
     if (!mongoose.Types.ObjectId.isValid(req.query.userId)) return res.status(400).json({ "message": "User id is not valid." });
     
     try {
-        const eventsIds = await Savedevent.find({ user: req.query.userId }, { _id: 0, event: 1 });
+        const eventsIds = await Savedevent.find({ user: req.query.userId }, { event: 1 });
         if (!eventsIds.length) return res.status(204).json({ "message": "No Saved events found." });
         const ids = eventsIds.map((event) => event.event);
         const events = (req.query.today === "null") ? await Event.find({ _id: {"$in": ids} })
@@ -138,7 +138,6 @@ const createEvent = async (req, res) => {
     if (!mongoose.Types.ObjectId.isValid(req.body.club_id)) return res.status(400).json({ "message": "Club id is not valid." });
 
     try {
-        console.log(req.file);
         const imageUrl = (req?.file?.path) ? await uploadImageToMega(req.file) : "";
         const desc = (req?.body?.description) ? req.body.description: "";
         const link = (req?.body?.link) ? req.body.link: "";
