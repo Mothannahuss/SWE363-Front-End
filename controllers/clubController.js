@@ -68,4 +68,21 @@ const updateClubDetails = async (req, res) => {
     }
 };
 
-module.exports = { getMyClubs, getClubsByCategory, updateClubDetails };
+
+
+async function getAllCategories()
+{
+    let categories = [];
+    let all_clubs = await Club.find({});
+
+    for (const club of all_clubs)
+        {
+            categories.push(...club.categories);
+        }
+
+
+    return categories;
+
+}
+
+module.exports = { getMyClubs, getClubsByCategory, updateClubDetails , getAllCategories};

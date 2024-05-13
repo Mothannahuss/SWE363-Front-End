@@ -12,12 +12,17 @@ const mongoose = require("mongoose");
 const connectDB = require("./config/dbConn");
 const connectMega = require("./config/megaConn");
 const nunjucks = require("nunjucks");
+const User = require("./models/User");
+const Club = require("./models/Club");
+const Event = require("./models/Event");
+const Notification = require("./models/Notification");
+const bcrypt = require("bcrypt");const nunjucks = require("nunjucks");
 
 
 const PORT = process.env.PORT || 8001; 
 
 // Connect to MongoDB, if you are not Abdulghani then use "connectDBAtlas" function instead of "connectDBLocal":
-//connectDB.connectDBLocal();
+// connectDB.connectDBLocal();
 connectDB.connectDBAtlas();
 
 const cloudStorage = connectMega.connectCloudStorage();
@@ -36,6 +41,14 @@ app.set('view engine', 'njk');
 // custom middleware logger
 app.use(logger);
 
+
+// Template engine configuration
+nunjucks.configure("views", {
+    express: app
+  });
+  app.set('view engine', 'njk');
+
+
 // Handle options credentials check - before CORS!
 // and fetch cookies credentials requirement
 app.use(credentials);
@@ -53,7 +66,7 @@ app.use(express.json());
 app.use(cookieParser());
 
 //serve static files
-app.use("/", express.static(path.join(__dirname, "public")));
+app.use("/", express.static(path.join(__dirname, "/public")));
 
 // routes
 app.use("/test", require("./routes/test"));
@@ -62,6 +75,9 @@ app.use("/", require("./routes/root"));
 app.use("/events", require("./routes/events"));
 app.use("api/events", require("./routes/api/events"));
 app.use("/profile", require("./routes/profile.js"))
+app.use("/home", require("./routes/home"));
+app.use("/browse", require("./routes/browse"));
+app.use("/notifications", require("./routes/notifications"));
 
 app.use(verifyJWT);
 //app.use("/employees", require("./routes/api/employees"));

@@ -53,7 +53,8 @@ const handleLogin = async (req, res) => {
                 if (!club) return res.status(401).json({ "message": "Go to the admin to make Club's account" }); //Unauthorized - No club assigned yet
                 res.json({ user, club, accessToken }); 
             } else {
-                res.json({ user, accessToken });
+                // res.json({ user, accessToken });
+                res.redirect("/home");
             }
         } else {
             res.status(401).json({ "message": "Invalid password." }); //Unauthorized 

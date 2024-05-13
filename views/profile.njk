@@ -32,13 +32,22 @@
 {% block pageName %}
 {% endblock %}
 
+{% block tapnav %}
+{% endblock %}
+
 {% block content %}
     <div class="space">
       <span class="dot"></span>
     </div>
     <div class="clubInfo">
       <h2 class="item1">{{club.name}}</h2>
+      {% if admin %}
+      <button type="button" id="edit-btn" class="btn btn-outline-primary item2">
+        Edit profile
+      </button>
+      {% else %}      
       <button type="button" class="btn btn-primary item2 follow-btn">Follow</button>
+      {% endif %}
       <label style="color: #595959">{{club.handler}}</label>
       <br />
       <p class="item1">{{club.bio}}</p>
@@ -46,9 +55,9 @@
       <p class="item1"><span style="color: #1b08da">{{club.followers}}</span> Followers</p>
     </div>
     <div class="tab-nav">
-      <a class="active" href="" id="sec1tog">Upcoming</a>
-      <a class="" href="" id="sec2tog">All</a>
-      <a class="" href="" id="sec3tog">About</a>
+      <a class="active" href="/" id="sec1tog">Upcoming</a>
+      <a class="" href="/" id="sec2tog">All</a>
+      <a class="" href="/" id="sec3tog">About</a>
     </div>
     <section id="sec1">
     {% for event in events %}
@@ -57,7 +66,7 @@
         <div class="event-avatar"></div>
         <div class="event-content">
         <div class="event-details">
-            <a class="event-club" href="./profile.html">{{ event.club_name }}</a>
+            <a class="event-club" href="/">{{ event.club_name }}</a>
             <h2 class="event-title">{{ event.title }}</h2>
             <div class="event-info">
                 <p><i class="fas fa-calendar-alt"></i>{{ event.date}}, {{event.date}}</p>
@@ -77,7 +86,7 @@
         <div class="event-avatar"></div>
         <div class="event-content">
         <div class="event-details">
-            <a class="event-club" href="./profile.html">{{ event.club_name }}</a>
+            <a class="event-club" href="/">{{ event.club_name }}</a>
             <h2 class="event-title">{{ event.title }}</h2>
             <div class="event-info">
                 <p><i class="fas fa-calendar-alt"></i>{{ event.date}}, {{event.date}}</p>
@@ -85,7 +94,7 @@
                 <p><i class="fas fa-map-marker-alt"></i> {{event.location}}</p>
             </div>
         </div>
-        <a class="view-event-btn" href="./events/{{event._id}}">View Event</a>
+        <a class="view-event-btn" href="/events/{{event._id}}">View Event</a>
         </div>
     </div>
     {% endfor %}
