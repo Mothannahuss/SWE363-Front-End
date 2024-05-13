@@ -42,41 +42,43 @@
 {% endblock %}
 
 {% block content %}
-{% for event in saved_events %}
-    {% if upcoming %}
-        {% if event.notdone %}
-        <div class="event-card">
-        <div class="event-avatar"></div>
-        <div class="event-content">
-          <div class="event-details">
-            <a class="event-club" href="/">{{ event.club }}</a>
-            <h2 class="event-title">{{ event.title }}</h2>
-            <div class="event-info">
-                <p><i class="fas fa-calendar-alt"></i>{{ event.day}}, {{event.date}}</p>
-                <p><i class="fas fa-clock"></i> {{ event.time }}</p>
-                <p><i class="fas fa-map-marker-alt"></i> {{event.location}}</p>
-                </div>
-            </div>
-            <a class="view-event-btn" href="/">View Event</a>
-          </div>
-        </div>
-        {% endif %}
-    {% else %}
+    <section id="sec1">
+    {% for event in events %}
+    {% if event.date %}        {# should be boolean variable to check if the event is done  #}
     <div class="event-card">
         <div class="event-avatar"></div>
         <div class="event-content">
         <div class="event-details">
-            <a class="event-club" href="/">{{ event.club }}</a>
+            <a class="event-club" href="/">{{ event.club_name }}</a>
             <h2 class="event-title">{{ event.title }}</h2>
             <div class="event-info">
-                <p><i class="fas fa-calendar-alt"></i>{{ event.day}}, {{event.date}}</p>
-                <p><i class="fas fa-clock"></i> {{ event.time }}</p>
+                <p><i class="fas fa-calendar-alt"></i>{{ event.date}}, {{event.date}}</p>
+                <p><i class="fas fa-clock"></i> {{ event.date }}</p>
                 <p><i class="fas fa-map-marker-alt"></i> {{event.location}}</p>
             </div>
         </div>
-        <a class="view-event-btn" href="/">View Event</a>
+        <a class="view-event-btn" href="./events/{{event._id}}">View Event</a>
         </div>
-    </div>    
+    </div>
     {% endif %}
-{% endfor%}
+    {% endfor %}   
+    </section>
+    <section id="sec2" hidden>
+    {% for event in club.event %}    {# i think it should be a list or an array not a variable #}
+    <div class="event-card">
+        <div class="event-avatar"></div>
+        <div class="event-content">
+        <div class="event-details">
+            <a class="event-club" href="/">{{ event.club_name }}</a>
+            <h2 class="event-title">{{ event.title }}</h2>
+            <div class="event-info">
+                <p><i class="fas fa-calendar-alt"></i>{{ event.date}}, {{event.date}}</p>
+                <p><i class="fas fa-clock"></i> {{ event.date }}</p>
+                <p><i class="fas fa-map-marker-alt"></i> {{event.location}}</p>
+            </div>
+        </div>
+        <a class="view-event-btn" href="./events/{{event._id}}">View Event</a>
+        </div>
+    </div>
+    {% endfor %}
 {% endblock %}
