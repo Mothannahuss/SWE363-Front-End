@@ -13,7 +13,13 @@ router.get("/:eventId", async (req, res) =>{
         return
     }
     let event = await eventHandler.findById(req.params["eventId"])
+    if(event == null){//event is not found
+        res.send("Incorrect event ID")
+        return
+    }
+    console.log(event)
     let club = await clubHandler.findById(event.club_id)
+    
     console.log(club)
     res.render("eventDetails", {
         event: event,
