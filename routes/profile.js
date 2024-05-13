@@ -10,13 +10,11 @@ var mongoose = require('mongoose')
 router.get("/:club_handler", async (req, res) =>{
     let clubs = await clubHandler.findOne({handler: {$eq: req.params["club_handler"]}})
     console.log(clubs)
-    if(!clubs){
+    if(clubs == null){
         res.send("Could not find the club")
         return
     }
     let clubEvents = await eventHandler.find({club_id:{$eq: clubs._id}})
-    console.log(clubEvents)
-    console.log(clubs)
     res.render("profile", {
         club: clubs,
         events: clubEvents
@@ -24,7 +22,11 @@ router.get("/:club_handler", async (req, res) =>{
 })
 
 router.get("/:club_handler/newpost", async (req, res) =>{
-    res.render("newPost")
+    let clubs = await clubHandler.findOne({handler: {$eq: req.params["club_handler"]}})
+    console.log(clubs)
+    res.render("newPost", {
+        club: clubs
+    })
 })
 
 
