@@ -1,0 +1,98 @@
+{% extends "base2.njk" %}
+
+{% block title %}
+<title>profile</title>
+{% endblock %}
+
+{% block styles %}
+    <link href="/public/src/css/mothanna_style.css" rel="stylesheet" />
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+{% endblock %}
+
+{% block scripts %}
+    <script src="/public/src/js/search-header.js"></script>
+    <script src="/public/src/js/tab-nav3.js"></script>
+    <script src="/public/src/js/follow-btn.js"></script>
+{% endblock %}
+
+{% block pageName %}
+{% endblock %}
+
+{% block content %}
+    <div class="space">
+      <span class="dot"></span>
+    </div>
+    <div class="clubInfo">
+      <h2 class="item1">{{club.name}}</h2>
+      <button type="button" class="btn btn-primary item2 follow-btn">Follow</button>
+      <label style="color: #595959">{{club.handler}}</label>
+      <br />
+      <p class="item1">{{club.bio}}</p>
+      <br />
+      <p class="item1"><span style="color: #1b08da">{{club.followers}}</span> Followers</p>
+    </div>
+    <div class="tab-nav">
+      <a class="active" href="" id="sec1tog">Upcoming</a>
+      <a class="" href="" id="sec2tog">All</a>
+      <a class="" href="" id="sec3tog">About</a>
+    </div>
+    <section id="sec1">
+    {% for event in events %}
+    {% if event.date %}
+    <div class="event-card">
+        <div class="event-avatar"></div>
+        <div class="event-content">
+        <div class="event-details">
+            <a class="event-club" href="./profile.html">{{ event.club_name }}</a>
+            <h2 class="event-title">{{ event.title }}</h2>
+            <div class="event-info">
+                <p><i class="fas fa-calendar-alt"></i>{{ event.date}}, {{event.date}}</p>
+                <p><i class="fas fa-clock"></i> {{ event.date }}</p>
+                <p><i class="fas fa-map-marker-alt"></i> {{event.location}}</p>
+            </div>
+        </div>
+        <a class="view-event-btn" href="./events/{{event._id}}">View Event</a>
+        </div>
+    </div>
+    {% endif %}
+    {% endfor %}   
+    </section>
+    <section id="sec2" hidden>
+    {% for event in club.event %}
+    <div class="event-card">
+        <div class="event-avatar"></div>
+        <div class="event-content">
+        <div class="event-details">
+            <a class="event-club" href="./profile.html">{{ event.club_name }}</a>
+            <h2 class="event-title">{{ event.title }}</h2>
+            <div class="event-info">
+                <p><i class="fas fa-calendar-alt"></i>{{ event.date}}, {{event.date}}</p>
+                <p><i class="fas fa-clock"></i> {{ event.date }}</p>
+                <p><i class="fas fa-map-marker-alt"></i> {{event.location}}</p>
+            </div>
+        </div>
+        <a class="view-event-btn" href="./events/{{event._id}}">View Event</a>
+        </div>
+    </div>
+    {% endfor %}
+    </section>
+    <section id="sec3" hidden>
+      <div class="event-card">
+        <p>{{club.about}}.</p>
+      </div>
+    </section>
+{% endblock %}
