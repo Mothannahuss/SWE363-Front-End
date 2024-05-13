@@ -55,7 +55,7 @@
     <img src="{{club.avatar}}" class="dot">
     <div class="clubInfo">
       <h2 class="item1">{{club.name}}</h2>
-      {% if User.is_club %}
+      {% if owner %}
       <button type="button" id="edit-btn" class="btn btn-outline-primary item2">
         Edit profile
       </button>
