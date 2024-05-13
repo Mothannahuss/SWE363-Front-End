@@ -1,6 +1,7 @@
 const { default: mongoose } = require("mongoose");
 const Club = require("../models/Club");
 const User = require("../models/User");
+const Notification = require("../models/Notification");
 
 const toggleClubFollow = async (req, res) => {
     /*
@@ -62,4 +63,12 @@ const updateSettings = async (req, res) => {
     }
 };
 
-module.exports = { toggleClubFollow, updateSettings };
+
+async function getNotifications(userId)
+{
+    let notifications = await Notification.find({user: userId}, "event read").populate("event");
+    let events = [];
+    return notifications;
+}
+
+module.exports = { toggleClubFollow, updateSettings, getNotifications };
