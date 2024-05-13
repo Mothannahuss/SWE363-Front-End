@@ -16,14 +16,14 @@ const User = require("./models/User");
 const Club = require("./models/Club");
 const Event = require("./models/Event");
 const Notification = require("./models/Notification");
-const bcrypt = require("bcrypt");const nunjucks = require("nunjucks");
+const bcrypt = require("bcrypt");
 
 
 const PORT = process.env.PORT || 8001; 
 
 // Connect to MongoDB, if you are not Abdulghani then use "connectDBAtlas" function instead of "connectDBLocal":
-// connectDB.connectDBLocal();
-connectDB.connectDBAtlas();
+connectDB.connectDBLocal();
+//connectDB.connectDBAtlas();
 
 const cloudStorage = connectMega.connectCloudStorage();
 module.exports = { cloudStorage };
@@ -73,7 +73,7 @@ app.use("/test", require("./routes/test"));
 
 app.use("/", require("./routes/root"));
 app.use("/events", require("./routes/events"));
-app.use("api/events", require("./routes/api/events"));
+app.use("/api/events", require("./routes/api/events"));
 app.use("/profile", require("./routes/profile.js"))
 app.use("/home", require("./routes/home"));
 app.use("/browse", require("./routes/browse"));

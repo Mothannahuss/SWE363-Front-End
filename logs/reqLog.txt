@@ -656,10 +656,3 @@
 20240513	07:08:10	de7e5f13-d8b6-4197-b9a4-9fc1a9298244	POST	undefined	/test
 20240513	07:09:13	cc6b92e3-d2e0-490b-a51f-40ba99514089	POST	undefined	/test
 20240513	07:09:34	35b7e552-7507-4292-ac3d-b42e4d63d669	POST	undefined	/test
-20240513	19:44:31	c66c0027-1ffa-409b-a071-ee7c0227f4f4	GET	undefined	/
-20240513	19:44:31	56bb9ed7-b61c-4914-938f-40ba37e4cc26	GET	undefined	/src/css/mothanna_style.css
-20240513	19:44:31	fffa5666-2840-49f0-84fe-4186c7c1ac18	GET	undefined	/src/js/auth-val.js
-20240513	19:44:32	9c3300a5-3e00-4e7a-a053-84a48f5d9d84	GET	undefined	/favicon.ico
-20240513	19:44:47	4f3f4e5f-d8ac-4a45-858b-6225bf009a9b	GET	undefined	/test/
-20240513	19:44:47	bca342bc-bbe7-4665-9335-32a70279ab4f	GET	undefined	/favicon.ico
-20240513	19:44:50	96ff05a5-aad3-42e7-8287-5ff34f42ec55	GET	undefined	/
