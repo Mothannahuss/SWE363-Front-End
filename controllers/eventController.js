@@ -5,6 +5,7 @@ const User = require("../models/User");
 const Club = require("../models/Club");
 const { cloudStorage } = require("../server");
 const fs = require("fs");
+const { Storage, MutableFile } = require("megajs");
 
 const getUpcomingAndAllEventsForClubs = async (req, res) => {
     /*
@@ -15,12 +16,12 @@ const getUpcomingAndAllEventsForClubs = async (req, res) => {
     if (!mongoose.Types.ObjectId.isValid(req.query.userId)) return res.status(400).json({ "message": "User id is not valid." });
     
     try {
-        const clubs = await User.findById(req.query.userId).select("following");
-        if (!clubs) return res.status(204).json({ "message": "No followd clubs found." });
-    
-        const events = (req.query.today) ? await Event.find({club_name: {"$in": clubs}, date: {"$gte": req.query.today}})
-                        : await Event.find({club_name: {"$in": clubs}});
-        if (!events) return res.status(204).json({ "message": "No events found." });
+        const user = await User.findById(req.query.userId, { _id: 0, following: 1});
+        if (!user) return res.status(204).json({ "message": "No user found." });
+
+        const events = (req.query.today === "null") ? await Event.find({ club_name: {"$in": user.following} })
+                        : await Event.find({ club_name: {"$in": user.following}, date: {"$gte": req.query.today} });
+        if (!events.length) return res.status(204).json({ "message": "No events found." });
         res.json(events);
     } catch (err) {
         console.log(err);
@@ -36,8 +37,8 @@ const getUpcomingEvents = async (req, res) => {
     if (!req?.query?.today) return res.status(400).json({ "message": "Date is required." });
 
     try {
-        const events = await Event.find({date: {"$gte": req.query.today}});
-        if (!events) return res.status(204).json({ "message": "No upcoming events found." });
+        const events = await Event.find({ date: {"$gte": req.query.today} });
+        if (!events.length) return res.status(204).json({ "message": "No upcoming events found." });
         res.json(events);
     } catch (err) {
         console.log(err);
@@ -54,12 +55,12 @@ const getUpcomingAndAllSavedEvents = async (req, res) => {
     if (!mongoose.Types.ObjectId.isValid(req.query.userId)) return res.status(400).json({ "message": "User id is not valid." });
     
     try {
-        const eventsIds = await Savedevent.find({user: req.query.userId}).select("event");
-        if (!eventsIds) return res.status(204).json({ "message": "No Saved events found." });
-    
-        const events = (req.query.today) ? await Event.find({_id: {"$in": eventsIds}, date: {"$gte": req.query.today}})
-                        : await Event.find({_id: {"$in": eventsIds}});
-        if (!events) return res.status(204).json({ "message": "No events found." });
+        const eventsIds = await Savedevent.find({ user: req.query.userId }, { event: 1 });
+        if (!eventsIds.length) return res.status(204).json({ "message": "No Saved events found." });
+        const ids = eventsIds.map((event) => event.event);
+        const events = (req.query.today === "null") ? await Event.find({ _id: {"$in": ids} })
+                        : await Event.find({ _id: {"$in": ids}, date: {"$gte": req.query.today} });
+        if (!events.length) return res.status(204).json({ "message": "No events found." });
         res.json(events);
     } catch (err) {
         console.log(err);
@@ -116,7 +117,7 @@ const deleteSavedEvent = async (req, res) => {
     if (!mongoose.Types.ObjectId.isValid(req.params.eventId)) return res.status(400).json({ "message": "Event id is not valid." });
 
     try {
-        const savedEvent = await Savedevent.findOne({ user: req.params.userId, event: req.params.eventId }).exec();
+        const savedEvent = await Savedevent.findOne({ user: req.params.userId, event: req.params.eventId });
         if (!savedEvent) return res.status(204).json({ "message": "No matched saved event found." });
         const result = await savedEvent.deleteOne();
         res.json(result);
@@ -131,12 +132,13 @@ const createEvent = async (req, res) => {
     The request should contain the club id, club name, date, location and title in BODY part.
     It return the new event then user should be redirected to update events page.
     */
+    console.log(req.body);
     if (!req?.body?.club_id || !req?.body?.club_name || !req?.body?.date || !req?.body?.location || !req.body.title) 
         return res.status(400).json({ "message": "Date, title, location, club id and name are required" });
     if (!mongoose.Types.ObjectId.isValid(req.body.club_id)) return res.status(400).json({ "message": "Club id is not valid." });
 
     try {
-        const imageUrl = (req?.file?.path) ? await uploadImageToMega(req.file.path) : "";
+        const imageUrl = (req?.file?.path) ? await uploadImageToMega(req.file) : "";
         const desc = (req?.body?.description) ? req.body.description: "";
         const link = (req?.body?.link) ? req.body.link: "";
         const result = await Event.create({
@@ -185,7 +187,7 @@ const updateEvent = async (req, res) => {
         } else if (event.poster && req?.file?.path) {
             await deleteImageFromMega(event.poster);
             event.poster = await uploadImageToMega(req.file.path);
-        } else {
+        } else if (!event.poster && !req?.file?.path) {
             event.poster = "";
         }
     
@@ -206,7 +208,7 @@ const deleteEvent = async (req, res) => {
     if (!mongoose.Types.ObjectId.isValid(req.params.eventId)) return res.status(400).json({ "message": "Event id is not valid." });
 
     try {
-        const event = await Event.findOne({ _id: req.params.eventId }).exec();
+        const event = await Event.findById(req.params.eventId);
         if (!event) return res.status(204).json({ "message": "No matched event found." });
         const result = await event.deleteOne();
         const poster = (event.poster) ? await deleteImageFromMega(event.poster) : "";
@@ -220,19 +222,21 @@ const deleteEvent = async (req, res) => {
     }
 };
 
-const uploadImageToMega = async (filePath) => {
-    const file = await cloudStorage.upload(filePath).complete
-    .then(file => {
-        console.log('File uploaded successfully:', file.name);
+const uploadImageToMega = async (file) => {
+    const folder = await cloudStorage;
+    //const data = fs.readFileSync(filePath, 'utf8');
+    const fileUploader = await folder.upload({ name: file.originalname, forceHttps: false }, file.path).complete
+    .then(f => {
+        console.log('File uploaded successfully:', f.name);
 
         // Cleanup the temporary file after successful upload
-        fs.unlink(filePath);
+        //fs.unlink(filePath); 
     });
-    return file.link();
+    return fileUploader.link();
 };
 
 const deleteImageFromMega = async (fileUrl) => {
-    const file = cloudStorage.filter(file => file.shareURL.match(fileUrl));
+    const file = (await cloudStorage).filter(file => file.shareURL.match(fileUrl));
     const del = await file.delete(permanent)
     .then(file => {
         console.log('File deleted successfully:', file.name);

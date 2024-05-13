@@ -16,7 +16,8 @@ const User = require("./models/User");
 const Club = require("./models/Club");
 const Event = require("./models/Event");
 const Notification = require("./models/Notification");
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcrypt");const nunjucks = require("nunjucks");
+
 
 const PORT = process.env.PORT || 8001; 
 
@@ -25,9 +26,17 @@ const PORT = process.env.PORT || 8001;
 connectDB.connectDBAtlas();
 
 const cloudStorage = connectMega.connectCloudStorage();
-module.exports = cloudStorage;
+module.exports = { cloudStorage };
 
 const app = express();
+
+//Inject nunjucks for dynamic pages
+nunjucks.configure("views", {
+    express: app,
+    autoescape: false
+});
+
+app.set('view engine', 'njk');
 
 // custom middleware logger
 app.use(logger);
@@ -63,10 +72,9 @@ app.use("/", express.static(path.join(__dirname, "/public")));
 app.use("/test", require("./routes/test"));
 
 app.use("/", require("./routes/root"));
-app.use("/register", require("./routes/register"));
-app.use("/auth", require("./routes/auth"));
-app.use("/refresh", require("./routes/refresh"));
-app.use("/logout", require("./routes/logout"));
+app.use("/events", require("./routes/events"));
+app.use("api/events", require("./routes/api/events"));
+app.use("/profile", require("./routes/profile.js"))
 app.use("/home", require("./routes/home"));
 app.use("/browse", require("./routes/browse"));
 app.use("/notifications", require("./routes/notifications"));
@@ -84,13 +92,14 @@ app.use("*", (req, res) => {
     });
 });
 
-
-
-mongoose.connection.once("open", async () => {
-    
-    console.log("\tConnected to MongoDB");
-    cloudStorage.then(() => {
-        console.log("\tConnected to MEGA");
-        app.listen(PORT, () => console.log(`Server running on http://127.0.0.1:${PORT}`));
+try {
+    mongoose.connection.once("open", () => {
+        console.log("\tConnected to MongoDB");
+        cloudStorage.then(() => {
+            console.log("\tConnected to MEGA");
+            app.listen(PORT, () => console.log(`Server running on http://127.0.0.1:${PORT}`));
+        });
     });
-});
+} catch (err) {
+    console.log("Cannot start the server due to: ", err);
+}

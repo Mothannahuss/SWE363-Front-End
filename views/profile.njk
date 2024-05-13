@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block styles %}
-    <link href="../public/src/css/mothanna_style.css" rel="stylesheet" />
+    <link href="/public/src/css/mothanna_style.css" rel="stylesheet" />
     <script
       defer
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
@@ -24,12 +24,15 @@
 {% endblock %}
 
 {% block scripts %}
-    <script src="../public/src/js/search-header.js"></script>
-    <script src="../public/src/js/tab-nav3.js"></script>
-    <script src="../public/src/js/follow-btn.js"></script>
+    <script src="/public/src/js/search-header.js"></script>
+    <script src="/public/src/js/tab-nav3.js"></script>
+    <script src="/public/src/js/follow-btn.js"></script>
 {% endblock %}
 
 {% block pageName %}
+{% endblock %}
+
+{% block tapnav %}
 {% endblock %}
 
 {% block content %}
@@ -38,34 +41,40 @@
     </div>
     <div class="clubInfo">
       <h2 class="item1">{{club.name}}</h2>
+      {% if admin %}
+      <button type="button" id="edit-btn" class="btn btn-outline-primary item2">
+        Edit profile
+      </button>
+      {% else %}      
       <button type="button" class="btn btn-primary item2 follow-btn">Follow</button>
-      <label style="color: #595959">{{club.username}}</label>
+      {% endif %}
+      <label style="color: #595959">{{club.handler}}</label>
       <br />
       <p class="item1">{{club.bio}}</p>
       <br />
       <p class="item1"><span style="color: #1b08da">{{club.followers}}</span> Followers</p>
     </div>
     <div class="tab-nav">
-      <a class="active" href="" id="sec1tog">Upcoming</a>
-      <a class="" href="" id="sec2tog">All</a>
-      <a class="" href="" id="sec3tog">About</a>
+      <a class="active" href="/" id="sec1tog">Upcoming</a>
+      <a class="" href="/" id="sec2tog">All</a>
+      <a class="" href="/" id="sec3tog">About</a>
     </div>
     <section id="sec1">
-    {% for event in club.events %}
-    {% if evet.notdone%}
+    {% for event in events %}
+    {% if event.date %}
     <div class="event-card">
         <div class="event-avatar"></div>
         <div class="event-content">
         <div class="event-details">
-            <a class="event-club" href="./profile.html">{{ event.club }}</a>
+            <a class="event-club" href="/">{{ event.club_name }}</a>
             <h2 class="event-title">{{ event.title }}</h2>
             <div class="event-info">
-                <p><i class="fas fa-calendar-alt"></i>{{ event.day}}, {{event.date}}</p>
-                <p><i class="fas fa-clock"></i> {{ event.time }}</p>
+                <p><i class="fas fa-calendar-alt"></i>{{ event.date}}, {{event.date}}</p>
+                <p><i class="fas fa-clock"></i> {{ event.date }}</p>
                 <p><i class="fas fa-map-marker-alt"></i> {{event.location}}</p>
             </div>
         </div>
-        <a class="view-event-btn" href="./eventDetails.html">View Event</a>
+        <a class="view-event-btn" href="./events/{{event._id}}">View Event</a>
         </div>
     </div>
     {% endif %}
@@ -77,15 +86,15 @@
         <div class="event-avatar"></div>
         <div class="event-content">
         <div class="event-details">
-            <a class="event-club" href="./profile.html">{{ event.club }}</a>
+            <a class="event-club" href="/">{{ event.club_name }}</a>
             <h2 class="event-title">{{ event.title }}</h2>
             <div class="event-info">
-                <p><i class="fas fa-calendar-alt"></i>{{ event.day}}, {{event.date}}</p>
-                <p><i class="fas fa-clock"></i> {{ event.time }}</p>
+                <p><i class="fas fa-calendar-alt"></i>{{ event.date}}, {{event.date}}</p>
+                <p><i class="fas fa-clock"></i> {{ event.date }}</p>
                 <p><i class="fas fa-map-marker-alt"></i> {{event.location}}</p>
             </div>
         </div>
-        <a class="view-event-btn" href="./eventDetails.html">View Event</a>
+        <a class="view-event-btn" href="./events/{{event._id}}">View Event</a>
         </div>
     </div>
     {% endfor %}

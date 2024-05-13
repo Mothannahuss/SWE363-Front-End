@@ -9,9 +9,5 @@ routes:
     api:
         -employees.js
         -users.js
-    -auth.js
     -eventPost.js
-    -logout.js
-    -refresh.js
-    -register.js
     -root.js

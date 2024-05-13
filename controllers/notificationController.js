@@ -1,7 +1,7 @@
 const { default: mongoose } = require("mongoose");
-const Event = require("../model/Event");
-const User = require("../model/User");
-const Notification = require("../model/Notification");
+const Event = require("../models/Event");
+const User = require("../models/User");
+const Notification = require("../models/Notification");
 
 const getNewNotifications = async (req, res) => {
     /*
@@ -12,28 +12,25 @@ const getNewNotifications = async (req, res) => {
     if (!mongoose.Types.ObjectId.isValid(req.query.userId)) return res.status(400).json({ "message": "User id is not valid." });
     
     try {
-        const followed = await User.findById(req.query.userId);
-    
-        const events = (followed) ? await Event.find({ club_name: {"$in": followed}, date: {"$gte": req.query.today} })
-                        : [];
-    
-        var notifications = await Notification.find({ user: req.query.userId, read: false }).select("event");
-        notifications = (notifications) ? notifications : [];
-    
-        const all = [];
+        const user = await User.findById(req.query.userId);
+        if (!user) return res.status(204).json({ "message": "User not found." });
+
+        const events = await Event.find({ club_name: {"$in": user.following}, date: {"$gte": req.query.today} });
+        const notifications = await Notification.find({ user: req.query.userId, read: false }, { event: 1 });
+        const eventsIds = notifications.map((noti) => noti.event);
+        const all = await Event.find({ _id: {"$in": eventsIds} });
         if (events.length) {
-            events.forEach(async (event) => {
-                await Notification.create({
-                    event: event._id,
-                    user: req.query.userId,
-                    read: false
-                });
-                all.push(event);
-            });
-        } 
-        if (notifications.length) {
-            const e = await Event.find({ _id: notifications });
-            all.push(e);
+            for (var event of events) {
+                console.log(event)
+                if (!eventsIds.some(id => (id.toString() === (event._id).toString()))) {
+                    await Notification.create({
+                        event: event._id,
+                        user: req.query.userId,
+                        read: false
+                    });
+                    all.push(event);
+                };
+            }
         }
         res.json(all);
     } catch (err) {
@@ -51,11 +48,12 @@ const getPreviousNotifications = async (req, res) => {
     if (!mongoose.Types.ObjectId.isValid(req.query.userId)) return res.status(400).json({ "message": "User id is not valid." });
     
     try {
-        const notifications = await Notification.find({ user: req.query.userId, read: true }).select("event");
-        if (!notifications) return res.status(204).json({ "message": "No previous notification found." });
+        const notifications = await Notification.find({ user: req.query.userId, read: true }, { event: 1 });
+        if (!notifications.length) return res.status(204).json({ "message": "No previous notification found." });
     
-        const events = await Event.find({ _id: notifications });
-        if (!events) return res.status(204).json({ "message": "No events found." });
+        const eventsIds = notifications.map((noti) => noti.event);
+        const events = await Event.find({ _id: {"$in": eventsIds} });
+        if (!events.length) return res.status(204).json({ "message": "No events found." });
         res.json(events);
     } catch (err) {
         console.log(err);
@@ -76,7 +74,6 @@ const updateNotification = async (req, res) => {
         if (!notification) return res.status(204).json({ "message": "No matched notification found." });
     
         notification.read = true;
-    
         const result = await notification.save();
         res.json(result);
     } catch (err) {

@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const eventController = require("../controllers/eventController");
+const userController = require("../controllers/userController");
 
-router.get("/", eventController.getUpcomingEvents);
+router.post("/", userController.toggleClubFollow);
 
 module.exports = router;

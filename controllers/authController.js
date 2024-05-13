@@ -5,13 +5,14 @@ const jwt = require("jsonwebtoken");
 
 const handleLogin = async (req, res) => {
     /*
-    TODO
+    The request should contain the email and password in BODY part.
+    It return if the user is authorized or not.
     */
     if (!req?.body?.email || !req?.body?.password) return res.status(400).json({ "message": "Email and password are required." });
 
     try {
-        const user = await User.findOne({ email: req.body.email }).exec();
-        if (!user) return res.sendStatus(401); //Unauthorized 
+        const user = await User.findOne({ email: req.body.email });
+        if (!user) return res.status(401).json({ "message": "Invalid E-mail." }); //Unauthorized 
         // evaluate password 
         const match = await bcrypt.compare(req.body.password, user.password);
         if (match) {
@@ -48,15 +49,15 @@ const handleLogin = async (req, res) => {
             delete user.password;
             delete user.refreshToken;
             if (user.is_club){
-                const club = await Club.findOne({ user: user._id }).exec();
-                if (!club) return res.sendStatus(401); //Unauthorized - No club assigned yet
+                const club = await Club.findOne({ user: user._id });
+                if (!club) return res.status(401).json({ "message": "Go to the admin to make Club's account" }); //Unauthorized - No club assigned yet
                 res.json({ user, club, accessToken }); 
             } else {
                 // res.json({ user, accessToken });
                 res.redirect("/home");
             }
         } else {
-            res.sendStatus(401);
+            res.status(401).json({ "message": "Invalid password." }); //Unauthorized 
         }
     } catch {
         console.log(err);
@@ -66,7 +67,8 @@ const handleLogin = async (req, res) => {
 
 const forgotPassword = async (req, res) => {
     /*
-    TODO
+    The request should contain the email in BODY part.
+    It return if the user changed or not not.
     */
     if (!req?.body?.email) return res.status(400).json({ "message": "Email is required." });
 
@@ -74,15 +76,10 @@ const forgotPassword = async (req, res) => {
         const user = await User.findOne({ email: req.body.email }).exec();
         if (!user) return res.status(401).json({ "message": "Email does not exist." }); //Conflict 
         
-        const pwd = req.body.email.split("@")[0] + ".12345678"
-    
-        //encrypt the password
+        const pwd = req.body.email.split("@")[0] + "!12345678"
         const hashedPwd = await bcrypt.hash(pwd, 10);
-    
-        // Saving new password with current user
         user.password = hashedPwd;
         const result = await user.save();
-    
         console.log(result);
         
         // Send new password via email>>> TODO
@@ -95,8 +92,9 @@ const forgotPassword = async (req, res) => {
 };
 
 const handleLogout = async (req, res) => {
-    // On client, also delete the accessToken
-
+    /*
+    TODO
+    */
     const cookies = req.cookies;
     if (!cookies?.jwt) return res.sendStatus(204); //No content
     const refreshToken = cookies.jwt;
@@ -146,7 +144,6 @@ const handleRegister = async (req, res) => {
             "interests": (!req?.body?.interests) ? req.body.interests : [],
             "following": []
         });
-    
         console.log(result);
     
         // Send email about registeration process >>> TODO
@@ -159,6 +156,9 @@ const handleRegister = async (req, res) => {
 };
 
 const handleRefreshToken = async (req, res) => {
+    /*
+    TODO
+    */
     const cookies = req.cookies;
     if (!cookies?.jwt) return res.sendStatus(401);
     const refreshToken = cookies.jwt;

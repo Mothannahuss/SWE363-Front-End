@@ -5,33 +5,8 @@
 20240511	15:39:18	59f4151a-f9aa-4951-9e46-1cd7e63ba440	Error: ENOENT: no such file or directory, stat 'T:\Downloads\232\SWE363\Project\SWE363-Back-End-mothanna\index.html'
 20240511	15:39:52	2540e4cc-25c4-4888-8b76-2cb8b3ddd75d	Error: ENOENT: no such file or directory, stat 'T:\Downloads\232\SWE363\Project\SWE363-Back-End-mothanna\index.html'
 20240511	15:39:53	db798fb3-198f-4551-8be4-d155ca8be6a7	Error: ENOENT: no such file or directory, stat 'T:\Downloads\232\SWE363\Project\SWE363-Back-End-mothanna\index.html'
-20240512	17:50:43	9c9681c2-8421-4ad7-9005-848f9160da41	Error: ENOENT: no such file or directory, stat 'C:\Users\mothanna\OneDrive\Desktop\SWE363\studentHub_backEnd\SWE363-Front-End\index.html'
-20240512	17:52:12	3d9da37e-3357-4304-93af-b74f33785741	Error: ENOENT: no such file or directory, stat 'C:\Users\mothanna\OneDrive\Desktop\SWE363\studentHub_backEnd\SWE363-Front-End\routes\src\index.html'
-20240512	17:52:33	299a0b69-fa2d-44c1-acdc-837b50103940	Error: ENOENT: no such file or directory, stat 'C:\Users\mothanna\OneDrive\Desktop\SWE363\studentHub_backEnd\SWE363-Front-End\routes\src\index.html'
-20240512	17:52:46	e3809f8e-414d-4d4b-a2bc-221d1c511d5d	Error: ENOENT: no such file or directory, stat 'C:\Users\mothanna\OneDrive\Desktop\SWE363\studentHub_backEnd\SWE363-Front-End\src\index.html'
-20240512	17:53:05	7a73e3ec-c34e-4176-942f-6cd7ae4d487e	Error: ENOENT: no such file or directory, stat 'C:\Users\mothanna\OneDrive\Desktop\SWE363\studentHub_backEnd\SWE363-Front-End\public\src\index.html'
-20240512	17:55:45	a12fca71-84cc-47ab-9cac-991abe234a45	Error: ENOENT: no such file or directory, stat 'C:\Users\mothanna\OneDrive\Desktop\SWE363\studentHub_backEnd\SWE363-Front-End\index.html'
-20240512	17:56:12	2a47b9f7-9084-4d33-a79b-3f61c1fdd012	Error: ENOENT: no such file or directory, stat 'C:\Users\mothanna\OneDrive\Desktop\SWE363\studentHub_backEnd\SWE363-Front-End\login.html'
-20240512	18:00:06	cdce2066-a0fd-4bd8-be86-0487f83af299	Error: Not allowed by CORS
-20240512	18:03:41	88e08df7-687e-413e-9e12-d2023e7fa9b1	Error: Not allowed by CORS
-20240512	18:06:26	5cefa8a5-492c-415b-a02f-518b9737d237	Error: Not allowed by CORS
-20240513	03:03:32	0bd760fd-16cd-4a7a-b7d0-8e983d79f3b7	Template render error: (C:\Users\mothanna\OneDrive\Desktop\SWE363\studentHub_backEnd\SWE363-Front-End\views\notification.njk) [Line 48, Column 16]
-  unexpected token: .
-20240513	03:08:48	c3cd76be-1445-40fa-9c6f-99f835065a20	Template render error: (C:\Users\mothanna\OneDrive\Desktop\SWE363\studentHub_backEnd\SWE363-Front-End\views\notification.njk) [Line 48, Column 16]
-  unexpected token: .
-20240513	03:09:21	027f4702-0893-42a3-b9d7-e4a2de5f1b82	Template render error: (C:\Users\mothanna\OneDrive\Desktop\SWE363\studentHub_backEnd\SWE363-Front-End\views\notification.njk) [Line 48, Column 16]
-  unexpected token: .
-20240513	03:13:17	78618443-f7cc-41a4-af50-4ac3a79d891c	Template render error: (C:\Users\mothanna\OneDrive\Desktop\SWE363\studentHub_backEnd\SWE363-Front-End\views\notification.njk) [Line 48, Column 16]
-  unexpected token: .
-20240513	03:13:23	6b8a0d2b-7be2-483c-a6be-e1678ab52ec8	Template render error: (C:\Users\mothanna\OneDrive\Desktop\SWE363\studentHub_backEnd\SWE363-Front-End\views\notification.njk) [Line 48, Column 16]
-  unexpected token: .
-20240513	03:18:54	00516f3d-522c-4062-8feb-c7d478875bfe	Template render error: (C:\Users\mothanna\OneDrive\Desktop\SWE363\studentHub_backEnd\SWE363-Front-End\views\notification.njk) [Line 48, Column 16]
-  unexpected token: .
-20240513	03:20:03	578a57bb-3282-44e1-9b47-965ac76788f1	Template render error: (C:\Users\mothanna\OneDrive\Desktop\SWE363\studentHub_backEnd\SWE363-Front-End\views\notification.njk) [Line 48, Column 9]
-  unexpected token: !
-20240513	03:20:05	7a80d262-c489-42fb-86c6-494f33c324d8	Template render error: (C:\Users\mothanna\OneDrive\Desktop\SWE363\studentHub_backEnd\SWE363-Front-End\views\notification.njk) [Line 48, Column 9]
-  unexpected token: !
-20240513	03:28:03	61fa94c6-b7c3-48b3-9469-ba12c76e1665	Error: Can't set headers after they are sent.
-20240513	18:54:59	18ab62f2-e157-4360-b3bc-6c08d6c80c41	Error: Can't set headers after they are sent.
-20240513	18:57:41	14978bb3-5316-47c1-9d91-5c8afb70be8e	Error: Can't set headers after they are sent.
-20240513	18:58:44	9e619693-2e06-45e8-b47c-568e66e19269	Error: Can't set headers after they are sent.
+20240512	21:54:12	2552eb43-bbdb-42bd-86d8-6500a1fba095	Error: ENOENT: no such file or directory, stat 'T:\Downloads\232\SWE363\Project\SWE363-Back-End-mothanna\index.html'
+20240512	21:56:23	9376d8a3-3e01-41fe-9fb9-61129b11af0e	Error: ENOENT: no such file or directory, stat 'T:\Downloads\232\SWE363\Project\SWE363-Back-End-mothanna\routes\src\html-toGoToViews\index.html'
+20240512	21:56:42	fc5ab9cf-9a09-4b80-961c-ca829f9d0a02	Error: ENOENT: no such file or directory, stat 'T:\Downloads\232\SWE363\Project\SWE363-Back-End-mothanna\src\html-toGoToViews\index.html'
+20240513	01:15:16	e5b24985-d899-4884-aef5-486c14654e35	Error: Not allowed by CORS
+20240513	01:16:13	2ffd3fff-d970-40cf-8d70-ad9416003cdd	Error: Not allowed by CORS

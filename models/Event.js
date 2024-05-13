@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const eventSchema = new Schema({
 	club_id: {
-        type: mongoose.Schema.Types.ObjectId,
+        type: Schema.Types.ObjectId,
         ref: "Club",
         required: true
     },
@@ -16,7 +16,7 @@ const eventSchema = new Schema({
         required: true
     },
 	date: {
-        type: Date,
+        type: Strin,
         required: true
     },
 	location: {
