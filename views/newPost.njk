@@ -86,6 +86,8 @@
               <input type="file" name="poster" id="poster" class="form-control" />
               <div class="invalid-feedback"></div>
             </div>
+            <input type="hidden" name="clubId" id="clubId" value="{{club._id}}" required />
+            <input type="hidden" name="clubName" id="clubName" value="{{club.name}}" required>
           </div>
           <div>
             <label for="link" class="form-label">Registration Link</label>
