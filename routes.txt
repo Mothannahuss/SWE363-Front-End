@@ -1,0 +1,37 @@
+/root - auth:
+    / [GET]
+    /login [POST] -body
+    /register [POST] -body 
+    /forgot [POST] -body 
+
+/home - home:
+    /home?userId&today [GET] -query
+    /explore?today [GET] -query
+
+/myclubs - myClubs:
+    /?userId [GET] -query
+
+/savedevents - savedEvents:
+    /?userId&today [GET] -query
+
+/browse - browse:
+    /?category [GET] -query
+
+/notification - notification:
+    /?userId&today [GET] -query
+    /previous?userId [GET] -query
+    / [POST] -query
+
+/myprofile - myprofile:
+    / [GET]
+    / [POST] -body
+    /post [POST] -body
+    /edit [POST] -body
+
+/settings - settings:
+    / [GET]
+    /club [POST] -body
+    / [POST] -body
+
+/event - event:
+    /?eventId [GET] -query

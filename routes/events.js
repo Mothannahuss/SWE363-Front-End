@@ -23,6 +23,3 @@ router.get("/:eventId", async (req, res) =>{
 
 
 module.exports = router
-
-
-
