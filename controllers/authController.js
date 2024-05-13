@@ -52,7 +52,8 @@ const handleLogin = async (req, res) => {
                 if (!club) return res.sendStatus(401); //Unauthorized - No club assigned yet
                 res.json({ user, club, accessToken }); 
             } else {
-                res.json({ user, accessToken });
+                // res.json({ user, accessToken });
+                res.redirect("/home");
             }
         } else {
             res.sendStatus(401);

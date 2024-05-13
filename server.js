@@ -11,13 +11,18 @@ const credentials = require("./middleware/credentials");
 const mongoose = require("mongoose");
 const connectDB = require("./config/dbConn");
 const connectMega = require("./config/megaConn");
-
+const nunjucks = require("nunjucks");
+const User = require("./models/User");
+const Club = require("./models/Club");
+const Event = require("./models/Event");
+const Notification = require("./models/Notification");
+const bcrypt = require("bcrypt");
 
 const PORT = process.env.PORT || 8001; 
 
 // Connect to MongoDB, if you are not Abdulghani then use "connectDBAtlas" function instead of "connectDBLocal":
-connectDB.connectDBLocal();
-//connectDB.connectDBAtlas();
+// connectDB.connectDBLocal();
+connectDB.connectDBAtlas();
 
 const cloudStorage = connectMega.connectCloudStorage();
 module.exports = cloudStorage;
@@ -26,6 +31,14 @@ const app = express();
 
 // custom middleware logger
 app.use(logger);
+
+
+// Template engine configuration
+nunjucks.configure("views", {
+    express: app
+  });
+  app.set('view engine', 'njk');
+
 
 // Handle options credentials check - before CORS!
 // and fetch cookies credentials requirement
@@ -44,7 +57,7 @@ app.use(express.json());
 app.use(cookieParser());
 
 //serve static files
-app.use("/", express.static(path.join(__dirname, "public")));
+app.use("/", express.static(path.join(__dirname, "/public")));
 
 // routes
 app.use("/test", require("./routes/test"));
@@ -54,6 +67,9 @@ app.use("/register", require("./routes/register"));
 app.use("/auth", require("./routes/auth"));
 app.use("/refresh", require("./routes/refresh"));
 app.use("/logout", require("./routes/logout"));
+app.use("/home", require("./routes/home"));
+app.use("/browse", require("./routes/browse"));
+app.use("/notifications", require("./routes/notifications"));
 
 app.use(verifyJWT);
 //app.use("/employees", require("./routes/api/employees"));
@@ -68,7 +84,10 @@ app.use("*", (req, res) => {
     });
 });
 
-mongoose.connection.once("open", () => {
+
+
+mongoose.connection.once("open", async () => {
+    
     console.log("\tConnected to MongoDB");
     cloudStorage.then(() => {
         console.log("\tConnected to MEGA");
