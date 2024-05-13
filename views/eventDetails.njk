@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block styles %}
-   <link href="../public/src/css/style.css" rel="stylesheet" />
+   <link href="./src/css/style.css" rel="stylesheet" />
        <link
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css"
       rel="stylesheet"
@@ -18,7 +18,7 @@
 {% endblock %}
 
 {% block scripts %}
-    <script src="../js/search-header.js"></script>
+    <script src="./src/js/search-header.js"></script>
 {% endblock %}
 
 {% block pageName%}
@@ -65,7 +65,7 @@
             <div class="col imageBackground m-1"></div>
           </div>
           <div class="d-flex align-self-center justify-content-center row">
-            <button id="registerButton" class="col-4" type="button">
+            <button onclick="window.open({{event.link}}, "_blank");" id="registerButton" class="col-4" type="button">
               Register
             </button>
           </div>
