@@ -26,8 +26,8 @@
 {% endblock %}
 
 {% block scripts %}
-<script src="../js/search-header.js"></script>
-<script src="../js/tab-nav2.js"></script>
+<script src="../public/src/js/search-header.js"></script>
+<script src="../public/src/js/tab-nav2.js"></script>
 {% endblock %}
 
 {% block pageName %}
@@ -44,7 +44,7 @@
 {% block content %}
     <section id="sec1">
     {% for event in events %}
-    {% if event.date %}        {# should be boolean variable to check if the event is done  #}
+    {% if done %}        {# should be boolean variable to check if the event is done  #}
     <div class="event-card">
         <div class="event-avatar"></div>
         <div class="event-content">
@@ -64,7 +64,7 @@
     {% endfor %}   
     </section>
     <section id="sec2" hidden>
-    {% for event in club.event %}    {# i think it should be a list or an array not a variable #}
+    {% for event in events %}    {# i think it should be a list or an array not a variable #}
     <div class="event-card">
         <div class="event-avatar"></div>
         <div class="event-content">
