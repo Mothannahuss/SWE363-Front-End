@@ -44,3 +44,37 @@
   expected block end in if statement
 20240513	21:42:25	858f0b22-d554-4323-9205-0708cda8d0d5	Template render error: (C:\Users\omerr\OneDrive\سطح المكتب\232\SWE 363\Project\SWE363-Front-End\views\profile.njk) [Line 69, Column 32]
   expected block end in if statement
+20240513	23:20:02	42c63453-5357-419e-ae60-bc75fa25c032	Template render error: (C:\Users\omerr\OneDrive\سطح المكتب\232\SWE 363\Project\SWE363-Front-End\views\editPost.njk) [Line 103, Column 78]
+  Error: Unable to call `event["location"]["indexof"]`, which is undefined or falsey
+20240513	23:21:20	9918624e-9406-4fc7-82bb-0cdbbac69b07	Template render error: (C:\Users\omerr\OneDrive\سطح المكتب\232\SWE 363\Project\SWE363-Front-End\views\editPost.njk) [Line 103, Column 117]
+  Error: Unable to call `event["location"]["indexof"]`, which is undefined or falsey
+20240513	23:21:25	239018e1-03bf-40c2-b8e6-619d6ec8d87a	Template render error: (C:\Users\omerr\OneDrive\سطح المكتب\232\SWE 363\Project\SWE363-Front-End\views\editPost.njk) [Line 103, Column 117]
+  Error: Unable to call `event["location"]["indexof"]`, which is undefined or falsey
+20240513	23:21:26	67dd32da-ac04-4603-8761-a3a5943ffb58	Template render error: (C:\Users\omerr\OneDrive\سطح المكتب\232\SWE 363\Project\SWE363-Front-End\views\editPost.njk) [Line 103, Column 117]
+  Error: Unable to call `event["location"]["indexof"]`, which is undefined or falsey
+20240513	23:21:30	f665e591-e6d6-419c-987e-912ef13e24e5	Template render error: (C:\Users\omerr\OneDrive\سطح المكتب\232\SWE 363\Project\SWE363-Front-End\views\editPost.njk) [Line 103, Column 117]
+  Error: Unable to call `event["location"]["indexof"]`, which is undefined or falsey
+20240513	23:21:42	6429eacb-af6d-4eaf-a9d1-ad90cbf29b48	Template render error: (C:\Users\omerr\OneDrive\سطح المكتب\232\SWE 363\Project\SWE363-Front-End\views\editPost.njk) [Line 103, Column 117]
+  Error: Unable to call `event["location"]["indexof"]`, which is undefined or falsey
+20240513	23:21:49	34f8c0b0-ec0a-43e2-8c76-762dbc8b0b53	Template render error: (C:\Users\omerr\OneDrive\سطح المكتب\232\SWE 363\Project\SWE363-Front-End\views\editPost.njk) [Line 103, Column 117]
+  Error: Unable to call `event["location"]["indexof"]`, which is undefined or falsey
+20240513	23:22:04	ccedc6c5-5d65-4ded-8e2f-dc82c2ed93d7	Template render error: (C:\Users\omerr\OneDrive\سطح المكتب\232\SWE 363\Project\SWE363-Front-End\views\editPost.njk) [Line 103, Column 117]
+  Error: Unable to call `event["location"]["indexof"]`, which is undefined or falsey
+20240513	23:28:21	390b9529-1442-4847-8e4e-43dff0adb81b	Template render error: (C:\Users\omerr\OneDrive\سطح المكتب\232\SWE 363\Project\SWE363-Front-End\views\editPost.njk) [Line 74, Column 34]
+  parseAggregate: expected colon after dict key
+20240513	23:28:41	54234143-c875-4ae4-891c-d38fb36b69f2	Template render error: (C:\Users\omerr\OneDrive\سطح المكتب\232\SWE 363\Project\SWE363-Front-End\views\editPost.njk) [Line 74, Column 34]
+  parseAggregate: expected colon after dict key
+20240513	23:28:45	56b481c8-ec85-4ba6-8a8e-f51ecb0f751f	Template render error: (C:\Users\omerr\OneDrive\سطح المكتب\232\SWE 363\Project\SWE363-Front-End\views\editPost.njk) [Line 74, Column 34]
+  parseAggregate: expected colon after dict key
+20240513	23:35:53	f4372429-3947-4e87-b03f-4c0fe0b2c511	Template render error: (C:\Users\omerr\OneDrive\سطح المكتب\232\SWE 363\Project\SWE363-Front-End\views\editPost.njk) [Line 74, Column 109]
+  expected variable end
+20240513	23:36:35	39d8a45a-a594-41d0-b14d-5dd05b2b32fa	Template render error: (C:\Users\omerr\OneDrive\سطح المكتب\232\SWE 363\Project\SWE363-Front-End\views\editPost.njk) [Line 74, Column 109]
+  expected variable end
+20240513	23:36:39	397b1ccb-248e-4b2b-8844-a5a33f91b2f4	Template render error: (C:\Users\omerr\OneDrive\سطح المكتب\232\SWE 363\Project\SWE363-Front-End\views\editPost.njk) [Line 74, Column 110]
+  expected variable end
+20240513	23:37:19	92f74809-818d-4f49-a80b-1fe8b53cac10	Template render error: (C:\Users\omerr\OneDrive\سطح المكتب\232\SWE 363\Project\SWE363-Front-End\views\editPost.njk) [Line 74, Column 110]
+  expected variable end
+20240513	23:38:32	2eae0c84-0546-496f-a715-60e668f46637	Template render error: (C:\Users\omerr\OneDrive\سطح المكتب\232\SWE 363\Project\SWE363-Front-End\views\editPost.njk) [Line 74, Column 110]
+  expected variable end
+20240513	23:38:36	36ee6644-c209-4dfb-a66b-7d193707ea74	Template render error: (C:\Users\omerr\OneDrive\سطح المكتب\232\SWE 363\Project\SWE363-Front-End\views\editPost.njk) [Line 73, Column 92]
+  Error: Unable to call `--expression--["slice"]`, which is undefined or falsey

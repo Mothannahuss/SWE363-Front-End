@@ -36,5 +36,32 @@ router.get("/:eventId", async (req, res) =>{
     })
 })
 
+router.get("/:eventId/edit", async (req, res) =>{
+    if(!mongoose.isValidObjectId(req.params["eventId"])){
+        res.send("This is an invalid link")
+        return
+    }
+    let event = await eventHandler.findById(req.params["eventId"])
+    if(event == null){//event is not found
+        res.send("Incorrect event ID")
+        return
+    }
+    let customDate = new Date(event.date)
+    customDate.isUpcoming = (customDate > new Date())
+    res.render("editPost", {
+        event: {
+            _id: event._id,
+            club_id: event.club_id,
+            club_name: event.club_name,
+            title: event.title,
+            date: customDate,
+            location: event.location,
+            description: event.description,
+            poster: event.poster,
+            link: event.link,
+        }
+    })
+})
+
 
 module.exports = router

@@ -55,7 +55,7 @@
                   name="title"
                   id="title"
                   class="form-control"
-                  value="event.title"
+                  value={{event.title}}
                   required
                 />
                 <div class="invalid-feedback"></div>
@@ -71,7 +71,7 @@
                       name="date"
                       id="date"
                       class="form-control"
-                      value="{{ event.date }}"
+                      value="{{ event.date.toLocaleDateString("fr-CA", {year:"numeric", month: "2-digit", day:"2-digit"}) }}"
                       required
                     />
                     <div class="invalid-feedback"></div>
@@ -85,7 +85,7 @@
                       name="time"
                       id="time"
                       class="form-control"
-                      value="{{ event.date }}"
+                      value="{{ event.date.toLocaleTimeString([], { hour: 'numeric', minute: 'numeric', hour12: false }) }}"
                       required
                     />
                     <div class="invalid-feedback"></div>
@@ -101,7 +101,7 @@
                       name="building"
                       id="building"
                       class="form-control"
-                      value="{{event.location.substring(event.location.indexof("Building") + 8,event.location.indexof("Room") - 1)}}"
+                      value="{{event.location.substring(event.location.indexOf("Building") + 10,event.location.indexOf("Room") - 2)}}"
                     />
                     <div class="invalid-feedback"></div>
                   </div>
@@ -113,7 +113,7 @@
                       type="text"
                       name="room"
                       id="room"
-                      value="{{event.location.substring(event.location.indexof("Room:") + 5)}}"
+                      value="{{event.location.substring(event.location.indexOf("Room:") + 6)}}"
                       class="form-control"
                     />
                     <div class="invalid-feedback"></div>
@@ -130,8 +130,7 @@
                   rows="3"
                   cols="18"
                   class="form-control"
-                  value = {{event.description}}
-                ></textarea>
+                >{{event.description}}</textarea>
                 <div class="invalid-feedback"></div>
               </div>
             </div>
@@ -164,7 +163,7 @@
             <div>
               <label for="link" class="form-label">Registration Link</label>
               <div>
-                <input type="url" name="link" id="link" class="form-control" value={{event.value}} />
+                <input type="url" name="link" id="link" class="form-control" value={{event.link}} />
                 <div class="invalid-feedback"></div>
               </div>
             </div>
