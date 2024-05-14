@@ -116,6 +116,10 @@ In this section, we will discuss various important CSS implementations
 In this folder we have connections and configurations such:
 * dbConn.js: for database connection through mongoDb and mongoose
 * megaConn.js: for storaging images, then we have the links in the database
+![image](https://github.com/Mothannahuss/SWE363-Front-End/assets/125196929/a6c1561e-e5b0-407a-8738-d42e32d7c916)
+![image](https://github.com/Mothannahuss/SWE363-Front-End/assets/125196929/c774d5af-c5eb-4265-bbd1-779047209102)
+
+
 
 
 
