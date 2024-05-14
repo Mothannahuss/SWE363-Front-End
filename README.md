@@ -112,5 +112,16 @@ In this section, we will discuss various important CSS implementations
 
 
 
+# config folder
+In this folder we have connections and configurations such:
+* dbConn.js: responsible for database connection through mongoDb and mongoose
+* megaConn.js: responsible for sotraging images, then we have the links in the databas
+
+
+
+
+
+
+
 
 
