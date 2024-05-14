@@ -110,9 +110,11 @@ In this section, we will discuss various important CSS implementations
 
 
 
+# folders documentation
 
 
-# config folder
+
+## config folder
 In this folder we have connections and configurations such:
 * dbConn.js: for database connection through mongoDb and mongoose
 * megaConn.js: for storaging images, then we have the links in the database
@@ -123,7 +125,7 @@ In this folder we have connections and configurations such:
 
 
 
-# controllers folder
+## controllers folder
 In this folder we have javasript files for controllers and includes:
 * authController.js: handles login, logout, register, and forget password.
 * clubController.js: includes getMyClubs, getClubById, getClubsByCategory, and updateClubDetails
@@ -133,14 +135,14 @@ In this folder we have javasript files for controllers and includes:
 
 
 
-# middleware folder
+## middleware folder
 This folder is for middleware and includes files such:
 * errorHandler.js: to handle errors
 * verifyJWT.js: for authentication
 
 
 
-# models folder
+## models folder
 This folder includes mongoose schemas such:
 * Club.js
 * Event.js
@@ -150,7 +152,7 @@ This folder includes mongoose schemas such:
 
 
 
-# html folder 
+## html folder 
 This folder includes the initial html files that was designed in front-end phase such:
 * browse.html
 * home.html
@@ -161,7 +163,7 @@ This folder includes the initial html files that was designed in front-end phase
 
 
 
-# js folder
+## js folder
 this folder includes javascript files for eventlistners, buttons, and populating event, club, notification cards, and this folder includes files such:
 * frontendJS.js: includes functions top populate cards and others
 * follow-btn.js: to handle follow/unfollow button
@@ -170,7 +172,7 @@ this folder includes javascript files for eventlistners, buttons, and populating
 
 
 
-# routes folder
+## routes folder
 This folder includes routers and APIs such:
 * root.js
 * myClubs.js
@@ -179,7 +181,7 @@ This folder includes routers and APIs such:
 
 
 
-# views folder
+## views folder
 This folder includes nunjucks file (tempelate engine) to render html files, and it includes files such:
 * base.njk
 * browse.njk
