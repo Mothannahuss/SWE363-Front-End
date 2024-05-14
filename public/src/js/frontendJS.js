@@ -29,7 +29,12 @@ function showNotifications (eventList, section){
 async function showEvents (event, section){
     const events = document.getElementById(section)
     const getAvatar = document.getElementById("avatar")
-    let eventList = await (await fetch(`${window.location.href}/events`)).json()
+    let eventList
+    if(event == ""){
+        eventList = await (await fetch(`${window.location.href}/events`)).json()
+    }else{
+        eventList = event
+    }
     events.innerHTML = "";
 
     eventList.forEach(event => {

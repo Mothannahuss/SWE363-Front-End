@@ -65,5 +65,7 @@ router.get("/:eventId/edit", async (req, res) =>{
     })
 })
 
+router.post("/:eventId/save", even)
+
 
 module.exports = router

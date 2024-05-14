@@ -10,5 +10,6 @@ router.post("/", eventController.createEvent)
 
 router.post("/edit", eventController.updateEvent)
 
+router.post("/save", eventController.saveEvent)
 
 module.exports = router

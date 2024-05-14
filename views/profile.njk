@@ -26,9 +26,8 @@
         padding: 0% 5% !important
       }
       .space{
-        height: 25vh;
+        height: 20vh;
         width: 100%;
-        height: 300px; 
         background-color: black; 
         background-image: url({{club.background}}); 
         background-size: contain; 
@@ -43,6 +42,11 @@
     <script src="/src/js/frontendJS.js"></script>
     <script src="/src/js/tab-nav3.js"></script>
     <script src="/src/js/follow-btn.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        showEvents("","sec1")
+      });
+    </script>
 {% endblock %}
 
 {% block pageName %}
