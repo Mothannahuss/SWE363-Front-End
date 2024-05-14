@@ -159,7 +159,33 @@ This folder includes the initial html files that was designed in front-end phase
 
 # js folder
 this folder includes javascript files for eventlistners, buttons, and populating event, club, notification cards, and this folder includes files such:
-* frontendJS.js: includes function 
+* frontendJS.js: includes functions top populate cards and others
+* follow-btn.js: to handle follow/unfollow button
+* newPost.js: to handle new posts
+* tap-nav2.js: to handle nav bars
+
+
+
+# routes folder
+This folder includes routers and APIs such:
+* root.js
+* myClubs.js
+* search.js
+* home.js
+
+
+
+# views folder
+This folder includes nunjucks file (tempelate engine) to render html files, and it includes files such:
+* base.njk
+* browse.njk
+* profile.njk
+* signin.njk
+
+
+
+
+ 
 
 
 
