@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const eventHandler = require("./../models/Event.js");
-const clubHandler = require("./../models/Club.js")
+const eventHandler = require("../../models/Event.js");
+const clubHandler = require("../../models/Club.js")
 var mongoose = require('mongoose')
 /**
  * @description Will take the club handler, get the clubs and assosiated events. Then render 

@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const eventHandler = require("./../models/Event.js");
-const clubHandler = require("./../models/Club.js")
+const eventHandler = require("../../models/Event.js");
+const clubHandler = require("../../models/Club.js")
 var mongoose = require('mongoose')
 /**
  * @description a route that gets an eventID from the url, then get the events detalis and render "Eventdetails.njk" using that informations

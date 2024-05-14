@@ -3,17 +3,19 @@ const Event = require("../models/Event");
 const User = require("../models/User");
 const Notification = require("../models/Notification");
 
+/**
+ * The request should contain the user id and today date (from user region) in QUERY part. 
+ * @param {Request} req 
+ * @param {Response} res 
+ * @returns all events from new notifications.
+ */
 const getNewNotifications = async (req, res) => {
-    /*
-    The request should contain the user id and today date (from user region) in QUERY part. 
-    It return all events from new notifications.
-    */ 
-    if (!req?.query?.userId || !req?.query?.today) return res.status(400).json({ "message": "Date and user id are required." });
-    if (!mongoose.Types.ObjectId.isValid(req.query.userId)) return res.status(400).json({ "message": "User id is not valid." });
+    if (!req?.query?.userId || !req?.query?.today) return [400, { "message": "Date and user id are required." }, null];//res.status(400).json({ "message": "Date and user id are required." });
+    if (!mongoose.Types.ObjectId.isValid(req.query.userId)) return [400, { "message": "User id is not valid." }, null];//res.status(400).json({ "message": "User id is not valid." });
     
     try {
         const user = await User.findById(req.query.userId);
-        if (!user) return res.status(204).json({ "message": "User not found." });
+        if (!user) return [204, { "message": "User not found." }, null];//res.status(204).json({ "message": "User not found." });
 
         const events = await Event.find({ club_name: {"$in": user.following}, date: {"$gte": req.query.today} });
         const notifications = await Notification.find({ user: req.query.userId, read: false }, { event: 1 });
@@ -32,53 +34,57 @@ const getNewNotifications = async (req, res) => {
                 };
             }
         }
-        res.json(all);
+        return [200, all, null];//res.json(all);
     } catch (err) {
         console.log(err);
-        res.sendStatus(500);
+        return [500, null, null];//res.sendStatus(500);//res.sendStatus(500);
     }
 };
 
+/**
+ * The request should contain the user id in QUERY part.
+ * @param {Request} req 
+ * @param {Response} res 
+ * @returns all events from previous notifications.
+ */
 const getPreviousNotifications = async (req, res) => {
-    /*
-    The request should contain the user id in QUERY part.
-    It return all events from previous notifications.
-    */
-    if (!req?.query?.userId) return res.status(400).json({ "message": "User id is required." });
-    if (!mongoose.Types.ObjectId.isValid(req.query.userId)) return res.status(400).json({ "message": "User id is not valid." });
+    if (!req?.query?.userId) return [400, { "message": "User id is required." }, null];//res.status(400).json({ "message": "User id is required." });
+    if (!mongoose.Types.ObjectId.isValid(req.query.userId)) return [400, { "message": "User id is not valid." }, null];//res.status(400).json({ "message": "User id is not valid." });
     
     try {
         const notifications = await Notification.find({ user: req.query.userId, read: true }, { event: 1 });
-        if (!notifications.length) return res.status(204).json({ "message": "No previous notification found." });
+        if (!notifications.length) return [204, { "message": "No previous notification found." }, null];//res.status(204).json({ "message": "No previous notification found." });
     
         const eventsIds = notifications.map((noti) => noti.event);
         const events = await Event.find({ _id: {"$in": eventsIds} });
-        if (!events.length) return res.status(204).json({ "message": "No events found." });
-        res.json(events);
+        if (!events.length) return [204, { "message": "No events found." }, null];//res.status(204).json({ "message": "No events found." });
+        return [200, events, null];//res.json(events);
     } catch (err) {
         console.log(err);
-        res.sendStatus(500);
+        return [500, null, null];//res.sendStatus(500);//res.sendStatus(500);
     }
 };
 
+/**
+ * The request should contain notification id in BODY part.
+ * @param {Request} req 
+ * @param {Response} res 
+ * @returns the the success then user should be redirected to update notification page.
+ */
 const updateNotification = async (req, res) => {
-    /*
-    The request should contain notification id in BODY part.
-    It return the the success then user should be redirected to update notification page.
-    */
-    if (!req?.body?._id) return res.status(400).json({ "message": "Notification id is required." });
-    if (!mongoose.Types.ObjectId.isValid(req.body._id)) return res.status(400).json({ "message": "Notification id is not valid." });
+    if (!req?.body?._id) return [400, { "message": "Notification id is required." }, null];//res.status(400).json({ "message": "Notification id is required." });
+    if (!mongoose.Types.ObjectId.isValid(req.body._id)) return [400, { "message": "Notification id is not valid." }, null];//res.status(400).json({ "message": "Notification id is not valid." });
 
     try {
         const notification = await Notification.findById(req.body._id);
-        if (!notification) return res.status(204).json({ "message": "No matched notification found." });
+        if (!notification) return [204, { "message": "No matched notification found." }, null];//res.status(204).json({ "message": "No matched notification found." });
     
         notification.read = true;
         const result = await notification.save();
-        res.json(result);
+        return [201, result, null];//res.json(result);
     } catch (err) {
         console.log(err);
-        res.sendStatus(500);
+        return [500, null, null];//res.sendStatus(500);//res.sendStatus(500);
     }
 };
 

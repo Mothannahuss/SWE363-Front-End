@@ -7,6 +7,7 @@
 /home - home:
     /home?userId&today [GET] -query
     /explore?today [GET] -query
+    /?eventId [GET] -query
 
 /myclubs - myClubs:
     /?userId [GET] -query
@@ -20,11 +21,10 @@
 /notification - notification:
     /?userId&today [GET] -query
     /previous?userId [GET] -query
-    / [POST] -query
+    / [POST] -body
 
 /myprofile - myprofile:
-    / [GET]
-    /?ClubId [GET] -query
+    / [GET] -query
     / [POST] -body
     /post [POST] -body
     /edit [POST] -body
@@ -33,6 +33,3 @@
     / [GET]
     /club [POST] -body
     / [POST] -body
-
-/event - event:
-    /?eventId [GET] -query

@@ -7,7 +7,7 @@ router.get("/", async (req, res) => {
     res.render("home");
 });
 
-router.get("/myfeed", async (req, res) => {
+router.get("/upcoming", async (req, res) => {
     let [status, data, cookie] = await eventController.getUpcomingAndAllEventsForClubs(req, null);
     if (status >= 204){
         return res.status(status).json(data);
@@ -20,21 +20,8 @@ router.get("/myfeed", async (req, res) => {
     res.status(status).json(data);
 });
 
-router.get("/explore", async (req, res) => {
-    let [status, data, cookie] = await eventController.getUpcomingEvents(req, null);
-    if (status >= 204){
-        return res.status(status).json(data);
-    }
-    if (cookie) {
-        if (cookie[0] === "clear") res.clearCookie(cookie[1], cookie[2]);
-        else res.cookie(cookie[1], cookie[2], cookie[3]);
-    }
-    console.log(data);
-    res.status(status).json(data);
-});
-
-router.get("/event", async (req, res) => {
-    let [status, data, cookie] = await eventController.getEventById(req, null);
+router.get("/all", async (req, res) => {
+    let [status, data, cookie] = await eventController.getUpcomingAndAllEventsForClubs(req, null);
     if (status >= 204){
         return res.status(status).json(data);
     }

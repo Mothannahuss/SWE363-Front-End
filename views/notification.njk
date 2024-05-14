@@ -44,27 +44,8 @@
 {% endblock %}
     
 {% block content %}
-{% for n in notifications %}
-  {% if not n.read %}
     <section id="sec1">
-      <div class="post-notification">
-        <div class="event-avatar"></div>
-        <div class="post-content">
-          <h2 class="new-post"><a href="./eventDetails.html">{{ n.event.title }}</a></h2>
-          <p>{{ n.event.club_name }} posted an event</p>
-        </div>
-      </div>
     </section>
-  {% else %}
     <section id="sec2" hidden>
-      <div class="post-notification">
-        <div class="event-avatar"></div>
-        <div class="post-content">
-          <h2 class="new-post"><a href="./eventDetails.html">{{ n.event.title }}</a></h2>
-          <p>{{ n.event.club_name }} posted an event</p>
-        </div>
-      </div>
     </section>
-  {% endif %}
-{% endfor %}
 {% endblock %}

@@ -4,7 +4,8 @@ const Schema = mongoose.Schema;
 const userSchema = new Schema({
 	email: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
 	password: {
         type: String,
@@ -22,7 +23,7 @@ const userSchema = new Schema({
         type: [String],
         default: []
     },
-	following: { // Each club should follow itself.
+	following: { // Each club should follow itself ONLY.
         type: [String],
         default: []
     },

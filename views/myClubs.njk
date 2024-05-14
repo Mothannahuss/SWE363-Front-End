@@ -39,14 +39,6 @@
 {% enblock %}
 
 {% block content %}
-    {% for club in clubs %}
-    <div class="club-card">
-      <div class="club-avatar"></div>
-      <div class="club-detail">
-        <h2><a href="/">{{club.name}}</a></h2>
-        <p>{{club.bio}}</p>
-      </div>
-      <div><button class="btn btn-primary follow-btn">Follow</button></div>
-    </div>    
-    {% endfor %}
+<section id="myClubs">
+</section>
 {% endblock %}

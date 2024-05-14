@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block styles %}
-   <link href="./src/css/style.css" rel="stylesheet" />
+   <link href="/src/css/style.css" rel="stylesheet" />
        <link
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css"
       rel="stylesheet"
@@ -18,7 +18,7 @@
 {% endblock %}
 
 {% block scripts %}
-    <script src="./src/js/search-header.js"></script>
+    <script src="/src/js/search-header.js"></script>
 {% endblock %}
 
 {% block pageName%}
@@ -32,12 +32,12 @@
       <div id="contentHolder">
         <div class="event-card row">
           <div class="row d-flex">
-            <div
-              class="event-avatar-lg d-flex justify-content-center align-self-center col-2"
-            ></div>
+            <img
+              class="event-avatar-lg d-flex justify-content-center align-self-center col-2" src = {{club.avatar}}
+            >
             <div class="event-content col-8">
               <div class="event-details">
-                <a href="profile/{{club.handler}}" class="event-club">{{club.name}}</a>
+                <a href="/profile/{{club.handler}}" class="event-club">{{club.name}}</a>
 
                 <h2 class="event-title fs-3">{{title}}</h2>
                 <div class="event-info">
@@ -57,15 +57,16 @@
               <p class="text-wrap">{{event.description}}</p>
             </div>
           </div>
+          {% if event.poster != "" %}
           <h2 class="event-club mt-2 fs-5">Posters</h2>
           <div class="row h-25">
-            <div class="col imageBackground m-1">
-              <img src={{event.poster}} alt="Event Poster" height="200px">
-            </div>
-            <div class="col imageBackground m-1"></div>
+              <img src={{event.poster}} alt="Event Poster" class="col-auto imageBackground m-1">
           </div>
-          <div class="d-flex align-self-center justify-content-center row">
-            <button onclick="window.open({{event.link}}, "_blank");" id="registerButton" class="col-4" type="button">
+          {% else %}
+           <div class="m-5"></div>
+          {% endif %}
+          <div class="d-flex align-self-center justify-content-center row mt-1">
+            <button onclick='window.open("{{event.link}}", "_blank");' id="registerButton" class="col-4" type="button">
               Register
             </button>
           </div>

@@ -12,16 +12,11 @@ const mongoose = require("mongoose");
 const connectDB = require("./config/dbConn");
 const connectMega = require("./config/megaConn");
 const nunjucks = require("nunjucks");
-const User = require("./models/User");
-const Club = require("./models/Club");
-const Event = require("./models/Event");
-const Notification = require("./models/Notification");
-const bcrypt = require("bcrypt");const nunjucks = require("nunjucks");
 
 
 const PORT = process.env.PORT || 8001; 
 
-// Connect to MongoDB, if you are not Abdulghani then use "connectDBAtlas" function instead of "connectDBLocal":
+// Connect to MongoDB.
 // connectDB.connectDBLocal();
 connectDB.connectDBAtlas();
 
@@ -36,21 +31,12 @@ nunjucks.configure("views", {
     autoescape: false
 });
 
-app.set('view engine', 'njk');
+app.set("view engine", "njk");
 
 // custom middleware logger
 app.use(logger);
 
-
-// Template engine configuration
-nunjucks.configure("views", {
-    express: app
-  });
-  app.set('view engine', 'njk');
-
-
 // Handle options credentials check - before CORS!
-// and fetch cookies credentials requirement
 app.use(credentials);
 
 // Cross Origin Resource Sharing
@@ -72,14 +58,17 @@ app.use("/", express.static(path.join(__dirname, "/public")));
 app.use("/test", require("./routes/test"));
 
 app.use("/", require("./routes/root"));
-app.use("/events", require("./routes/events"));
-app.use("api/events", require("./routes/api/events"));
-app.use("/profile", require("./routes/profile.js"))
-app.use("/home", require("./routes/home"));
-app.use("/browse", require("./routes/browse"));
-app.use("/notifications", require("./routes/notifications"));
+app.use("/home", require("./routes/home.js"));
+app.use("/club", require("./routes/club.js"));
+app.use("/myclubs", require("./routes/myClubs.js"));
+app.use("/savedevents", require("./routes/savedEvents.js"));
+app.use("/browse", require("./routes/browse.js"));
+app.use("/notifications", require("./routes/notifications.js"));
+app.use("/myprofile", require("./routes/myProfile.js"));
+app.use("/settings", require("./routes/settings.js"));
+app.use("/search", require("./routes/search"));
 
-app.use(verifyJWT);
+//app.use(verifyJWT);
 //app.use("/employees", require("./routes/api/employees"));
 //app.use("/users", require("./routes/api/users"));
 

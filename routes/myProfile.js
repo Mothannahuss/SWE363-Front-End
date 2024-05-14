@@ -1,14 +1,15 @@
 const express = require("express");
 const router = express.Router();
 const path = require("path");
-const notiController = require("../controllers/notificationController");
+const clubController = require("../controllers/clubController");
+const eventController = require("../controllers/eventController");
 
 router.get("/", async (req, res) => {
-    res.render("notification");
+    res.render("profile");
 });
 
-router.get("new", async (req, res) => {
-    let [status, data, cookie] = await notiController.getNewNotifications(req, null);
+router.get("/edit", async (req, res) => {
+    let [status, data, cookie] = await clubController.getClubById(req, null);
     if (status >= 204){
         return res.status(status).json(data);
     }
@@ -20,8 +21,8 @@ router.get("new", async (req, res) => {
     res.status(status).json(data);
 });
 
-router.get("/previous", async (req, res) => {
-    let [status, data, cookie] = await notiController.getPreviousNotifications(req, null);
+router.post("/edit", async (req, res) => {
+    let [status, data, cookie] = await clubController.updateClubDetails(req, null);
     if (status >= 204){
         return res.status(status).json(data);
     }
@@ -33,8 +34,21 @@ router.get("/previous", async (req, res) => {
     res.status(status).json(data);
 });
 
-router.post("/update", async (req, res) => {
-    let [status, data, cookie] = await notiController.updateNotification(req, null);
+router.get("/editPost", async (req, res) => {
+    let [status, data, cookie] = await eventController.getEventById(req, null);
+    if (status >= 204){
+        return res.status(status).json(data);
+    }
+    if (cookie) {
+        if (cookie[0] === "clear") res.clearCookie(cookie[1], cookie[2]);
+        else res.cookie(cookie[1], cookie[2], cookie[3]);
+    }
+    console.log(data);
+    res.status(status).json(data);
+});
+
+router.post("/editPost", async (req, res) => {
+    let [status, data, cookie] = await eventController.updateEvent(req, null);
     if (status >= 204){
         return res.status(status).json(data);
     }

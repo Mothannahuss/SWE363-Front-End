@@ -1,14 +1,14 @@
 const express = require("express");
 const router = express.Router();
 const path = require("path");
-const notiController = require("../controllers/notificationController");
+const eventController = require("../controllers/eventController");
 
 router.get("/", async (req, res) => {
-    res.render("notification");
+    res.render("savedEvent")
 });
 
-router.get("new", async (req, res) => {
-    let [status, data, cookie] = await notiController.getNewNotifications(req, null);
+router.get("/upcoming", async (req, res) => {
+    let [status, data, cookie] = await eventController.getUpcomingAndAllSavedEvents(req, null);
     if (status >= 204){
         return res.status(status).json(data);
     }
@@ -20,8 +20,8 @@ router.get("new", async (req, res) => {
     res.status(status).json(data);
 });
 
-router.get("/previous", async (req, res) => {
-    let [status, data, cookie] = await notiController.getPreviousNotifications(req, null);
+router.get("/all", async (req, res) => {
+    let [status, data, cookie] = await eventController.getUpcomingAndAllSavedEvents(req, null);
     if (status >= 204){
         return res.status(status).json(data);
     }
@@ -33,8 +33,21 @@ router.get("/previous", async (req, res) => {
     res.status(status).json(data);
 });
 
-router.post("/update", async (req, res) => {
-    let [status, data, cookie] = await notiController.updateNotification(req, null);
+router.post("/save", async (req, res) => {
+    let [status, data, cookie] = await eventController.saveEvent(req, null);
+    if (status >= 204){
+        return res.status(status).json(data);
+    }
+    if (cookie) {
+        if (cookie[0] === "clear") res.clearCookie(cookie[1], cookie[2]);
+        else res.cookie(cookie[1], cookie[2], cookie[3]);
+    }
+    console.log(data);
+    res.status(status).json(data);
+});
+
+router.delete("/unsave", async (req, res) => {
+    let [status, data, cookie] = await eventController.deleteSavedEvent(req, null);
     if (status >= 204){
         return res.status(status).json(data);
     }
