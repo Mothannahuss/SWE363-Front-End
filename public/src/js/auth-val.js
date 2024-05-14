@@ -15,6 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const passsueye = document.getElementById("eyesu");
     const passsure = document.getElementById("InputConfirm");
     const passsureeye = document.getElementById("eyesure");
+    const terms = document.getElementById("inlineCheckbox1");
 
     emailli.addEventListener("change", () => {
         emailValidation(emailli.value.trim(), emailli);
@@ -114,10 +115,19 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    signupf.addEventListener("submit", e => {
-        if (!(emailValidation(emailsu.value.trim(), emailsu) & passValidation(passsu.value, passsu) & rePassValidation(passsu.value, passsure.value, passsure))){
-            e.preventDefault();
+    signupf.addEventListener("submit", async e => {
+        e.preventDefault();
+        if (!(emailValidation(emailsu.value.trim(), emailsu) & passValidation(passsu.value, passsu) & rePassValidation(passsu.value, passsure.value, passsure) & (terms.value === "option1"))){
+            alert("Fill all fields correctly.");
         }
+        const payload = JSON.stringify({
+            "email": emailsu.value.trim(),
+            "password": passsu.value,
+            "rePassword": passsure.value,
+            "terms": terms.value
+        });
+        const [res, status] = await fetchHelper((url + "/register"), "POST", payload);
+        alert(JSON.stringify(res.message));
     });
 
     const emailValidation = (emailValue, emailInput) => {
