@@ -30,6 +30,7 @@
     <script src="./src/js/search-header.js"></script>
     <script src="/src/js/follow-btn.js"></script>
     <script src="/src/js/menu.js"></script>
+    <script src="/src/js/frontendJS.js"></script>
 {% endblock %}
 
 {% block pageName %}
@@ -41,7 +42,7 @@
 
 {% block content %}
 <div id="events-cont">
-  <div class="selection-container">
+  <div class="selection-container" id="categories">
       <select class="form-select" aria-label="Default select example" id="categories">
         <option selected>All</option>
         {% for category in categories %}

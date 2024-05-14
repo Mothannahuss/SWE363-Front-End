@@ -1,6 +1,6 @@
 const url = "http://127.0.0.1:8001";
 let myFeed = [];
-const explore = [];
+let explore = [];
 const upcomingClub = [];
 const allClub = [];
 const allSavedEvent = [];
@@ -9,6 +9,24 @@ const newNoti = [];
 const previousNoti = [];
 const browse = [];
 let user = {};
+const all_interests = [
+    "Debate and Speech",
+    "Film and Photography",
+    "Gaming",
+    "Literature",
+    "Religious" ,
+    "Sports",
+    "Mechanical Engineering",
+    "Chemical Engineering",
+    "Industrial Engineering",
+    "Electrical Engineering",
+    "Architecture",
+    "Computer",
+    "Business",
+    "Mathematics",
+    "Petroleum Engineering",
+    "Visitation" ,
+    "Consulting"];
 
 async function fetchHelper(url, method, payload) {
 	let status;
@@ -45,7 +63,7 @@ async function getMyFeed() {
     const array = await fetchHelper(urlsub, "GET", "");
     let data =  JSON.stringify(array[0]);
     if ((array[1] >= 200) && (array[1] < 400)) {
-        myFeed.push(JSON.parse(data));
+        myFeed= [JSON.parse(data)];
         showEvents(myFeed, "sec1");
     }
     console.log("error", array);
@@ -55,8 +73,9 @@ async function getExplore() {
     const urlsub = url + `/home/explore?today=${Date.now()}`;
 
     const array = await fetchHelper(urlsub, "GET", "");
-    if ((array >= 200) && (array < 400)) {
-        explore = array;
+    let data =  JSON.stringify(array[0]);
+    if ((array[1] >= 200) && (array[1] < 400)) {
+        explore= [JSON.parse(data)];
         showEvents(explore, "sec2");
     }
     console.log("error", array);
@@ -211,12 +230,12 @@ document.addEventListener("DOMContentLoaded", async function()
 {
 
     let current_url = document.location.href.split("/");
-    let page = current_url[current_url.length - 1];
+    let page = current_url ? current_url[current_url.length - 1] : "login";
 
     let singInForm = document.getElementById("login");
 
 
-    if (page != "home")
+    if (page == "login")
         {
             singInForm.addEventListener("submit", async function(e)
                 {
@@ -237,11 +256,37 @@ document.addEventListener("DOMContentLoaded", async function()
 
     if (page == "home")
     {
+        await getMyFeed();
         let sec1 = document.getElementById("sec1");
+        let sec2 = document.getElementById("sec2");
         let today = new Date();
         let userId = JSON.parse(localStorage.getItem("user"))._id;
 
-        await getMyFeed();
+        let myFeed= document.getElementById("sec1tog");
+        let explore= document.getElementById("sec2tog");
+
+        myFeed.addEventListener("click", async function()
+        {
+            myFeed.classList.add("active");
+            explore.classList.remove("active");
+            sec1.hidden = false;
+            sec2.hidden = true;
+            await getMyFeed();
+        })
+
+        explore.addEventListener("click", async function(){
+            myFeed.classList.remove("active");
+            explore.classList.add("active");
+            sec1.hidden = true;
+            sec2.hidden = false;
+            await getExplore();
+
+        })
+
+    }
+    else if (page == "browse")
+    {
+
     }
 
 

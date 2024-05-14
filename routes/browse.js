@@ -4,7 +4,7 @@ const path = require("path");
 const clubController = require("../controllers/clubController");
 
 router.get("/", async (req, res) => {
-    res.render("browse");
+    res.render("browse.njk");
 });
 
 router.get("clubs", async (req, res) => {
