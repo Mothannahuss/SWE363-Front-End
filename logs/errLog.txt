@@ -83,3 +83,8 @@
 20240514	12:36:46	fd8a5e25-b2d9-40bf-83d1-883397c22149	Error: Can't set headers after they are sent.
 20240514	12:49:03	da8121d1-0b1b-4f14-a296-12864b373636	Error: Can't set headers after they are sent.
 20240514	15:02:20	fc993847-48e8-42f6-9d26-77e6c9dd9881	Error: Can't set headers after they are sent.
+20240514	15:09:37	5e1fe367-28c0-4498-835f-ed1c684efc8b	Error: Can't set headers after they are sent.
+20240514	18:09:21	fd77826c-16f0-4b5d-bdc1-12ce97ec80aa	Error: Can't set headers after they are sent.
+20240514	18:09:26	b79aa80b-1cab-4859-a445-c28ab8293847	Error: Can't set headers after they are sent.
+20240514	18:41:30	1010991b-2c79-4f1d-bcfa-c27e631005e1	Template render error: (C:\Users\mothanna\OneDrive\Desktop\SWE363\project_v3\SWE363-Front-End\views\browse.njk) [Line 175, Column 35]
+  Error: Unable to call `JSON["stringify"]`, which is undefined or falsey

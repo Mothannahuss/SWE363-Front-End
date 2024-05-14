@@ -8,7 +8,8 @@ const toggleClubFollow = async (req, res) => {
     The request should contain the user id, club name and toggle state (1 unfollow, 0 follow) in BODY part.
     It return the updated user object.
     */
-    if (!req?.body?.userId || !req?.body?.club_name || !req?.body?.toggle) 
+   console.log(req.body);
+    if (!req?.body?.userId || !req?.body?.club_name || !req?.body?.toggle ) 
         return res.status(400).json({ "message": "User id, club name and toggle state are required." });
     if (!mongoose.Types.ObjectId.isValid(req.body.userId)) return res.status(400).json({ "message": "User id is not valid." });
 
@@ -21,7 +22,7 @@ const toggleClubFollow = async (req, res) => {
 
         if (user.following.some(clp => clp === req.body.club_name)){ // Followd
             if (req.body.toggle === "1") {
-                user.following.slice(user.following.indexOf(req.body.club_name), 1);
+                user.following = user.following.filter(item => item != req.body.club_name);
                 club.followers -= 1;
             }
         } else { // not followed

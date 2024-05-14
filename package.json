@@ -27,6 +27,7 @@
         "express": "^4.19.2",
         "jsonwebtoken": "^9.0.2",
         "megajs": "^1.2.2",
+        "meilisearch": "^0.39.0",
         "mongoose": "^8.3.3",
         "multer": "^1.4.5-lts.1",
         "nunjucks": "^3.2.4",

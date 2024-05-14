@@ -18,7 +18,7 @@ router.get("/", async function (req, res) {
     let all_clubs = await Club.find({});
     let categories = await clubController.getAllCategories();
 
-    res.render("browse.njk", {categories: categories,clubs: all_clubs, followed_clubs: followed_clubs});
+    res.render("browse.njk", {categories: categories,clubs: all_clubs,id:user._id, followed_clubs: followed_clubs});
 });
 
 

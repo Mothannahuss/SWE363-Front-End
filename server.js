@@ -19,6 +19,7 @@ const Notification = require("./models/Notification");
 const bcrypt = require("bcrypt");
 
 
+
 const PORT = process.env.PORT || 8001; 
 
 // Connect to MongoDB, if you are not Abdulghani then use "connectDBAtlas" function instead of "connectDBLocal":
@@ -79,6 +80,8 @@ app.use("/home", require("./routes/home"));
 app.use("/browse", require("./routes/browse"));
 app.use("/notifications", require("./routes/notifications"));
 app.use("/settings", require("./routes/settings"));
+app.use("/search", require("./routes/search"));
+app.use("/follow", require("./routes/follow"));
 
 app.use(verifyJWT);
 //app.use("/employees", require("./routes/api/employees"));
@@ -93,6 +96,38 @@ app.use("*", (req, res) => {
     });
 });
 
+
+
+
+
+async function indexClubsToMeiliSearch() {
+    const items = await Club.find(); // Fetch all items from MongoDB
+    const documents = items.map(item => ({
+      id: item._id.toString(), // MeiliSearch needs an id field
+      // Include other fields you want to index
+    }));
+
+    const client = x();
+    const index = client.index('clubs'); // 'items' is the index name in MeiliSearch
+    await index.addDocuments(documents);
+  }
+
+
+
+
+
+
+async function search(client)
+{
+    let query = "Computer";
+    let index = client.index("events");
+    try {
+        const searchResults = await index.search(query);
+        console.log(searchResults.hits);
+      } catch (err) {
+        console.error(err);
+      }
+}
 
 
 async function setUp()
@@ -142,7 +177,7 @@ async function setUp()
         club_id: csClub._id,
         club_name: csClub.name,
         title: "JS help session",
-        date: new Date(),
+        date: new Date().toISOString(),
         location: "Bldg 22-119",
         description: "NodeJS help session",
     })
@@ -152,7 +187,7 @@ async function setUp()
         club_id: vdClub._id,
         club_name: vdClub.name,
         title: "FIFA tournament",
-        date: new Date(),
+        date: new Date().toISOString(),
         location: "Bldg 22-119",
         description: "EA24 competition",
     });
