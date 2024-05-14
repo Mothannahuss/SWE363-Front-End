@@ -4,10 +4,11 @@ const path = require("path");
 const authController = require("../controllers/authController");
 
 router.get("^/$|/index(.html)?", async (req, res) => {
-    res.render("signin");
+    res.render("signin.njk");
 });
 
 router.post("/login", async (req, res) => {
+    console.log(req.body);
     let [status, data, cookie] = await authController.handleLogin(req, null);
     if (status >= 204){
         return res.status(status).json(data);
@@ -21,6 +22,7 @@ router.post("/login", async (req, res) => {
 });
 
 router.post("/register", async (req, res) => {
+    
     let [status, data, cookie] = await authController.handleRegister(req, null);
     if (status >= 204){
         return res.status(status).json(data);

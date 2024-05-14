@@ -7,20 +7,24 @@
 {% block scripts %}
     <script src="./src/js/search-header.js"></script>
     <script src="./src/js/tab-nav2.js"></script>
+    <script src="./src/js/frontendJS.js"></script>
+{% endblock %}
+{% block pageName %}
+<h1>Home</h1>
 {% endblock %}
 
-
 {% block content %}
+
+      <div class="tab-nav">
+        <a id="sec1tog" href="" class="active">My Feed</a>
+        <a id="sec2tog" href="">Explore</a>
+      </div>
     <section id="sec1">
     </section>
     <section id="sec2" hidden>
     </section>
 
     <script>
-      var data = {{user | dump | safe}}
-      var interests = {{interests_list | dump | safe}}
-
-
-      localStorage.setItem("user", JSON.stringify(data));
+      
     </script>
 {% endblock %}

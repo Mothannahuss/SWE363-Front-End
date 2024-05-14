@@ -1,5 +1,5 @@
 const url = "http://127.0.0.1:8001";
-const myFeed = [];
+let myFeed = [];
 const explore = [];
 const upcomingClub = [];
 const allClub = [];
@@ -8,6 +8,7 @@ const upcomingSavedEvent= [];
 const newNoti = [];
 const previousNoti = [];
 const browse = [];
+let user = {};
 
 async function fetchHelper(url, method, payload) {
 	let status;
@@ -38,12 +39,13 @@ async function fetchHelper(url, method, payload) {
 };
 
 async function getMyFeed() {
-    const user = localStorage.getItem("user");
+    const user = JSON.parse(localStorage.getItem("user"));
     const urlsub = url + `/home/myfeed?userId=${user._id}&today=${Date.now()}`;
 
     const array = await fetchHelper(urlsub, "GET", "");
-    if ((array >= 200) && (array < 400)) {
-        myFeed = array;
+    let data =  JSON.stringify(array[0]);
+    if ((array[1] >= 200) && (array[1] < 400)) {
+        myFeed.push(JSON.parse(data));
         showEvents(myFeed, "sec1");
     }
     console.log("error", array);
@@ -116,7 +118,7 @@ async function getPreNotification() {
 
 };
 
-async function getBroswe() {
+async function getBrowse() {
 
 };
 
@@ -149,7 +151,7 @@ async function showEvents (eventList, section) {
     const events = document.getElementById(section);
     events.innerHTML = "";
 
-    eventList.forEach(event => {
+    eventList[0].forEach(event => {
 
         event.date = new Date(event.date)
         eventCard = `
@@ -202,3 +204,47 @@ function showClubs (clubList, User){
       clubs.innerHTML += clubCard;
     })
 }
+
+
+
+document.addEventListener("DOMContentLoaded", async function()
+{
+
+    let current_url = document.location.href.split("/");
+    let page = current_url[current_url.length - 1];
+
+    let singInForm = document.getElementById("login");
+
+
+    if (page != "home")
+        {
+            singInForm.addEventListener("submit", async function(e)
+                {
+                    e.preventDefault();
+                    let email = document.getElementById("InputEmail1").value;
+                    let password = document.getElementById("InputPassword").value;
+
+
+
+                    let data = await fetchHelper(url + "/login","POST", JSON.stringify({email: email, password: password}));
+                    localStorage.setItem("user",JSON.stringify(data[0].user));
+
+                    window.location.href= url + "/home";
+                })
+        }
+
+
+
+    if (page == "home")
+    {
+        let sec1 = document.getElementById("sec1");
+        let today = new Date();
+        let userId = JSON.parse(localStorage.getItem("user"))._id;
+
+        await getMyFeed();
+    }
+
+
+
+
+})

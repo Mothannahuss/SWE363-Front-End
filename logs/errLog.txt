@@ -88,3 +88,14 @@
 20240514	18:09:26	b79aa80b-1cab-4859-a445-c28ab8293847	Error: Can't set headers after they are sent.
 20240514	18:41:30	1010991b-2c79-4f1d-bcfa-c27e631005e1	Template render error: (C:\Users\mothanna\OneDrive\Desktop\SWE363\project_v3\SWE363-Front-End\views\browse.njk) [Line 175, Column 35]
   Error: Unable to call `JSON["stringify"]`, which is undefined or falsey
+20240514	22:33:56	c792ab54-aa34-4582-a967-7201f786ac9e	SyntaxError: Unexpected token o in JSON at position 1
+20240514	22:42:29	e595dc6d-9bef-4d60-b3fe-e56fd2a61255	SyntaxError: Unexpected token o in JSON at position 1
+20240514	22:43:30	543eaac6-a241-444d-88d2-73bd71c64e11	SyntaxError: Unexpected token o in JSON at position 1
+20240514	22:45:44	9aba3048-71b5-4ad6-a54b-9d85e65c193b	SyntaxError: Unexpected token o in JSON at position 1
+20240514	22:46:24	6db7f4ce-f667-48e9-af99-824cfe393c81	SyntaxError: Unexpected token o in JSON at position 1
+20240514	22:46:34	31db4a06-54a7-46ee-97c4-41888859a7b5	SyntaxError: Unexpected token o in JSON at position 1
+20240514	22:47:03	b69220eb-e907-4832-9637-b195f8f6fcea	SyntaxError: Unexpected token o in JSON at position 1
+20240514	22:47:24	2ebb1706-ce3c-485d-accd-98777f5d1867	SyntaxError: Unexpected token o in JSON at position 1
+20240514	22:48:17	aa9fcb13-e553-4977-bd29-8d0462c243c4	SyntaxError: Unexpected token o in JSON at position 1
+20240514	22:49:15	feef8f59-bccb-4a33-9995-a82460b37743	SyntaxError: Unexpected token o in JSON at position 1
+20240514	22:49:46	f0122a31-26a6-48a6-8e34-3e7a3631ba51	SyntaxError: Unexpected token o in JSON at position 1
