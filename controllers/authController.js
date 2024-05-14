@@ -84,7 +84,7 @@ const forgotPassword = async (req, res) => {
         
         // Send new password via email>>> TODO
     
-        return [201, { "success": `New password Sent to your E-mail!` }, null];//res.status(201).json({ "success": `New password Sent to your E-mail!` });
+        return [201, { "message": `New password Sent to your E-mail!` }, null];//res.status(201).json({ "success": `New password Sent to your E-mail!` });
     } catch (err) {
         console.log(err);
         return [500, null, null];//res.sendStatus(500);
@@ -151,7 +151,7 @@ const handleRegister = async (req, res) => {
     
         // Send email about registeration process >>> TODO
     
-        return [201, { "success": `New user ${email} created!` }, null];//res.status(201).json({ "success": `New user ${email} created!` });
+        return [201, { "message": `New user ${email} created!` }, null];//res.status(201).json({ "success": `New user ${email} created!` });
     } catch (err) {
         console.log(err);
         return [500, null, null];//res.sendStatus(500);
