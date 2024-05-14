@@ -78,3 +78,8 @@
   expected variable end
 20240513	23:38:36	36ee6644-c209-4dfb-a66b-7d193707ea74	Template render error: (C:\Users\omerr\OneDrive\سطح المكتب\232\SWE 363\Project\SWE363-Front-End\views\editPost.njk) [Line 73, Column 92]
   Error: Unable to call `--expression--["slice"]`, which is undefined or falsey
+20240514	11:27:37	00494449-5c65-4943-b45a-afe8da2fc486	Error: Can't set headers after they are sent.
+20240514	11:27:51	fd0832c2-cf7e-4fb2-84e6-11b89977f55d	Error: Can't set headers after they are sent.
+20240514	12:36:46	fd8a5e25-b2d9-40bf-83d1-883397c22149	Error: Can't set headers after they are sent.
+20240514	12:49:03	da8121d1-0b1b-4f14-a296-12864b373636	Error: Can't set headers after they are sent.
+20240514	15:02:20	fc993847-48e8-42f6-9d26-77e6c9dd9881	Error: Can't set headers after they are sent.

@@ -11,7 +11,7 @@ const Club = require("../models/Club");
 
 router.get("/", async function (req, res) {
 
-    let token = req.cookies.jwt;
+    let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySW5mbyI6eyJkYXRlIjoiMjAyNC0wNS0xM1QxNTo1MzoyMC4yMzhaIiwiY2x1YiI6ZmFsc2V9LCJpYXQiOjE3MTU2MTU3ODcsImV4cCI6MTcxNTcwMjE4N30.OMyFxBIyemomRWUHTJPjFDGWv5RRVKZdUUsARKTHKWU";
     let today = new Date();
     let user = await User.findOne({refreshToken: token});
     let followed_clubs = user.following;
@@ -20,35 +20,6 @@ router.get("/", async function (req, res) {
 
     res.render("browse.njk", {categories: categories,clubs: all_clubs, followed_clubs: followed_clubs});
 });
-
-
-router.get("/follow", async function(req, res) {
-    let club_name = req.query.name;
-    let token = req.cookies.jwt;
-    let user = await User.findOne({refreshToken: token});
-    let club = await Club.findOne({name:club_name});
-    club.followers++;
-    user.following.push(club_name);
-    await user.save();
-    await club.save();
-
-    res.redirect("/browse/");
-});
-
-
-router.get("/unfollow", async function(req, res) {
-    let club_name = req.query.name;
-    let token = req.cookies.jwt;
-    let user = await User.findOne({refreshToken: token});
-    user.following = user.following.filter(item => item != club_name);
-    let club = await Club.findOne({name:club_name});
-    club.followers--;
-    await user.save();
-    await club.save();
-
-    res.redirect("/browse/");
-});
-
 
 
 module.exports = router;

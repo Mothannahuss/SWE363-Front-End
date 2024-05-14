@@ -47,9 +47,34 @@
           <option value="{{category}}">{{category}}</option>
         {% endfor %}
       </select>
-  </div>
-  <section id="myClubs">
-  </section>
+    {% for club in clubs %}
+    </div>
+        <div class="club-card">
+      <div class="event-avatar"></div>
+      <div class="club-detail">
+        <h2><a href="/">{{club.name}}</a></h2>
+        <p>{{club.bio}}</p>
+      </div>
+      {% if club.name in followed_clubs %}
+        <form action="/follow" method="post">
+        <input hidden name="club_name" value="{{ club.name }}"/>
+        <input hidden name="userId" value="{{ id }}"/>
+        <input hidden name="toggle" value="1"/>
+        <button class="btn btn-outline-primary follow-btn">Unfollow</button>
+        </form>
+      {% else %}
+        <form action="/follow" method="post">
+        <input hidden name="club_name" value="{{ club.name }}"/>
+        <input hidden name="userId" value="{{ id }}"/>
+        <input hidden name="toggle" value="0"/>
+        <button class="btn btn-outline-primary follow-btn">Follow</button>
+        </form>
+      {% endif %}
 
+    </div>
+    {% endfor %}
+
+    <scipts>
+    </scipts>
 {% endblock %}
 

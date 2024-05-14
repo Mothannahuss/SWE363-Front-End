@@ -75,7 +75,7 @@
                   <a class="nav-link" href="/notifications">Notifications</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="/">Settings</a>
+                  <a class="nav-link" href="/settings">Settings</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="/">My Profile</a>
@@ -187,4 +187,12 @@
     </section>
     <section id="sec2" hidden>
     </section>
+
+    <script>
+      var data = {{user | dump | safe}}
+      var interests = {{interests_list | dump | safe}}
+
+
+      localStorage.setItem("user", JSON.stringify(data));
+    </script>
 {% endblock %}
