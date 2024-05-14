@@ -40,6 +40,7 @@
 
 {% block scripts %}
     <script src="/src/js/search-header.js"></script>
+    <script src="/src/js/frontendJS.js"></script>
     <script src="/src/js/tab-nav3.js"></script>
     <script src="/src/js/follow-btn.js"></script>
 {% endblock %}
@@ -52,7 +53,7 @@
 
 {% block content %}
     <div class="space"></div>
-    <img src="{{club.avatar}}" class="dot">
+    <img src="{{club.avatar}}" id="avatar" class="dot">
     <div class="clubInfo">
       <h2 class="item1">{{club.name}}</h2>
       {% if owner %}
@@ -69,8 +70,8 @@
       <p class="item1"><span style="color: #1b08da">{{club.followers}}</span> Followers&nbsp;&nbsp;&nbsp;<span style="color: #1b08da">{{club.events}}</span> Events</p>
     </div>
     <div class="tab-nav">
-      <a class="active" href="/" id="sec1tog">Upcoming</a>
-      <a class="" href="/" id="sec2tog">All</a>
+      <a class="active" onclick='showEvents("","sec1")' href="/" id="sec1tog">Upcoming</a>
+      <a class="" href="/" onclick='showEvents("","sec2")' id="sec2tog">All</a>
       <a class="" href="/" id="sec3tog">About</a>
     </div>
     <section id="sec1">

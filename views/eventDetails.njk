@@ -63,10 +63,10 @@
               <img src={{event.poster}} alt="Event Poster" class="col-auto imageBackground m-1">
           </div>
           {% else %}
-           
+           <div class="m-5"></div>
           {% endif %}
-          <div class="d-flex align-self-center justify-content-center row">
-            <button onclick="window.open({{event.link}}, "_blank");" id="registerButton" class="col-4" type="button">
+          <div class="d-flex align-self-center justify-content-center row mt-1">
+            <button onclick='window.open("{{event.link}}", "_blank");' id="registerButton" class="col-4" type="button">
               Register
             </button>
           </div>

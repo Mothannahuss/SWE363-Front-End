@@ -1,5 +1,6 @@
 
 
+
 function showNotifications (eventList, section){
     const notifications = document.getElementById(section);
 
@@ -19,25 +20,38 @@ function showNotifications (eventList, section){
     })
 }
 
-function showEvents (eventList, section){
-    const events = document.getElementById(section)
+/**
+ * 
+ * @param {List<event>} eventList this is the list of events that will be added to 
+ * @param {String} section the section that you will add events to
+ */
 
+async function showEvents (event, section){
+    const events = document.getElementById(section)
+    const getAvatar = document.getElementById("avatar")
+    let eventList = await (await fetch(`${window.location.href}/events`)).json()
     events.innerHTML = "";
 
     eventList.forEach(event => {
+
+        event.date = new Date(event.date)
+        if(section == "sec1" && event.date <= new Date()){
+            return
+        }
+        console.log(typeof event.date)
         eventCard = `<div class="event-card" id= ${event._id}>
-        <img class= "event-avatar" src="${event.poster}" alt="poster">
+        <img class= "event-avatar" src="${getAvatar.src}" alt="poster">
         <div class="event-content">
         <div class="event-details">
             <a class="event-club" href="/">${event.club_name}</a>
             <h2 class="event-title">${event.title}</h2>
             <div class="event-info">
-                <p><i class="fas fa-calendar-alt"></i>${ event.date.toLocaleDateString(locale, { weekday: 'long' }) }, ${event.date.getDate() +"/" + (event.date.getMonth() + 1 )}</p>
+                <p><i class="fas fa-calendar-alt"></i>${ event.date.toLocaleDateString("en-us", { weekday: 'long' }) }, ${event.date.getDate() +"/" + (event.date.getMonth() + 1 )}</p>
                 <p><i class="fas fa-clock"></i> ${event.date.toLocaleTimeString([], { hour: 'numeric', minute: 'numeric', hour12: true })}</p>
                 <p><i class="fas fa-map-marker-alt"></i> ${event.location}</p>
             </div>
         </div>
-        <a class="view-event-btn" href="./events/${event._id}">View Event</a>
+        <a class="view-event-btn" href="../../events/${event._id}">View Event</a>
         </div>
     </div>`
     events.innerHTML += eventCard;

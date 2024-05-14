@@ -46,7 +46,9 @@ router.get("/:club_handler/newpost", async (req, res) =>{
         club: clubs
     })
 })
-
+/**
+ * @description given a club handler, return all events for that club, will be used in getting information from frontend
+ */
 router.get("/:club_handler/events", async (req, res) =>{
     let clubs = await clubHandler.findOne({handler: {$eq: req.params["club_handler"]}})
     if(clubs == null){
@@ -57,14 +59,13 @@ router.get("/:club_handler/events", async (req, res) =>{
     let events = []
     for(i = 0; i < clubEvents.length; ++i){
         let event = clubEvents.at(i)
-        let customDate = new Date(event.date)
-        customDate.isUpcoming = (customDate > new Date())
+        let date = new Date(event.date)
         events.push({
             _id: event._id,
             club_id: event.club_id,
             club_name: event.club_name,
             title: event.title,
-            date: customDate,
+            date: date,
             location: event.location,
             description: event.description,
             poster: event.poster,
