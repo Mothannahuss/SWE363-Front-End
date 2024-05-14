@@ -3,6 +3,10 @@ const router = express.Router();
 const path = require("path");
 const userController = require("../controllers/userController");
 
+router.get("/", async (req, res) => {
+    res.render("settings");
+});
+
 router.post("/", async (req, res) => {
     let [status, data, cookie] = await userController.updateSettings(req, null);
     if (status >= 204){

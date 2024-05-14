@@ -1,6 +1,6 @@
 const url = "http://127.0.0.1:8001";
-let myFeed = [];
-let explore = [];
+const myFeed = [];
+const explore = [];
 const upcomingClub = [];
 const allClub = [];
 const allSavedEvent = [];
@@ -60,10 +60,9 @@ async function getMyFeed() {
     const user = JSON.parse(localStorage.getItem("user"));
     const urlsub = url + `/home/myfeed?userId=${user._id}&today=${Date.now()}`;
 
-    const array = await fetchHelper(urlsub, "GET", "");
-    let data =  JSON.stringify(array[0]);
-    if ((array[1] >= 200) && (array[1] < 400)) {
-        myFeed= [JSON.parse(data)];
+    const [array, status] = await fetchHelper(urlsub, "GET", "");
+    if ((status >= 200) && (status < 400)) {
+        myFeed = array;
         showEvents(myFeed, "sec1");
     }
     console.log("error", array);
@@ -72,10 +71,9 @@ async function getMyFeed() {
 async function getExplore() {
     const urlsub = url + `/home/explore?today=${Date.now()}`;
 
-    const array = await fetchHelper(urlsub, "GET", "");
-    let data =  JSON.stringify(array[0]);
-    if ((array[1] >= 200) && (array[1] < 400)) {
-        explore= [JSON.parse(data)];
+    const [array, status] = await fetchHelper(urlsub, "GET", "");
+    if ((status >= 200) && (status < 400)) {
+        explore = array;
         showEvents(explore, "sec2");
     }
     console.log("error", array);
@@ -85,8 +83,8 @@ async function getUpcomingForClubs() {
     const user = localStorage.getItem("user");
     const urlsub = url + `/club/upcoming?userId=${user._id}&today=${Date.now()}`;
 
-    const array = await fetchHelper(urlsub, "GET", "");
-    if ((array >= 200) && (array < 400)) {
+    const [array, status] = await fetchHelper(urlsub, "GET", "");
+    if ((status >= 200) && (status < 400)) {
         upcomingClub = array;
         showEvents(upcomingClub, "sec1");
     }
@@ -97,8 +95,8 @@ async function getAllForClubs() {
     const user = localStorage.getItem("user");
     const urlsub = url + `/club/all?userId=${user._id}&today=null`;
 
-    const array = await fetchHelper(urlsub, "GET", "");
-    if ((array >= 200) && (array < 400)) {
+    const [array, status] = await fetchHelper(urlsub, "GET", "");
+    if ((status >= 200) && (status < 400)) {
         allClub = array;
         showEvents(allClub, "sec2");
     }
@@ -109,8 +107,8 @@ async function getAllSavedEvent() {
     const user = localStorage.getItem("user");
     const urlsub = url + `/savedevents/all?userId=${user._id}&today=null`;
 
-    const array = await fetchHelper(urlsub, "GET", "");
-    if ((array >= 200) && (array < 400)) {
+    const [array, status] = await fetchHelper(urlsub, "GET", "");
+    if ((status >= 200) && (status < 400)) {
         allSavedEvent = array;
         showEvents(allSavedEvent, "sec2");
     }
@@ -121,8 +119,8 @@ async function getUpcomingSavedEvent() {
     const user = localStorage.getItem("user");
     const urlsub = url + `/savedevents/upcoming?userId=${user._id}&today=${Date.now()}`;
 
-    const array = await fetchHelper(urlsub, "GET", "");
-    if ((array >= 200) && (array < 400)) {
+    const [array, status] = await fetchHelper(urlsub, "GET", "");
+    if ((status >= 200) && (status < 400)) {
         upcomingSavedEvent = array;
         showEvents(upcomingSavedEvent, "sec1");
     }
@@ -130,15 +128,40 @@ async function getUpcomingSavedEvent() {
 };
 
 async function getNewNotification() {
+    const user = localStorage.getItem("user");
+    const urlsub = url + `/notification/new?userId=${user._id}&today=${Date.now()}`;
 
+    const [array, status] = await fetchHelper(urlsub, "GET", "");
+    if ((status >= 200) && (status < 400)) {
+        newNoti = array;
+        showNotifications(newNoti, "sec1");
+    }
+    console.log("error", array);
 };
 
 async function getPreNotification() {
+    const user = localStorage.getItem("user");
+    const urlsub = url + `/notification/previous?userId=${user._id}`;
 
+    const [array, status] = await fetchHelper(urlsub, "GET", "");
+    if ((status >= 200) && (status < 400)) {
+        previousNoti = array;
+        showNotifications(previousNoti, "sec2");
+    }
+    console.log("error", array);
 };
 
 async function getBrowse() {
+    const user = localStorage.getItem("user");
+    const category = "null"//HOW??
+    const urlsub = url + `/notification/previous?category=${category}`;
 
+    const [array, status] = await fetchHelper(urlsub, "GET", "");
+    if ((status >= 200) && (status < 400)) {
+        browse = array;
+        showClubs(browse, user);
+    }
+    console.log("error", array);
 };
 
 
@@ -199,7 +222,7 @@ function showClubs (clubList, User){
     clubs.innerHTML = "";
 
     clubList.forEach(club => {
-        if (club in User.following){
+        if (club.name in User.following){
             btn_txt = "Unfollow";
             toggle_value = 1;
         }
@@ -288,8 +311,4 @@ document.addEventListener("DOMContentLoaded", async function()
     {
 
     }
-
-
-
-
 })

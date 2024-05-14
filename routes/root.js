@@ -18,7 +18,7 @@ router.post("/login", async (req, res) => {
         else res.cookie(cookie[1], cookie[2], cookie[3]);
     }
     console.log(data);
-    res.json(data);
+    res.status(status).json(data);
 });
 
 router.post("/register", async (req, res) => {
@@ -32,7 +32,7 @@ router.post("/register", async (req, res) => {
         else res.cookie(cookie[1], cookie[2], cookie[3]);
     }
     console.log(data);
-    res.json(data);
+    res.status(status).json(data);
 });
 
 router.post("/forgot", async (req, res) => {
@@ -45,7 +45,7 @@ router.post("/forgot", async (req, res) => {
         else res.cookie(cookie[1], cookie[2], cookie[3]);
     }
     console.log(data);
-    res.json(data);
+    res.status(status).json(data);
 });
 
 module.exports = router;
