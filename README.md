@@ -112,5 +112,62 @@ In this section, we will discuss various important CSS implementations
 
 
 
+# config folder
+In this folder we have connections and configurations such:
+* dbConn.js: for database connection through mongoDb and mongoose
+* megaConn.js: for storaging images, then we have the links in the database
+
+
+
+# controllers folder
+In this folder we have javasript files for controllers and includes:
+* authController.js: handles login, logout, register, and forget password.
+* clubController.js: includes getMyClubs, getClubById, getClubsByCategory, and updateClubDetails
+* eventController.js: includes getUpcomingEvents, getEventById, saveEvent, deleteEvent, and updateEvent
+* notificationController.js: includes getNewNotifications, and getPreviousNotifications
+* userController.js: includes updateSettings, and getNotification by userId
+
+
+
+# middleware folder
+This folder is for middleware and includes files such:
+* errorHandler.js: to handle errors
+* verifyJWT.js: for authentication
+
+
+
+# models folder
+This folder includes mongoose schemas such:
+* Club.js
+* Event.js
+* Notification.js
+* Savedevent.js
+* User.js
+
+
+
+# html folder 
+This folder includes the initial html files that was designed in front-end phase such:
+* browse.html
+* home.html
+* myClubs.html
+* profile.html
+* notification.html
+* settings.html
+
+
+
+# js folder
+this folder includes javascript files for eventlistners, buttons, and populating event, club, notification cards, and this folder includes files such:
+* frontendJS.js: includes function 
+
+
+
+
+
+
+
+
+
 
 

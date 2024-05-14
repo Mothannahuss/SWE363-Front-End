@@ -58,7 +58,7 @@ const updateSettings = async (req, res) => {
     
         user.email = req.body.email;
         user.interests = req.body.interests;
-        user.notification = req.body.notification;
+        user.allow_notification = req.body.notification;
         const result = await user.save();
         return [201, result, null];//res.json(result);
     } catch (err) {
