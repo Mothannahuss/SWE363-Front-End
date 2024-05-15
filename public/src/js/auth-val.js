@@ -127,6 +127,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
         const [res, status] = await fetchHelper((url + "/register"), "POST", payload);
         alert(JSON.stringify(res.message));
+        signinl.click();
     });
 
     const emailValidation = (emailValue, emailInput) => {
