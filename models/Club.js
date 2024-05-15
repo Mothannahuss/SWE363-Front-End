@@ -4,7 +4,8 @@ const Schema = mongoose.Schema;
 const clubSchema = new Schema({
 	name: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
 	user: {
         type: Schema.Types.ObjectId,

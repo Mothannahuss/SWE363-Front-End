@@ -5,8 +5,8 @@
 {% endblock %}
 
 {% block styles %}
-    <link href="../public/src/css/style.css" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="../public/src/css/abdullah_style.css" type="text/css" />
+    <link href="/src/css/style.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="/src/css/abdullah_style.css" type="text/css" />
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css"
       rel="stylesheet"
@@ -27,10 +27,11 @@
 {% endblock %}
 
 {% block scipts %}
-    <script src="../public/src/js/search-header.js"></script>
-    <script src="../public/src/js/follow-btn.js"></script>
+    <script src="/src/js/follow-btn.js"></script>
 {% endblock %}
-
+{% block onLoad %}
+<body onload="onLoadClubs()">
+{% endblock %}
 {% block pageName %}
 <h1>My Clubs</h1>
 {% endblock %}

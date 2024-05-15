@@ -1,6 +1,7 @@
 const url = "http://127.0.0.1:8001";
 var myFeed = [];
 var explore = [];
+var myClubs = [];
 var upcomingClub = [];
 var allClub = [];
 var allSavedEvent = [];
@@ -75,6 +76,18 @@ async function getExplore() {
     if (status < 204) {
         explore = array;
         showEvents(explore, "sec2");
+    }
+    console.log("error", array);
+};
+
+async function getMyClubs() {
+    const user = JSON.parse(localStorage.getItem("user"));
+    const urlsub = url + `/myclubs/all?userId=${user._id}`;
+
+    const [array, status] = await fetchHelper(urlsub, "GET", "");
+    if (status < 204) {
+        explore = array;
+        showClubs(explore, "myClubs");
     }
     console.log("error", array);
 };
@@ -218,12 +231,13 @@ async function showEvents (eventList, section) {
 }
 
 function showClubs (clubList, User){
+    const user = JSON.parse(localStorage.getItem("user"));
     const clubs = document.getElementById("myClubs")
 
     clubs.innerHTML = "";
 
     clubList.forEach(club => {
-        if (club.name in User.following){
+        if (club.name in user.following){
             btn_txt = "Unfollow";
             toggle_value = 1;
         }
@@ -234,7 +248,7 @@ function showClubs (clubList, User){
         clubCard = `<div class="club-card" id=${club._id}>
         <img class= "club-avatar" src="${club.avatar}" alt="avatar">
         <div class="club-detail">
-          <h2><a href=${url + "/club?clubId=" + club._id}>${club.name}</a></h2>
+          <h2><a href=${url + "/club?clubId=" + club._id + "&userId=" + user._id + "&isClub=" + user.is_club}}>${club.name}</a></h2>
           <p>${club.bio}</p>
         </div>
         <form action="/follow" method="post">
@@ -333,7 +347,13 @@ function onLoadHome() {
     getExplore();
 };
 
+function onLoadClubs() {
+    addMyProfile();
+    getMyClubs();
+};
+
 function onLoadProfile() {
+    console.log("tt")
     addMyProfile();
     getUpcomingForClubs();
     getAllForClubs();
