@@ -7,7 +7,7 @@ router.get("/", async (req, res) => {
     res.render("notification");
 });
 
-router.get("new", async (req, res) => {
+router.get("/new", async (req, res) => {
     let [status, data, cookie] = await notiController.getNewNotifications(req, null);
     if (status >= 204){
         return res.status(status).json(data);
@@ -33,7 +33,7 @@ router.get("/previous", async (req, res) => {
     res.status(status).json(data);
 });
 
-router.post("/update", async (req, res) => {
+router.post("/", async (req, res) => {
     let [status, data, cookie] = await notiController.updateNotification(req, null);
     if (status >= 204){
         return res.status(status).json(data);

@@ -23,13 +23,13 @@ const getNewNotifications = async (req, res) => {
         const all = await Event.find({ _id: {"$in": eventsIds} });
         if (events.length) {
             for (var event of events) {
-                console.log(event)
                 if (!eventsIds.some(id => (id.toString() === (event._id).toString()))) {
-                    await Notification.create({
+                    const result = await Notification.create({
                         event: event._id,
                         user: req.query.userId,
                         read: false
                     });
+                    event.notificationId = result._id;
                     all.push(event);
                 };
             }

@@ -1,4 +1,4 @@
-{% extends "base2.njk" %}
+{% extends "base.njk" %}
 
 {% block title %}
 <title>notification</title>
@@ -27,11 +27,12 @@
 {% endblock %}
 
 {% block scripts %}
-<script src="/src/js/search-header.js"></script>
 <script src="/src/js/tab-nav2.js"></script>
 <script src="/src/js/notToggler.js"></script>
 {% endblock %}
-
+{% block onLoad %}
+    <body onload="onLoadNotification()">
+{% endblock %}
 {% block pageName %}
 <h1>Notification</h1>
 {% endblock %}

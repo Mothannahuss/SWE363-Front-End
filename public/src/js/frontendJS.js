@@ -142,24 +142,24 @@ async function getUpcomingSavedEvent() {
 
 async function getNewNotification() {
     const user = JSON.parse(localStorage.getItem("user"));
-    const urlsub = url + `/notification/new?userId=${user._id}&today=${new Date().toISOString()}`;
+    const urlsub = url + `/notifications/new?userId=${user._id}&today=${new Date().toISOString()}`;
 
     const [array, status] = await fetchHelper(urlsub, "GET", "");
     if (status < 204) {
         newNoti = array;
-        showNotifications(newNoti, "sec1");
+        showNotifications(newNoti, "sec1", "new");
     }
     console.log("error", array);
 };
 
 async function getPreNotification() {
     const user = JSON.parse(localStorage.getItem("user"));
-    const urlsub = url + `/notification/previous?userId=${user._id}`;
+    const urlsub = url + `/notifications/previous?userId=${user._id}`;
 
     const [array, status] = await fetchHelper(urlsub, "GET", "");
     if (status < 204) {
         previousNoti = array;
-        showNotifications(previousNoti, "sec2");
+        showNotifications(previousNoti, "sec2", "pre");
     }
     console.log("error", array);
 };
@@ -179,21 +179,20 @@ async function getBrowse() {
 
 
 
-function showNotifications (eventList, section){
+function showNotifications (eventList, section, type){
     const notifications = document.getElementById(section);
     notifications.innerHTML = "";
 
     eventList.forEach(event =>{
-        notCard = `
-        <div class="post-notification" id =${event._id}>
+        let notCard = 
+        `<div class="post-notification" id =${event._id}>
         <img class= "event-avatar" src="${event.poster}" alt="poster">
-        <div class="event-avatar"></div>
         <div class="post-content">
           <h2 class="new-post"><a href="${url + "/home/event?eventId=" + event._id}">${event.title}</a></h2>
           <p>${event.club_name} posted an event</p>
         </div>
-        </div>`
-        notifications += notCard;
+        </div>`;
+        notifications.innerHTML += notCard;
     })
 }
 
@@ -208,9 +207,8 @@ async function showEvents (eventList, section) {
     events.innerHTML = "";
 
     eventList.forEach(event => {
-
         event.date = new Date(event.date)
-        eventCard = `
+        let eventCard = `
         <div class="event-card" id= ${event._id}>
             <img class= "event-avatar" src="${event.poster}" alt="poster">
             <div class="event-content">
@@ -233,9 +231,7 @@ async function showEvents (eventList, section) {
 function showClubs (clubList, User){
     const user = JSON.parse(localStorage.getItem("user"));
     const clubs = document.getElementById("myClubs")
-
     clubs.innerHTML = "";
-
     clubList.forEach(club => {
         if (club.name in user.following){
             btn_txt = "Unfollow";
@@ -245,7 +241,7 @@ function showClubs (clubList, User){
             btn_txt = "Follow";
             toggle_value = 0;
         }
-        clubCard = `<div class="club-card" id=${club._id}>
+        let clubCard = `<div class="club-card" id=${club._id}>
         <img class= "club-avatar" src="${club.avatar}" alt="avatar">
         <div class="club-detail">
           <h2><a href=${url + "/club?clubId=" + club._id + "&userId=" + user._id + "&isClub=" + user.is_club}}>${club.name}</a></h2>
@@ -363,3 +359,13 @@ function onLoadSavedEvents() {
     getUpcomingSavedEvent();
     getAllSavedEvent();
 }
+
+function onLoadBrowse() {
+    // Muthanna did it.
+}
+
+function onLoadNotification() {
+    addMyProfile();
+    getNewNotification();
+    getPreNotification();
+};
