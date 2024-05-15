@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function () {
      let location = (room.value == "") ? "Building: " + building.value: "Building: " + building.value + ", Room: " + room.value
      let dateobj = new Date(date.value +" " + time.value)
      date = dateobj.toISOString()
-     fetch("/api/events/edit", {
+     fetch("myprofile/editPost", {
          method: "POST",
          headers: {
             "Content-type": "application/json; charset=UTF-8"
