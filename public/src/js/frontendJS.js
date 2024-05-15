@@ -347,14 +347,19 @@ function onLoadHome() {
     getExplore();
 };
 
-function onLoadClubs() {
+function onLoadMyClubs() {
     addMyProfile();
     getMyClubs();
 };
 
 function onLoadProfile() {
-    console.log("tt")
     addMyProfile();
     getUpcomingForClubs();
     getAllForClubs();
 };
+
+function onLoadSavedEvents() {
+    addMyProfile();
+    getUpcomingSavedEvent();
+    getAllSavedEvent();
+}

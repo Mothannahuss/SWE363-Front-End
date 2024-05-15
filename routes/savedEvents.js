@@ -10,6 +10,7 @@ router.get("/", async (req, res) => {
 router.get("/upcoming", async (req, res) => {
     let [status, data, cookie] = await eventController.getUpcomingAndAllSavedEvents(req, null);
     if (status >= 204){
+        console.log(data)
         return res.status(status).json(data);
     }
     if (cookie) {
