@@ -48,12 +48,12 @@
         <section>
           <form id="newPost">
             <div>
-              <label for="title" class="form-label">Handler</label>
+              <label for="handler" class="form-label">Handler</label>
               <div>
                 <input
                   type="text"
-                  name="title"
-                  id="title"
+                  name="handler"
+                  id="handler"
                   class="form-control"
                   value={{club.handler}}
                   required
@@ -62,11 +62,11 @@
               </div>
             </div>
             <div>
-              <label for="desc" class="form-label">Bio</label>
+              <label for="bio" class="form-label">Bio</label>
               <div>
                 <textarea
-                  name="desc"
-                  id="desc"
+                  name="bio"
+                  id="bio"
                   rows="3"
                   cols="18"
                   class="form-control"
@@ -75,15 +75,29 @@
               </div>
             </div>
             <div>
-              <label for="desc" class="form-label">About</label>
+              <label for="about" class="form-label">About</label>
               <div>
                 <textarea
-                  name="desc"
-                  id="desc"
+                  name="about"
+                  id="about"
                   rows="3"
                   cols="18"
                   class="form-control"
                 >{{club.about}}</textarea>
+                <div class="invalid-feedback"></div>
+              </div>
+            </div>
+            <div>
+              <label for="categories" class="form-label">Categories</label>
+              <div>
+                <input
+                  type="text"
+                  name="categories"
+                  id="categories"
+                  class="form-control"
+                  value={{club.categories}}
+                  required
+                />
                 <div class="invalid-feedback"></div>
               </div>
             </div>
