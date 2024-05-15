@@ -14,7 +14,11 @@ router.get("/", async (req, res) => {
         else res.cookie(cookie[1], cookie[2], cookie[3]);
     }
     console.log(data);
-    res.status(status).json(data);
+    res.render("profile", {
+        owner: (data.user === req.query.userId),
+        club: data,
+        isClub: (req.query.isClub === "true")
+    });
 });
 
 router.get("/upcoming", async (req, res) => {

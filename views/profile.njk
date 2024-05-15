@@ -1,4 +1,4 @@
-{% extends "base2.njk" %}
+{% extends "base.njk" %}
 
 {% block title %}
 <title>profile</title>
@@ -38,34 +38,31 @@
 {% endblock %}
 
 {% block scripts %}
-    <script src="/src/js/search-header.js"></script>
     <script src="/src/js/frontendJS.js"></script>
     <script src="/src/js/tab-nav3.js"></script>
     <script src="/src/js/follow-btn.js"></script>
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        showEvents("","sec1")
-      });
-    </script>
 {% endblock %}
-
+{% block onLoad %}
+<body onload="onLoadProfile()">
+{% endblock %}
 {% block pageName %}
+<h1>{{ club.name }}</h1>
 {% endblock %}
 
 {% block tapnav %}
 {% endblock %}
 
 {% block content %}
-    <div class="space"></div>
-    <img src="{{club.avatar}}" id="avatar" class="dot">
+    <div class="space"></div> 
+    <img src="{{ club.avatar }}" id="avatar" class="dot">
     <div class="clubInfo">
-      <h2 class="item1">{{club.name}}</h2>
+      <h2 class="item1">{{ club.name }}</h2>
       {% if owner %}
       <button type="button" id="edit-btn" class="btn btn-outline-primary item2">
         Edit profile
       </button>
       {% else %}      
-      <button type="button" class="btn btn-primary item2 follow-btn">Follow</button>
+      <button type="button" class="btn btn-primary item2 follow-btn" {% if isClub %} disabled {% endif %}>Follow</button>
       {% endif %}
       <label style="color: #595959">{{club.handler}}</label>
       <br />
@@ -74,8 +71,8 @@
       <p class="item1"><span style="color: #1b08da">{{club.followers}}</span> Followers&nbsp;&nbsp;&nbsp;<span style="color: #1b08da">{{club.events}}</span> Events</p>
     </div>
     <div class="tab-nav">
-      <a class="active" onclick='showEvents("","sec1")' href="/" id="sec1tog">Upcoming</a>
-      <a class="" href="/" onclick='showEvents("","sec2")' id="sec2tog">All</a>
+      <a class="active" href="/" id="sec1tog">Upcoming</a>
+      <a class="" href="/" id="sec2tog">All</a>
       <a class="" href="/" id="sec3tog">About</a>
     </div>
     <section id="sec1">

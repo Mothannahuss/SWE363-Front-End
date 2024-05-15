@@ -58,7 +58,7 @@ async function fetchHelper(url, method, payload) {
 
 async function getMyFeed() {
     const user = JSON.parse(localStorage.getItem("user"));
-    const urlsub = url + `/home/myfeed?userId=${user._id}&today=${Date.now()}`;
+    const urlsub = url + `/home/myfeed?userId=${user._id}&today=${new Date().toISOString()}`;
 
     const [array, status] = await fetchHelper(urlsub, "GET", "");
     if (status < 204) {
@@ -69,7 +69,7 @@ async function getMyFeed() {
 };
 
 async function getExplore() {
-    const urlsub = url + `/home/explore?today=${Date.now()}`;
+    const urlsub = url + `/home/explore?today=${new Date().toISOString()}`;
 
     const [array, status] = await fetchHelper(urlsub, "GET", "");
     if (status < 204) {
@@ -81,7 +81,7 @@ async function getExplore() {
 
 async function getUpcomingForClubs() {
     const user = JSON.parse(localStorage.getItem("user"));
-    const urlsub = url + `/club/upcoming?userId=${user._id}&today=${Date.now()}`;
+    const urlsub = url + `/club/upcoming?userId=${user._id}&today=${new Date().toISOString()}`;
 
     const [array, status] = await fetchHelper(urlsub, "GET", "");
     if (status < 204) {
@@ -117,7 +117,7 @@ async function getAllSavedEvent() {
 
 async function getUpcomingSavedEvent() {
     const user = JSON.parse(localStorage.getItem("user"));
-    const urlsub = url + `/savedevents/upcoming?userId=${user._id}&today=${Date.now()}`;
+    const urlsub = url + `/savedevents/upcoming?userId=${user._id}&today=${new Date().toISOString()}`;
 
     const [array, status] = await fetchHelper(urlsub, "GET", "");
     if (status < 204) {
@@ -129,7 +129,7 @@ async function getUpcomingSavedEvent() {
 
 async function getNewNotification() {
     const user = JSON.parse(localStorage.getItem("user"));
-    const urlsub = url + `/notification/new?userId=${user._id}&today=${Date.now()}`;
+    const urlsub = url + `/notification/new?userId=${user._id}&today=${new Date().toISOString()}`;
 
     const [array, status] = await fetchHelper(urlsub, "GET", "");
     if (status < 204) {
@@ -190,6 +190,7 @@ function showNotifications (eventList, section){
  * @param {String} section the section that you will add events to
  */
 async function showEvents (eventList, section) {
+    const user = JSON.parse(localStorage.getItem("user"));
     const events = document.getElementById(section);
     events.innerHTML = "";
 
@@ -198,10 +199,10 @@ async function showEvents (eventList, section) {
         event.date = new Date(event.date)
         eventCard = `
         <div class="event-card" id= ${event._id}>
-            <img class= "event-avatar" src="${event.avatar}" alt="poster">
+            <img class= "event-avatar" src="${event.poster}" alt="poster">
             <div class="event-content">
             <div class="event-details">
-                <a class="event-club" href=${url + "/club?clubId=" + event.club_id}>${event.club_name}</a>
+                <a class="event-club" href=${url + "/club?clubId=" + event.club_id + "&userId=" + user._id + "&isClub=" + user.is_club}>${event.club_name}</a>
                 <h2 class="event-title">${event.title}</h2>
                 <div class="event-info">
                     <p><i class="fas fa-calendar-alt"></i>${ event.date.toLocaleDateString("en-us", { weekday: 'long' }) }, ${event.date.getDate() +"/" + (event.date.getMonth() + 1 )}</p>
@@ -320,7 +321,7 @@ function addMyProfile() {
         if (user.is_club) {
             const el = document.createElement("li");
             el.classList.add("nav-item");
-            el.innerHTML = '<a class="nav-link" href="/">My Profile</a>';
+            el.innerHTML = `<a class="nav-link" href=${url + "/club?userId="}>My Profile</a>`;
             menu.appendChild(el);
         }
     });
@@ -330,4 +331,10 @@ function onLoadHome() {
     addMyProfile();
     getMyFeed();
     getExplore();
+};
+
+function onLoadProfile() {
+    addMyProfile();
+    getUpcomingForClubs();
+    getAllForClubs();
 };

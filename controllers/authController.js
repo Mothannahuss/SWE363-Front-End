@@ -24,7 +24,7 @@ const handleLogin = async (req, res) => {
             const accessToken = jwt.sign(
                 {
                     "UserInfo": {
-                        "email": user.email,
+                        "email": user.email.toLowerCase(),
                         "club": (user.is_club) ? club._id : false
                     }
                 },
@@ -34,7 +34,7 @@ const handleLogin = async (req, res) => {
             const refreshToken = jwt.sign(
                 {
                     "UserInfo": {
-                        "email": user.email,
+                        "email": user.email.toLowerCase(),
                         "club": (user.is_club) ? club._id : false
                     }
                 },

@@ -3,7 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sign In</title>
+    {% block title %}
+    {% endblock%}
     {% block styles %}
     {%endblock %}
     <link
@@ -22,12 +23,84 @@
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
       crossorigin="anonymous"
     ></script>
-    {%block scripts %}
+    {% block scripts %}
     {% endblock %}
     </head>
 
-    <body {% block onload %} {% endblock %}>
+{% block onLoad %}
+    <body>
+{% endblock %}
+    <div class="header" id="header1">
+      <nav class="navbar">
+        <div class="container-fluid">
+          <div>
+            {% block pageName %}
+            {% endblock %}
+            <div class="rectangle"></div>
+          </div>
+          <ul class="navbar-nav d-flex flex-row me-1">
+            <li class="nav-item me-0 me-lg-0">
+            </li>
+
+            <li>
+              <button
+                class="navbar-toggler"
+                type="button"
+                data-bs-toggle="offcanvas"
+                data-bs-target="#offcanvasNavbar"
+                aria-controls="offcanvasNavbar"
+                aria-label="Toggle navigation"
+              >
+                <span class="navbar-toggler-icon"></span>
+              </button>
+            </li>
+          </ul>
+          <div
+            class="offcanvas offcanvas-end"
+            tabindex="-1"
+            id="offcanvasNavbar"
+            aria-labelledby="offcanvasNavbarLabel"
+          >
+            <div class="offcanvas-header">
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="offcanvas"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="offcanvas-body">
+              <ul class="navbar-nav justify-content-end flex-grow-1 menuList">
+                <li class="nav-item">
+                  <a class="nav-link" href="/home">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/">My Clubs</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/">Saved Events</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/browse">Browse Clubs</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/notifications">Notifications</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/settings">Settings</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </nav>
+      {% block tabNav %}
+      {% endblock %}
+    </div>
     {% block content %}
     {% endblock %}
     </body>
+
 </html>
+
+
