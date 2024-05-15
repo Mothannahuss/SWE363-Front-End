@@ -13,7 +13,7 @@ const handleLogin = async (req, res) => {
     if (!req?.body?.email || !req?.body?.password) return [400, { "message": "Email and password are required." }, null];//res.status(400).json({ "message": "Email and password are required." });
 
     try {
-        const user = await User.findOne({ email: req.body.email });
+        const user = await User.findOne({ email: req.body.email.toLowerCase() });
         if (!user) return [401, { "message": "Wrong credentials." }, null];//res.status(401).json({ "message": "Wrong credentials." }); //Unauthorized 
         // evaluate password 
         const match = await bcrypt.compare(req.body.password, user.password);
@@ -73,7 +73,7 @@ const forgotPassword = async (req, res) => {
     if (!req?.body?.email) return [400, { "message": "Email is required." }, null];//res.status(400).json({ "message": "Email is required." });
 
     try {
-        const user = await User.findOne({ email: req.body.email });
+        const user = await User.findOne({ email: req.body.email.toLowerCase() });
         if (!user) return [401, { "message": "Email does not exist." }, null];//res.status(401).json({ "message": "Email does not exist." }); //Conflict 
         
         const pwd = req.body.email.split("@")[0] + "!12345678"
@@ -132,7 +132,7 @@ const handleRegister = async (req, res) => {
 
     try {
         // check for duplicate usernames in the db
-        const duplicate = await User.findOne({ email: req.body.email });
+        const duplicate = await User.findOne({ email: req.body.email.toLowerCase() });
         if (duplicate) return [409, {"message": "User already registered."}, null];//res.status(409).json({"message": "User already registered."}); //Conflict 
     
         //encrypt the password
@@ -141,14 +141,14 @@ const handleRegister = async (req, res) => {
     
         //create and store the new user
         const result = await User.create({
-            "email": req.body.email,
+            "email": req.body.email.toLowerCase(),
             "password": hashedPwd
         });
         console.log(result);
     
         // Send email about registeration process >>> TODO
     
-        return [201, { "message": `New user ${req.body.email} created!` }, null];//res.status(201).json({ "success": `New user ${email} created!` });
+        return [201, { "message": `New user ${req.body.email.toLowerCase()} created!` }, null];//res.status(201).json({ "success": `New user ${email} created!` });
     } catch (err) {
         console.log(err);
         return [500, null, null];//res.sendStatus(500);

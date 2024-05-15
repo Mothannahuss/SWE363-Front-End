@@ -101,3 +101,6 @@
 20240514	22:49:46	f0122a31-26a6-48a6-8e34-3e7a3631ba51	SyntaxError: Unexpected token o in JSON at position 1
 20240515	00:54:38	02722406-4ca8-4daf-9613-1cb6d93f2cd2	Template render error: (C:\Users\Tada\Downloads\232\SWE363\Project\SWE363-Back-End-mothanna\views\myClubs.njk) [Line 39, Column 4]
   unknown block tag: enblock
+20240515	02:25:56	ff6e77c4-d394-4912-bb89-0c2bb9dda520	Template render error: (C:\Users\Tada\Downloads\232\SWE363\Project\SWE363-Back-End-mothanna\views\home.njk)
+  Template render error: (C:\Users\Tada\Downloads\232\SWE363\Project\SWE363-Back-End-mothanna\views\base2.njk)
+  Error: Block "myprofile" defined more than once.

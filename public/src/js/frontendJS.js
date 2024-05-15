@@ -1,13 +1,13 @@
 const url = "http://127.0.0.1:8001";
-const myFeed = [];
-const explore = [];
-const upcomingClub = [];
-const allClub = [];
-const allSavedEvent = [];
-const upcomingSavedEvent= [];
-const newNoti = [];
-const previousNoti = [];
-const browse = [];
+var myFeed = [];
+var explore = [];
+var upcomingClub = [];
+var allClub = [];
+var allSavedEvent = [];
+var upcomingSavedEvent= [];
+var newNoti = [];
+var previousNoti = [];
+var browse = [];
 let user = {};
 const all_interests = [
     "Debate and Speech",
@@ -61,7 +61,7 @@ async function getMyFeed() {
     const urlsub = url + `/home/myfeed?userId=${user._id}&today=${Date.now()}`;
 
     const [array, status] = await fetchHelper(urlsub, "GET", "");
-    if ((status >= 200) && (status < 400)) {
+    if (status < 204) {
         myFeed = array;
         showEvents(myFeed, "sec1");
     }
@@ -72,7 +72,7 @@ async function getExplore() {
     const urlsub = url + `/home/explore?today=${Date.now()}`;
 
     const [array, status] = await fetchHelper(urlsub, "GET", "");
-    if ((status >= 200) && (status < 400)) {
+    if (status < 204) {
         explore = array;
         showEvents(explore, "sec2");
     }
@@ -84,7 +84,7 @@ async function getUpcomingForClubs() {
     const urlsub = url + `/club/upcoming?userId=${user._id}&today=${Date.now()}`;
 
     const [array, status] = await fetchHelper(urlsub, "GET", "");
-    if ((status >= 200) && (status < 400)) {
+    if (status < 204) {
         upcomingClub = array;
         showEvents(upcomingClub, "sec1");
     }
@@ -96,7 +96,7 @@ async function getAllForClubs() {
     const urlsub = url + `/club/all?userId=${user._id}&today=null`;
 
     const [array, status] = await fetchHelper(urlsub, "GET", "");
-    if ((status >= 200) && (status < 400)) {
+    if (status < 204) {
         allClub = array;
         showEvents(allClub, "sec2");
     }
@@ -108,7 +108,7 @@ async function getAllSavedEvent() {
     const urlsub = url + `/savedevents/all?userId=${user._id}&today=null`;
 
     const [array, status] = await fetchHelper(urlsub, "GET", "");
-    if ((status >= 200) && (status < 400)) {
+    if (status < 204) {
         allSavedEvent = array;
         showEvents(allSavedEvent, "sec2");
     }
@@ -120,7 +120,7 @@ async function getUpcomingSavedEvent() {
     const urlsub = url + `/savedevents/upcoming?userId=${user._id}&today=${Date.now()}`;
 
     const [array, status] = await fetchHelper(urlsub, "GET", "");
-    if ((status >= 200) && (status < 400)) {
+    if (status < 204) {
         upcomingSavedEvent = array;
         showEvents(upcomingSavedEvent, "sec1");
     }
@@ -132,7 +132,7 @@ async function getNewNotification() {
     const urlsub = url + `/notification/new?userId=${user._id}&today=${Date.now()}`;
 
     const [array, status] = await fetchHelper(urlsub, "GET", "");
-    if ((status >= 200) && (status < 400)) {
+    if (status < 204) {
         newNoti = array;
         showNotifications(newNoti, "sec1");
     }
@@ -144,7 +144,7 @@ async function getPreNotification() {
     const urlsub = url + `/notification/previous?userId=${user._id}`;
 
     const [array, status] = await fetchHelper(urlsub, "GET", "");
-    if ((status >= 200) && (status < 400)) {
+    if (status < 204) {
         previousNoti = array;
         showNotifications(previousNoti, "sec2");
     }
@@ -157,7 +157,7 @@ async function getBrowse() {
     const urlsub = url + `/notification/previous?category=${category}`;
 
     const [array, status] = await fetchHelper(urlsub, "GET", "");
-    if ((status >= 200) && (status < 400)) {
+    if (status < 204) {
         browse = array;
         showClubs(browse, user);
     }
@@ -193,7 +193,7 @@ async function showEvents (eventList, section) {
     const events = document.getElementById(section);
     events.innerHTML = "";
 
-    eventList[0].forEach(event => {
+    eventList.forEach(event => {
 
         event.date = new Date(event.date)
         eventCard = `
@@ -201,7 +201,7 @@ async function showEvents (eventList, section) {
             <img class= "event-avatar" src="${event.avatar}" alt="poster">
             <div class="event-content">
             <div class="event-details">
-                <a class="event-club" href="/">${event.club_name}</a>
+                <a class="event-club" href=${url + "/club?clubId=" + event.club_id}>${event.club_name}</a>
                 <h2 class="event-title">${event.title}</h2>
                 <div class="event-info">
                     <p><i class="fas fa-calendar-alt"></i>${ event.date.toLocaleDateString("en-us", { weekday: 'long' }) }, ${event.date.getDate() +"/" + (event.date.getMonth() + 1 )}</p>
@@ -209,7 +209,7 @@ async function showEvents (eventList, section) {
                     <p><i class="fas fa-map-marker-alt"></i> ${event.location}</p>
                 </div>
             </div>
-            <a class="view-event-btn" href="${url + "/home/event/eventId=" + event._id}">View Event</a>
+            <a class="view-event-btn" href="${url + "/home/event?eventId=" + event._id}">View Event</a>
             </div>
         </div>`
         events.innerHTML += eventCard;
@@ -233,7 +233,7 @@ function showClubs (clubList, User){
         clubCard = `<div class="club-card" id=${club._id}>
         <img class= "club-avatar" src="${club.avatar}" alt="avatar">
         <div class="club-detail">
-          <h2><a href="/">${club.name}</a></h2>
+          <h2><a href=${url + "/club?clubId=" + club._id}>${club.name}</a></h2>
           <p>${club.bio}</p>
         </div>
         <form action="/follow" method="post">
@@ -312,3 +312,22 @@ document.addEventListener("DOMContentLoaded", async function()
 
     }
 })
+
+function addMyProfile() {
+    const menus = document.querySelectorAll(".menuList");
+    const user = JSON.parse(localStorage.getItem("user"));
+    menus.forEach(menu => {
+        if (user.is_club) {
+            const el = document.createElement("li");
+            el.classList.add("nav-item");
+            el.innerHTML = '<a class="nav-link" href="/">My Profile</a>';
+            menu.appendChild(el);
+        }
+    });
+}
+
+function onLoadHome() {
+    addMyProfile();
+    getMyFeed();
+    getExplore();
+};

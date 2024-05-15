@@ -48,10 +48,9 @@ document.addEventListener("DOMContentLoaded", function () {
         });
         const [res, status] = await fetchHelper((url + "/login"), "POST", payload);
         if (status === 201) {
-            console.log(res);
             localStorage.setItem("user", JSON.stringify(res.user));
             if (res.user.is_club) localStorage.setItem("club", JSON.stringify(res.club));
-            window.location.replace(url + `/home?userId=${res.user._id}&today=${Date.now()}`)
+            window.location.replace(url + "/home")
         }
         alert(JSON.stringify(res.message));
     });
