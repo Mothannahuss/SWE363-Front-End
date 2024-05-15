@@ -1,16 +1,18 @@
-const url = "http://127.0.0.1:8001";
+var url = "http://127.0.0.1:8001";
 var myFeed = [];
 var explore = [];
 var myClubs = [];
 var upcomingClub = [];
 var allClub = [];
+var upcomingMyClub = [];
+var allMyClub = [];
 var allSavedEvent = [];
 var upcomingSavedEvent= [];
 var newNoti = [];
 var previousNoti = [];
 var browse = [];
-let user = {};
-const all_interests = [
+var user = {};
+var all_interests = [
     "Debate and Speech",
     "Film and Photography",
     "Gaming",
@@ -112,6 +114,30 @@ async function getAllForClubs() {
     if (status < 204) {
         allClub = array;
         showEvents(allClub, "sec2");
+    }
+    console.log("error", array);
+};
+
+async function getUpcomingForMyClub() {
+    const user = JSON.parse(localStorage.getItem("user"));
+    const urlsub = url + `/club/upcoming?userId=${user._id}&today=${new Date().toISOString()}`;
+
+    const [array, status] = await fetchHelper(urlsub, "GET", "");
+    if (status < 204) {
+        upcomingMyClub = array;
+        showEvents(upcomingMyClub, "sec1");
+    }
+    console.log("error", array);
+};
+
+async function getAllForMyClub() {
+    const user = JSON.parse(localStorage.getItem("user"));
+    const urlsub = url + `/club/all?userId=${user._id}&today=null`;
+
+    const [array, status] = await fetchHelper(urlsub, "GET", "");
+    if (status < 204) {
+        allMyClub = array;
+        showEvents(allMyClub, "sec2");
     }
     console.log("error", array);
 };
@@ -327,11 +353,12 @@ document.addEventListener("DOMContentLoaded", async function()
 function addMyProfile() {
     const menus = document.querySelectorAll(".menuList");
     const user = JSON.parse(localStorage.getItem("user"));
+    const club = JSON.parse(localStorage.getItem("club"));
     menus.forEach(menu => {
         if (user.is_club) {
             const el = document.createElement("li");
             el.classList.add("nav-item");
-            el.innerHTML = `<a class="nav-link" href=${url + "/club?userId="}>My Profile</a>`;
+            el.innerHTML = `<a class="nav-link" href="${url + "/myprofile?clubId=" + club._id}">My Profile</a>`;
             menu.appendChild(el);
         }
     });
@@ -361,6 +388,7 @@ function onLoadSavedEvents() {
 }
 
 function onLoadBrowse() {
+    addMyProfile();
     // Muthanna did it.
 }
 
@@ -368,4 +396,14 @@ function onLoadNotification() {
     addMyProfile();
     getNewNotification();
     getPreNotification();
+};
+
+function onLoadMyProfile() {
+    addMyProfile();
+    getUpcomingForMyClub();
+    getAllForMyClub();
+}
+
+function onLoadSetting() {
+    addMyProfile(); //TODO
 };
