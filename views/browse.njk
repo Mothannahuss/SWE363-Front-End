@@ -55,7 +55,7 @@
     <div class="club-card">
       <div class="event-avatar"></div>
       <div class="club-detail">
-        <h2><a href="/">{{club.name}}</a></h2>
+        <h2><a href="/club?clubId={{ club._id }}">{{club.name}}</a></h2>
         <p>{{club.bio}}</p>
       </div>
       {% if club.name in followed_clubs %}
@@ -133,13 +133,13 @@
             <div class="offcanvas-body">
               <ul class="navbar-nav justify-content-end flex-grow-1">
                 <li class="nav-item">
-                  <a class="nav-link" href="/">Home</a>
+                  <a class="nav-link" href="/home">Home</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="/">My Clubs</a>
+                  <a class="nav-link" href="/myclubs">My Clubs</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="/">Saved Events</a>
+                  <a class="nav-link" href="/savedevents">Saved Events</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="/browse">Browse Clubs</a>
@@ -149,9 +149,6 @@
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="/settings">Settings</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="/">My Profile</a>
                 </li>
               </ul>
             </div>

@@ -43,7 +43,9 @@ router.get("/event", async (req, res) => {
         else res.cookie(cookie[1], cookie[2], cookie[3]);
     }
     console.log(data);
-    res.status(status).json(data);
+    res.render("eventDetails", {
+        event: data
+    });
 });
 
 module.exports = router;
