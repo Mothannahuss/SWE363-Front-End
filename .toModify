@@ -5,9 +5,8 @@ config:
     -roles_list.js
 middleware:
     -verifyRoles.js
+    -verifyJWT.js
 routes:
     api:
         -employees.js
         -users.js
-    -eventPost.js
-    -root.js

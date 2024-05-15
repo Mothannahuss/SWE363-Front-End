@@ -52,24 +52,22 @@ app.use(express.json());
 app.use(cookieParser());
 
 //serve static files
-app.use("/", express.static(path.join(__dirname, "/public")));
+app.use("/", express.static(path.join(__dirname, "public")));
 
 // routes
-app.use("/test", require("./routes/test"));
+app.use("/test", require("./routes/test.js"));
 
-app.use("/", require("./routes/root"));
+app.use("/", require("./routes/root.js"));
 app.use("/home", require("./routes/home.js"));
 app.use("/club", require("./routes/club.js"));
 app.use("/myclubs", require("./routes/myClubs.js"));
 app.use("/savedevents", require("./routes/savedEvents.js"));
 app.use("/browse", require("./routes/browse.js"));
 app.use("/notifications", require("./routes/notifications.js"));
-app.use("/settings", require("./routes/settings"));
-app.use("/search", require("./routes/search"));
-app.use("/follow", require("./routes/follow"));
+app.use("/follow", require("./routes/follow.js"));
 app.use("/myprofile", require("./routes/myProfile.js"));
 app.use("/settings", require("./routes/settings.js"));
-app.use("/search", require("./routes/search"));
+app.use("/search", require("./routes/search.js"));
 
 //app.use(verifyJWT);
 //app.use("/employees", require("./routes/api/employees"));
@@ -78,10 +76,7 @@ app.use("/search", require("./routes/search"));
 app.use(errorHandler);
 
 app.use("*", (req, res) => {
-    res.status(404).render("not-found", {
-        subtitle: "Not Found",
-        owner: req.session.user
-    });
+    res.sendStatus(404);
 });
 
 async function indexClubsToMeiliSearch() {

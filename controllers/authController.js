@@ -84,7 +84,7 @@ const forgotPassword = async (req, res) => {
         
         // Send new password via email>>> TODO
     
-        return [201, { "success": `New password Sent to your E-mail!` }, null];//res.status(201).json({ "success": `New password Sent to your E-mail!` });
+        return [201, { "message": `New password Sent to your E-mail!` }, null];//res.status(201).json({ "success": `New password Sent to your E-mail!` });
     } catch (err) {
         console.log(err);
         return [500, null, null];//res.sendStatus(500);
@@ -136,22 +136,19 @@ const handleRegister = async (req, res) => {
         if (duplicate) return [409, {"message": "User already registered."}, null];//res.status(409).json({"message": "User already registered."}); //Conflict 
     
         //encrypt the password
+        if (req.body.password !== req.body.rePassword) return [409, {"message": "Passwords do not match."}, null];//res.status(401).json({"message": "Passwords do not match."});
         const hashedPwd = await bcrypt.hash(req.body.password, 10);
-        const hashedRePwd = await bcrypt.hash(req.body.rePassword, 10);
-        if (hashedPwd != hashedRePwd) return [409, {"message": "Passwords do not match."}, null];//res.status(401).json({"message": "Passwords do not match."});
     
         //create and store the new user
         const result = await User.create({
             "email": req.body.email,
-            "password": hashedPwd,
-            "interests": (!req?.body?.interests) ? req.body.interests : [],
-            "following": []
+            "password": hashedPwd
         });
         console.log(result);
     
         // Send email about registeration process >>> TODO
     
-        return [201, { "success": `New user ${email} created!` }, null];//res.status(201).json({ "success": `New user ${email} created!` });
+        return [201, { "message": `New user ${req.body.email} created!` }, null];//res.status(201).json({ "success": `New user ${email} created!` });
     } catch (err) {
         console.log(err);
         return [500, null, null];//res.sendStatus(500);

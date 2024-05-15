@@ -4,10 +4,6 @@ const path = require("path");
 const eventController = require("../controllers/eventController");
 const clubController = require("../controllers/clubController");
 
-router.get("/", async (req, res) => {
-    res.render("home");
-});
-
 router.get("/upcoming", async (req, res) => {
     let [status, data, cookie] = await eventController.getUpcomingAndAllEventsForClubs(req, null);
     if (status >= 204){

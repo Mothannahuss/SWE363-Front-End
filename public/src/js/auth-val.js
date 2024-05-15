@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
+    const url = "http://127.0.0.1:8001";
     const loginf = document.getElementById("login");
     const emailli = document.getElementById("InputEmail1");
     const passli = document.getElementById("InputPassword");
@@ -14,6 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const passsueye = document.getElementById("eyesu");
     const passsure = document.getElementById("InputConfirm");
     const passsureeye = document.getElementById("eyesure");
+    const terms = document.getElementById("inlineCheckbox1");
 
     emailli.addEventListener("change", () => {
         emailValidation(emailli.value.trim(), emailli);
@@ -35,9 +37,33 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    loginf.addEventListener("submit", e => {
-        if (!(emailValidation(emailli.value.trim(), emailli) & passValidation(passli.value.trim(), passli))){
-            e.preventDefault();
+    loginf.addEventListener("submit", async e => {
+        e.preventDefault();
+        if (!(emailValidation(emailli.value.trim(), emailli) & passValidation(passli.value, passli))){
+            alert("Fill all fields correctly.");
+        }
+        const payload = JSON.stringify({
+            "email": emailli.value.trim(),
+            "password": passli.value
+        });
+        const [res, status] = await fetchHelper((url + "/login"), "POST", payload);
+        if (status === 201) {
+            console.log(res);
+            localStorage.setItem("user", JSON.stringify(res.user));
+            if (res.user.is_club) localStorage.setItem("club", JSON.stringify(res.club));
+            window.location.replace(url + `/home?userId=${res.user._id}&today=${Date.now()}`)
+        }
+        alert(JSON.stringify(res.message));
+    });
+
+    forgotli.addEventListener("click", async e => {
+        e.preventDefault();
+        if (emailValidation(emailli.value.trim(), emailli)) {
+            const payload = JSON.stringify({
+                "email": emailli.value.trim()
+            });
+            const [res, status] = await fetchHelper((url + "/forgot"), "POST", payload);
+            alert(JSON.stringify(res.message));
         }
     });
 
@@ -74,7 +100,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     passsure.addEventListener("change", () => {
-        rePassValidation(passsu.value.trim(), passsure.value.trim(), passsure);
+        rePassValidation(passsu.value, passsure.value, passsure);
     });
 
     passsureeye.addEventListener("click", () => {
@@ -89,10 +115,19 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    signupf.addEventListener("submit", e => {
-        if (!(emailValidation(emailsu.value.trim(), emailsu) & passValidation(passsu.value.trim(), passsu) & rePassValidation(passsu.value.trim(), passsure.value.trim(), passsure))){
-            e.preventDefault();
+    signupf.addEventListener("submit", async e => {
+        e.preventDefault();
+        if (!(emailValidation(emailsu.value.trim(), emailsu) & passValidation(passsu.value, passsu) & rePassValidation(passsu.value, passsure.value, passsure) & (terms.value === "option1"))){
+            alert("Fill all fields correctly.");
         }
+        const payload = JSON.stringify({
+            "email": emailsu.value.trim(),
+            "password": passsu.value,
+            "rePassword": passsure.value,
+            "terms": terms.value
+        });
+        const [res, status] = await fetchHelper((url + "/register"), "POST", payload);
+        alert(JSON.stringify(res.message));
     });
 
     const emailValidation = (emailValue, emailInput) => {
@@ -147,5 +182,33 @@ document.addEventListener("DOMContentLoaded", function () {
         inputTag.classList.add("is-valid");
         inputTag.classList.remove("is-invalid");
         feedback.innerHTML = "";
+    };
+
+    const fetchHelper = async (url, method, payload) => {
+        let status;
+        let request = new Request(url, {
+            method: method,
+        });
+        if (method == "POST") {
+            request = new Request(url, {
+                method: method,
+                body: payload,
+                headers: {
+                    "Content-Type": "application/json; charset=utf-8",
+                },
+            });
+        }
+        const res = await fetch(request)
+            .then((response) => {
+                if ((response.status >= 200) && (response.status < 600)) {
+                    status = response.status;
+                    return response.json();
+                }
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+    
+        return [res, status];
     };
 });
