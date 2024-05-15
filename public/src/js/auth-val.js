@@ -47,12 +47,12 @@ document.addEventListener("DOMContentLoaded", function () {
             "password": passli.value
         });
         const [res, status] = await fetchHelper((url + "/login"), "POST", payload);
-        if (status === 201) {
-            localStorage.setItem("user", JSON.stringify(res.user));
-            if (res.user.is_club) localStorage.setItem("club", JSON.stringify(res.club));
-            window.location.replace(url + "/home")
+        if (status !== 201) {
+            alert(JSON.stringify(res.message));
         }
-        alert(JSON.stringify(res.message));
+        localStorage.setItem("user", JSON.stringify(res.user));
+        if (res.user.is_club) localStorage.setItem("club", JSON.stringify(res.club));
+        window.location.replace(url + "/home")
     });
 
     forgotli.addEventListener("click", async e => {
@@ -62,7 +62,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 "email": emailli.value.trim()
             });
             const [res, status] = await fetchHelper((url + "/forgot"), "POST", payload);
-            alert(JSON.stringify(res.message));
+            confirm(JSON.stringify(res.message));
         }
     });
 
@@ -126,8 +126,8 @@ document.addEventListener("DOMContentLoaded", function () {
             "terms": terms.value
         });
         const [res, status] = await fetchHelper((url + "/register"), "POST", payload);
-        alert(JSON.stringify(res.message));
-        signinl.click();
+        const c = confirm(JSON.stringify(res.message));
+        if (c || !c) signinl.click();
     });
 
     const emailValidation = (emailValue, emailInput) => {

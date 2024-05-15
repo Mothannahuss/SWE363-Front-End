@@ -11,6 +11,10 @@ const eventSchema = new Schema({
         type: String,
         required: true
     },
+    club_avatar: {
+        type: String,
+        required: true
+    },
     title: {
         type: String,
         required: true

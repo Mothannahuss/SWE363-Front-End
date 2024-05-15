@@ -13,7 +13,6 @@ router.get("/", async (req, res) => {
         if (cookie[0] === "clear") res.clearCookie(cookie[1], cookie[2]);
         else res.cookie(cookie[1], cookie[2], cookie[3]);
     }
-    console.log(data);
     res.render("profile", {
         owner: (data.user === req.query.userId),
         club: data,
@@ -31,7 +30,6 @@ router.get("/upcoming", async (req, res) => {
         if (cookie[0] === "clear") res.clearCookie(cookie[1], cookie[2]);
         else res.cookie(cookie[1], cookie[2], cookie[3]);
     }
-    console.log(data);
     res.status(status).json(data);
 });
 
@@ -44,7 +42,6 @@ router.get("/all", async (req, res) => {
         if (cookie[0] === "clear") res.clearCookie(cookie[1], cookie[2]);
         else res.cookie(cookie[1], cookie[2], cookie[3]);
     }
-    console.log(data);
     res.status(status).json(data);
 });
 

@@ -66,7 +66,7 @@ async function getMyFeed() {
     const [array, status] = await fetchHelper(urlsub, "GET", "");
     if (status < 204) {
         myFeed = array;
-        showEvents(myFeed, "sec1");
+        return showEvents(myFeed, "sec1");
     }
     console.log("error", array);
 };
@@ -77,7 +77,7 @@ async function getExplore() {
     const [array, status] = await fetchHelper(urlsub, "GET", "");
     if (status < 204) {
         explore = array;
-        showEvents(explore, "sec2");
+        return showEvents(explore, "sec2");
     }
     console.log("error", array);
 };
@@ -89,7 +89,7 @@ async function getMyClubs() {
     const [array, status] = await fetchHelper(urlsub, "GET", "");
     if (status < 204) {
         explore = array;
-        showClubs(explore, "myClubs");
+        return showClubs(explore, "myClubs");
     }
     console.log("error", array);
 };
@@ -101,7 +101,7 @@ async function getUpcomingForClubs() {
     const [array, status] = await fetchHelper(urlsub, "GET", "");
     if (status < 204) {
         upcomingClub = array;
-        showEvents(upcomingClub, "sec1");
+        return showEvents(upcomingClub, "sec1");
     }
     console.log("error", array);
 };
@@ -113,7 +113,7 @@ async function getAllForClubs() {
     const [array, status] = await fetchHelper(urlsub, "GET", "");
     if (status < 204) {
         allClub = array;
-        showEvents(allClub, "sec2");
+        return showEvents(allClub, "sec2");
     }
     console.log("error", array);
 };
@@ -125,7 +125,7 @@ async function getUpcomingForMyClub() {
     const [array, status] = await fetchHelper(urlsub, "GET", "");
     if (status < 204) {
         upcomingMyClub = array;
-        showEvents(upcomingMyClub, "sec1");
+        return showEvents(upcomingMyClub, "sec1");
     }
     console.log("error", array);
 };
@@ -137,7 +137,7 @@ async function getAllForMyClub() {
     const [array, status] = await fetchHelper(urlsub, "GET", "");
     if (status < 204) {
         allMyClub = array;
-        showEvents(allMyClub, "sec2");
+        return showEvents(allMyClub, "sec2");
     }
     console.log("error", array);
 };
@@ -149,7 +149,7 @@ async function getAllSavedEvent() {
     const [array, status] = await fetchHelper(urlsub, "GET", "");
     if (status < 204) {
         allSavedEvent = array;
-        showEvents(allSavedEvent, "sec2");
+        return showEvents(allSavedEvent, "sec2");
     }
     console.log("error", array);
 };
@@ -161,7 +161,7 @@ async function getUpcomingSavedEvent() {
     const [array, status] = await fetchHelper(urlsub, "GET", "");
     if (status < 204) {
         upcomingSavedEvent = array;
-        showEvents(upcomingSavedEvent, "sec1");
+        return showEvents(upcomingSavedEvent, "sec1");
     }
     console.log("error", array);
 };
@@ -173,7 +173,7 @@ async function getNewNotification() {
     const [array, status] = await fetchHelper(urlsub, "GET", "");
     if (status < 204) {
         newNoti = array;
-        showNotifications(newNoti, "sec1", "new");
+        return showNotifications(newNoti, "sec1", "new");
     }
     console.log("error", array);
 };
@@ -185,7 +185,7 @@ async function getPreNotification() {
     const [array, status] = await fetchHelper(urlsub, "GET", "");
     if (status < 204) {
         previousNoti = array;
-        showNotifications(previousNoti, "sec2", "pre");
+        return showNotifications(previousNoti, "sec2", "pre");
     }
     console.log("error", array);
 };
@@ -198,7 +198,7 @@ async function getBrowse() {
     const [array, status] = await fetchHelper(urlsub, "GET", "");
     if (status < 204) {
         browse = array;
-        showClubs(browse, user);
+        return showClubs(browse, user);
     }
     console.log("error", array);
 };
@@ -406,4 +406,12 @@ function onLoadMyProfile() {
 
 function onLoadSetting() {
     addMyProfile(); //TODO
+    document.getElementById("sign-out").addEventListener("click", async e => {
+        const [result, status] = await fetchHelper((url + "/logout"), "POST", "");
+        if (status > 204) {
+            alert(JSON.stringify(result.message));
+            return 
+        }
+        window.location.replace(url);
+    });
 };

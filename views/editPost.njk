@@ -71,7 +71,7 @@
                       name="date"
                       id="date"
                       class="form-control"
-                      value="{{ event.date.toLocaleDateString("fr-CA", {year:"numeric", month: "2-digit", day:"2-digit"}) }}"
+                      value="{{ event.date.subString(0, 10) }}"
                       required
                     />
                     <div class="invalid-feedback"></div>
@@ -85,7 +85,7 @@
                       name="time"
                       id="time"
                       class="form-control"
-                      value="{{ event.date.toLocaleTimeString([], { hour: 'numeric', minute: 'numeric', hour12: false }) }}"
+                      value="{{ event.date.subString(11, 16) }}"
                       required
                     />
                     <div class="invalid-feedback"></div>
@@ -147,23 +147,30 @@
               </div>
               <input
                 type="hidden"
-                name="clubId"
+                name="club_id"
                 id="clubId"
-                value="{{ club._id }}"
+                value="{{ event.club_id }}"
                 required
               />
               <input
                 type="hidden"
-                name="clubName"
+                name="club_name"
                 id="clubName"
-                value="{{ club.name }}"
+                value="{{ event.club_name }}"
                 required
               />
               <input
                 type="hidden"
-                name="eventId"
+                name="event._id"
                 id="eventId"
                 value="{{ event._id }}"
+                required
+              />
+              <input
+                type="hidden"
+                name="club_avatar"
+                id="clubAvatar"
+                value="{{ event.club_avatar }}"
                 required
               />
             </div>

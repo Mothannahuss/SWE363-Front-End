@@ -145,8 +145,8 @@ const deleteSavedEvent = async (req, res) => {
  * @returns the new event then user should be redirected to update events page.
  */
 const createEvent = async (req, res) => {
-    if (!req?.body?.club_id || !req?.body?.club_name || !req?.body?.date || !req?.body?.location || !req.body.title) 
-        return [400, { "message": "Date, title, location, club id and name are required" }, null];//res.status(400).json({ "message": "Date, title, location, club id and name are required" });
+    if (!req?.body?.club_id || !req?.body?.club_name || !req?.body?.club_avatar || !req?.body?.date || !req?.body?.location || !req.body.title) 
+        return [400, { "message": "Date, title, location, club id, name and avatar are required" }, null];//res.status(400).json({ "message": "Date, title, location, club id and name are required" });
     if (!mongoose.Types.ObjectId.isValid(req.body.club_id)) return [400, { "message": "Club id is not valid." }, null];//res.status(400).json({ "message": "Club id is not valid." });
 
     try {
@@ -156,6 +156,7 @@ const createEvent = async (req, res) => {
         const result = await Event.create({
             club_id: req.body.club_id,
             club_name: req.body.club_name,
+            club_avatar: req.body.club_avatar,
             title: req.body.title,
             date: req.body.date,
             location: req.body.location,
@@ -180,8 +181,8 @@ const createEvent = async (req, res) => {
  * @returns the updated event then user should be redirected to update events page.
  */
 const updateEvent = async (req, res) => {
-    if (!req?.body?._id || !req?.body?.club_id || !req?.body?.club_name || !req?.body?.date || !req?.body?.location || !req.body.title) 
-        return [400, { "message": "Date, title, location, event id, club id and name are required" }, null];//res.status(400).json({ "message": "Date, title, location, event id, club id and name are required" });
+    if (!req?.body?._id || !req?.body?.club_id || !req?.body?.date || !req?.body?.location || !req.body.title) 
+        return [400, { "message": "Date, title, location, event id, club id, name and avatar are required" }, null];//res.status(400).json({ "message": "Date, title, location, event id, club id and name are required" });
     if (!mongoose.Types.ObjectId.isValid(req.body.club_id)) return [400, { "message": "Club id is not valid." }, null];//res.status(400).json({ "message": "Club id is not valid." });
     if (!mongoose.Types.ObjectId.isValid(req.body._id)) return [400, { "message": "Event id is not valid." }, null];//res.status(400).json({ "message": "Event id is not valid." });
 

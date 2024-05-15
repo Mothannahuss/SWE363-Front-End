@@ -17,7 +17,6 @@ router.get("/upcoming", async (req, res) => {
         if (cookie[0] === "clear") res.clearCookie(cookie[1], cookie[2]);
         else res.cookie(cookie[1], cookie[2], cookie[3]);
     }
-    console.log(data);
     res.status(status).json(data);
 });
 
@@ -30,7 +29,6 @@ router.get("/all", async (req, res) => {
         if (cookie[0] === "clear") res.clearCookie(cookie[1], cookie[2]);
         else res.cookie(cookie[1], cookie[2], cookie[3]);
     }
-    console.log(data);
     res.status(status).json(data);
 });
 
@@ -43,7 +41,6 @@ router.post("/save", async (req, res) => {
         if (cookie[0] === "clear") res.clearCookie(cookie[1], cookie[2]);
         else res.cookie(cookie[1], cookie[2], cookie[3]);
     }
-    console.log(data);
     res.status(status).json(data);
 });
 
@@ -56,7 +53,6 @@ router.delete("/unsave", async (req, res) => {
         if (cookie[0] === "clear") res.clearCookie(cookie[1], cookie[2]);
         else res.cookie(cookie[1], cookie[2], cookie[3]);
     }
-    console.log(data);
     res.status(status).json(data);
 });
 

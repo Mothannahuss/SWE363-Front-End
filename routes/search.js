@@ -99,7 +99,4 @@ router.get("/:query", async function(req,res)
     }
 })
 
-
-
-
 module.exports = router;

@@ -8,7 +8,6 @@ router.get("^/$|/index(.html)?", async (req, res) => {
 });
 
 router.post("/login", async (req, res) => {
-    console.log(req.body);
     let [status, data, cookie] = await authController.handleLogin(req, null);
     if (status >= 204){
         return res.status(status).json(data);
@@ -17,12 +16,10 @@ router.post("/login", async (req, res) => {
         if (cookie[0] === "clear") res.clearCookie(cookie[1], cookie[2]);
         else res.cookie(cookie[1], cookie[2], cookie[3]);
     }
-    console.log(data);
     res.status(status).json(data);
 });
 
 router.post("/register", async (req, res) => {
-    
     let [status, data, cookie] = await authController.handleRegister(req, null);
     if (status >= 204){
         return res.status(status).json(data);
@@ -31,7 +28,6 @@ router.post("/register", async (req, res) => {
         if (cookie[0] === "clear") res.clearCookie(cookie[1], cookie[2]);
         else res.cookie(cookie[1], cookie[2], cookie[3]);
     }
-    console.log(data);
     res.status(status).json(data);
 });
 
@@ -44,7 +40,18 @@ router.post("/forgot", async (req, res) => {
         if (cookie[0] === "clear") res.clearCookie(cookie[1], cookie[2]);
         else res.cookie(cookie[1], cookie[2], cookie[3]);
     }
-    console.log(data);
+    res.status(status).json(data);
+});
+
+router.post("/logout", async (req, res) => {
+    let [status, data, cookie] = await authController.handleLogout(req, null);
+    if (status >= 204){
+        return res.status(status).json(data);
+    }
+    if (cookie) {
+        if (cookie[0] === "clear") res.clearCookie(cookie[1], cookie[2]);
+        else res.cookie(cookie[1], cookie[2], cookie[3]);
+    }
     res.status(status).json(data);
 });
 

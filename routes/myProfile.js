@@ -13,7 +13,6 @@ router.get("/", async (req, res) => {
         if (cookie[0] === "clear") res.clearCookie(cookie[1], cookie[2]);
         else res.cookie(cookie[1], cookie[2], cookie[3]);
     }
-    console.log(data);
     res.render("profile", {
         owner: true,
         club: data,
@@ -31,7 +30,6 @@ router.get("/edit", async (req, res) => {
         if (cookie[0] === "clear") res.clearCookie(cookie[1], cookie[2]);
         else res.cookie(cookie[1], cookie[2], cookie[3]);
     }
-    console.log(data);
     res.render("editProfile", {
         club: data
     });
@@ -46,7 +44,32 @@ router.post("/edit", async (req, res) => {
         if (cookie[0] === "clear") res.clearCookie(cookie[1], cookie[2]);
         else res.cookie(cookie[1], cookie[2], cookie[3]);
     }
-    console.log(data);
+    res.status(status).json(data);
+});
+
+router.get("/newPost", async (req, res) => {
+    let [status, data, cookie] = await clubController.getClubById(req, null);
+    if (status >= 204){
+        return res.status(status).json(data);
+    }
+    if (cookie) {
+        if (cookie[0] === "clear") res.clearCookie(cookie[1], cookie[2]);
+        else res.cookie(cookie[1], cookie[2], cookie[3]);
+    }
+    res.render("newPost", {
+        club: data
+    });
+});
+
+router.post("/newPost", async (req, res) => {
+    let [status, data, cookie] = await eventController.createEvent(req, null);
+    if (status >= 204){
+        return res.status(status).json(data);
+    }
+    if (cookie) {
+        if (cookie[0] === "clear") res.clearCookie(cookie[1], cookie[2]);
+        else res.cookie(cookie[1], cookie[2], cookie[3]);
+    }
     res.status(status).json(data);
 });
 
@@ -59,9 +82,8 @@ router.get("/editPost", async (req, res) => {
         if (cookie[0] === "clear") res.clearCookie(cookie[1], cookie[2]);
         else res.cookie(cookie[1], cookie[2], cookie[3]);
     }
-    console.log(data);
     res.render("editPost", {
-        post: data
+        event: data
     });
 });
 
@@ -74,7 +96,6 @@ router.post("/editPost", async (req, res) => {
         if (cookie[0] === "clear") res.clearCookie(cookie[1], cookie[2]);
         else res.cookie(cookie[1], cookie[2], cookie[3]);
     }
-    console.log(data);
     res.status(status).json(data);
 });
 
