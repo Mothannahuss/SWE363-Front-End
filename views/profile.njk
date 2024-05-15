@@ -43,7 +43,7 @@
     <script src="/src/js/follow-btn.js"></script>
 {% endblock %}
 {% block onLoad %}
-<body onload="onLoadProfile()">
+<body onload="{{ loadF }}">
 {% endblock %}
 {% block pageName %}
 <h1>{{ club.name }}</h1>
@@ -58,9 +58,7 @@
     <div class="clubInfo">
       <h2 class="item1">{{ club.name }}</h2>
       {% if owner %}
-      <button type="button" id="edit-btn" class="btn btn-outline-primary item2">
-        Edit profile
-      </button>
+      <a type="button" id="edit-btn" class="btn btn-outline-primary item2" href="/myprofile/edit?clubId={{ club._id }}">Edit profile</a>
       {% else %}      
       <button type="button" class="btn btn-primary item2 follow-btn" {% if isClub %} disabled {% endif %}>Follow</button>
       {% endif %}

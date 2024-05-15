@@ -5,7 +5,21 @@ const clubController = require("../controllers/clubController");
 const eventController = require("../controllers/eventController");
 
 router.get("/", async (req, res) => {
-    res.render("profile");
+    let [status, data, cookie] = await clubController.getClubById(req, null);
+    if (status >= 204){
+        return res.status(status).json(data);
+    }
+    if (cookie) {
+        if (cookie[0] === "clear") res.clearCookie(cookie[1], cookie[2]);
+        else res.cookie(cookie[1], cookie[2], cookie[3]);
+    }
+    console.log(data);
+    res.render("profile", {
+        owner: true,
+        club: data,
+        isClub: true,
+        loadF: "onLoadMyProfile()"
+    });
 });
 
 router.get("/edit", async (req, res) => {
@@ -18,7 +32,9 @@ router.get("/edit", async (req, res) => {
         else res.cookie(cookie[1], cookie[2], cookie[3]);
     }
     console.log(data);
-    res.status(status).json(data);
+    res.render("editProfile", {
+        club: data
+    });
 });
 
 router.post("/edit", async (req, res) => {
@@ -44,7 +60,9 @@ router.get("/editPost", async (req, res) => {
         else res.cookie(cookie[1], cookie[2], cookie[3]);
     }
     console.log(data);
-    res.status(status).json(data);
+    res.render("editPost", {
+        post: data
+    });
 });
 
 router.post("/editPost", async (req, res) => {

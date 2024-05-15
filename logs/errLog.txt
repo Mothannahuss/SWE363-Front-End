@@ -104,3 +104,23 @@
 20240515	02:25:56	ff6e77c4-d394-4912-bb89-0c2bb9dda520	Template render error: (C:\Users\Tada\Downloads\232\SWE363\Project\SWE363-Back-End-mothanna\views\home.njk)
   Template render error: (C:\Users\Tada\Downloads\232\SWE363\Project\SWE363-Back-End-mothanna\views\base2.njk)
   Error: Block "myprofile" defined more than once.
+20240515	08:10:32	1820e78b-dc0a-4b1a-9524-5da4954e4cfe	Template render error: (C:\Users\Tada\Downloads\232\SWE363\Project\SWE363-Back-End-mothanna\views\profile.njk) [Line 62, Column 18]
+  expected block end in else statement
+20240515	08:10:49	44dc9b8c-a8c4-4783-aa46-e4ffa2d47d8f	Template render error: (C:\Users\Tada\Downloads\232\SWE363\Project\SWE363-Back-End-mothanna\views\profile.njk) [Line 62, Column 18]
+  expected block end in else statement
+20240515	08:11:25	be8f4a4e-c9a8-462a-8c84-9897d85fa32f	Template render error: (C:\Users\Tada\Downloads\232\SWE363\Project\SWE363-Back-End-mothanna\views\profile.njk) [Line 62, Column 18]
+  expected block end in else statement
+20240515	08:12:03	e7cdf7e8-b200-4648-934a-31963f0c17b2	Template render error: (C:\Users\Tada\Downloads\232\SWE363\Project\SWE363-Back-End-mothanna\views\profile.njk) [Line 62, Column 18]
+  expected block end in else statement
+20240515	08:13:01	b8e97050-d341-40e2-a824-3a832d0da5b1	Template render error: (C:\Users\Tada\Downloads\232\SWE363\Project\SWE363-Back-End-mothanna\views\profile.njk) [Line 62, Column 18]
+  expected block end in else statement
+20240515	08:27:02	899d9ac6-d53e-4e3f-b927-343e5c3de1ad	Template render error: (C:\Users\Tada\Downloads\232\SWE363\Project\SWE363-Back-End-mothanna\views\profile.njk) [Line 63, Column 13]
+  unexpected token: !
+20240515	08:27:19	c2205720-4315-4cac-babf-6ca3fe8b0aad	Template render error: (C:\Users\Tada\Downloads\232\SWE363\Project\SWE363-Back-End-mothanna\views\profile.njk) [Line 63, Column 13]
+  unexpected token: !
+20240515	08:27:48	6f8747fe-7fb6-4833-8b90-c775a8029610	Template render error: (C:\Users\Tada\Downloads\232\SWE363\Project\SWE363-Back-End-mothanna\views\profile.njk) [Line 63, Column 14]
+  unexpected token: !
+20240515	08:27:50	f02a9611-a36b-4b47-a596-9731aa417293	Template render error: (C:\Users\Tada\Downloads\232\SWE363\Project\SWE363-Back-End-mothanna\views\profile.njk) [Line 63, Column 14]
+  unexpected token: !
+20240515	08:27:59	7b4c2bb2-ee70-48b7-970a-4b4d44ae747a	Template render error: (C:\Users\Tada\Downloads\232\SWE363\Project\SWE363-Back-End-mothanna\views\profile.njk) [Line 63, Column 14]
+  unexpected token: !

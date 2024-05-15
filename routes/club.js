@@ -17,7 +17,8 @@ router.get("/", async (req, res) => {
     res.render("profile", {
         owner: (data.user === req.query.userId),
         club: data,
-        isClub: (req.query.isClub === "true")
+        isClub: (req.query.isClub === "true"),
+        loadF: "onLoadProfile()"
     });
 });
 
