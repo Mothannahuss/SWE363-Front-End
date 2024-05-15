@@ -56,8 +56,9 @@ const getClubsByCategory = async (req, res) => {
 
     try {
         const clubs = (req.query.category === "null") ? await Club.find()
-                        : await Club.find({ categories: req.query.category });
-        if (!clubs.length) return [204, { "message": "No clubs found." }, null];//res.status(204).json({ "message": "No clubs found." });
+                        : await Club.find({ categories: { $in: [req.query.category]  }});
+                        console.log(clubs);
+        if (!clubs.length) {console.log("here");return [204, { "message": "No clubs found." }, null]};//res.status(204).json({ "message": "No clubs found." });
         return [200, clubs, null];//res.json(clubs);
     } catch (err) {
         console.log(err);

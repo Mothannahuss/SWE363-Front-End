@@ -2,13 +2,12 @@ const url = "http://127.0.0.1:8001";
 let myFeed = [];
 let explore = [];
 const upcomingClub = [];
-const allClub = [];
+let allClub = [];
 const allSavedEvent = [];
 const upcomingSavedEvent= [];
 const newNoti = [];
 const previousNoti = [];
 const browse = [];
-let user = {};
 const all_interests = [
     "Debate and Speech",
     "Film and Photography",
@@ -46,7 +45,13 @@ async function fetchHelper(url, method, payload) {
 		.then((response) => {
 			if ((response.status >= 200) && (response.status < 600)) {
 				status = response.status;
-				return response.json();
+				try
+                {
+                    return response.json();
+                }catch(e)
+                {
+                    return [];
+                }
 			}
 		})
 		.catch((error) => {
@@ -64,7 +69,7 @@ async function getMyFeed() {
     let data =  JSON.stringify(array[0]);
     if ((array[1] >= 200) && (array[1] < 400)) {
         myFeed= [JSON.parse(data)];
-        showEvents(myFeed, "sec1");
+        showEvents(myFeed[0], "sec1");
     }
     console.log("error", array);
 };
@@ -76,7 +81,7 @@ async function getExplore() {
     let data =  JSON.stringify(array[0]);
     if ((array[1] >= 200) && (array[1] < 400)) {
         explore= [JSON.parse(data)];
-        showEvents(explore, "sec2");
+        showEvents(explore[0], "sec2");
     }
     console.log("error", array);
 };
@@ -137,8 +142,18 @@ async function getPreNotification() {
 
 };
 
-async function getBrowse() {
+async function getBrowse(category) {
+    const urlsub = url + `/browse/clubs?category=${category}`;
 
+
+    const array = await fetchHelper(urlsub, "GET", "");
+    console.log(array);
+    if ((array[1] >= 200) && (array[1] < 400) && array[0]) {
+        let data =  JSON.stringify(array[0]);
+        allClub = [JSON.parse(data)];
+        let user =localStorage.getItem('user');
+        showClubs(allClub[0], JSON.parse(user));
+    }
 };
 
 
@@ -170,7 +185,7 @@ async function showEvents (eventList, section) {
     const events = document.getElementById(section);
     events.innerHTML = "";
 
-    eventList[0].forEach(event => {
+    eventList.forEach(event => {
 
         event.date = new Date(event.date)
         eventCard = `
@@ -194,12 +209,12 @@ async function showEvents (eventList, section) {
 }
 
 function showClubs (clubList, User){
-    const clubs = document.getElementById("myClubs")
-
+    const clubs = document.getElementById("myClubs");
+    console.log(User._id);
     clubs.innerHTML = "";
 
     clubList.forEach(club => {
-        if (club in User.following){
+        if (User.following.indexOf(club.name) != -1) {
             btn_txt = "Unfollow";
             toggle_value = 1;
         }
@@ -215,8 +230,8 @@ function showClubs (clubList, User){
         </div>
         <form action="/follow" method="post">
         <input hidden name="club_name" value="${club.name}"/>
-        <input hidden name="userId" value="${User._Id}"/>
-        <input hidden name="toggle" value="${toggle_value}"
+        <input hidden name="userId" value="${User._id}"/>
+        <input hidden name="toggle" value="${toggle_value}"/>
         <button class="btn btn-outline-primary follow-btn">${btn_txt}</button>
         </form>
       </div> `
@@ -225,14 +240,43 @@ function showClubs (clubList, User){
 }
 
 
+async function updateUser()
+{
+    let u = localStorage.getItem('user');
+    u = JSON.parse(u);
+    console.log(u);
+
+    let data = await fetchHelper(url + "/login","POST", JSON.stringify({email: u.email, password: u.password}));
+    localStorage.setItem("user",JSON.stringify(data[0].user));
+}
+
+
+function debounce(func, delay) {
+    let debounceTimer;
+    return function() {
+        const context = this;
+        const args = arguments;
+        clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(() => func.apply(context, args), delay);
+    };
+}
+
 
 document.addEventListener("DOMContentLoaded", async function()
 {
 
-    let current_url = document.location.href.split("/");
-    let page = current_url ? current_url[current_url.length - 1] : "login";
+    let current_url = document.location.href;
+    let page = "login";
+
+    if (current_url.indexOf("/") !== -1)
+        {
+            current_url = current_url.split("/");
+            page = current_url[current_url.length - 1].length > 0 ? current_url[current_url.length - 1]: "login";
+        }
+
 
     let singInForm = document.getElementById("login");
+    console.log(page);
 
 
     if (page == "login")
@@ -261,6 +305,7 @@ document.addEventListener("DOMContentLoaded", async function()
         let sec2 = document.getElementById("sec2");
         let today = new Date();
         let userId = JSON.parse(localStorage.getItem("user"))._id;
+        let search = document.getElementById("search-input");
 
         let myFeed= document.getElementById("sec1tog");
         let explore= document.getElementById("sec2tog");
@@ -280,13 +325,101 @@ document.addEventListener("DOMContentLoaded", async function()
             sec1.hidden = true;
             sec2.hidden = false;
             await getExplore();
-
         })
+
+
+
+        search.addEventListener('input', debounce(async function(event) {
+            let query = event.target.value;
+            document.getElementById("sec1").innerHTML = "";
+    
+            if (query)
+                {
+                    query = query.trim().toLowerCase();
+                }
+            else if (!myFeed.hidden){
+                showEvents(myFeed[0], "sec1");
+                return;
+
+            }
+            else
+            {
+                showEvents(explore[0], "sec2");
+                return;
+            }
+            let response = await fetch("/search/" + query + "?option=0");
+            let data = await response.json();
+            console.log(data);
+            showEvents(data,"sec1");
+        }, 500));
 
     }
     else if (page == "browse")
     {
+        await getBrowse("null");
 
+        let search = document.getElementById("search-input");
+        let categories = document.getElementById("categories");
+        let u = localStorage.getItem("user");
+        u = JSON.parse(u);
+
+
+        search.addEventListener('input', debounce(async function(event) {
+            let query = event.target.value;
+            document.getElementById("myClubs").innerHTML = "";
+    
+            if (query)
+                {
+                    query = query.trim().toLowerCase();
+                }
+            else{
+                showClubs(allClub,u);
+                return;
+            }
+            console.log(query);
+            let response = await fetch("/search/" + query + "?option=1");
+            let data = await response.json();
+            console.log(data);
+            showClubs(data,u);
+        }, 500));
+
+
+
+        all_interests.forEach(interest => {
+            categories.innerHTML += `
+            <option value="${interest}">${interest}</option>
+            `;
+        });
+
+        categories.addEventListener("change", async function(){
+            let category = categories.value == "All" ? "null" : categories.value.trim();
+
+            await getBrowse(category);
+
+        });
+
+        let forms = document.querySelectorAll("form");
+
+        forms.forEach(form => {
+            form.addEventListener("submit", async function(e)
+        {
+            e.preventDefault();
+            const newUrl = url + "/follow";
+
+            let res = await fetchHelper(newUrl, "POST", 
+            JSON.stringify({userId: e.target.elements.userId.value, club_name: e.target.elements.club_name.value, 
+                toggle: e.target.elements.toggle.value}));
+
+
+            localStorage.setItem("user", JSON.stringify(res[0]));
+
+            window.location.href = url + "/browse";
+        });
+        });
+
+
+
+        
     }
 
 

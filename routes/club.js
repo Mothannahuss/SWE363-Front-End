@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const path = require("path");
 const eventController = require("../controllers/eventController");
+const clubController = require("../controllers/clubController");
 
 router.get("/", async (req, res) => {
     res.render("home");
@@ -21,7 +22,7 @@ router.get("/upcoming", async (req, res) => {
 });
 
 router.get("/all", async (req, res) => {
-    let [status, data, cookie] = await eventController.getUpcomingAndAllEventsForClubs(req, null);
+    let [status, data, cookie] = await clubController.getClubsByCategory(req, null);
     if (status >= 204){
         return res.status(status).json(data);
     }

@@ -10,6 +10,7 @@ const Notification = require("../models/Notification");
  * @returns the updated user object.
  */
 const toggleClubFollow = async (req, res) => {
+    console.log('toggleClubFollow' + req.body.id);
     if (!req?.body?.userId || !req?.body?.club_name || !req?.body?.toggle) 
         return [400, { "message": "User id, club name and toggle state are required." }, null];//res.status(400).json({ "message": "User id, club name and toggle state are required." });
     if (!mongoose.Types.ObjectId.isValid(req.body.userId)) return [400, { "message": "User id is not valid." }, null];//res.status(400).json({ "message": "User id is not valid." });
@@ -23,7 +24,7 @@ const toggleClubFollow = async (req, res) => {
 
         if (user.following.some(clp => clp === req.body.club_name)){ // Followd
             if (req.body.toggle === "1") {
-                user.following.splice(user.following.indexOf(req.body.club_name), 1);
+                user.following = user.following.filter(item => item != req.body.club_name);
                 club.followers -= 1;
             }
         } else { // not followed
