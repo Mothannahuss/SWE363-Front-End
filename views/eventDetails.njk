@@ -41,8 +41,8 @@
 
                 <h2 class="event-title fs-3">{{title}}</h2>
                 <div class="event-info">
-                  <p><i class="fas fa-calendar-alt"></i> {{ event.date.toLocaleDateString(locale, { weekday: 'long' }) }}, {{event.date.getDate() +"/" + (event.date.getMonth() + 1 )}}</p>
-                  <p><i class="fas fa-clock"></i> {{event.date.toLocaleTimeString([], { hour: 'numeric', minute: 'numeric', hour12: true })}}</p>
+                  <p><i class="fas fa-calendar-alt"></i> {{ new Date(event.date).toLocaleDateString(locale, { weekday: 'long' }) }}, {{new Date(event.date).getDate() +"/" + (new Date(event.date).getMonth() + 1 )}}</p>
+                  <p><i class="fas fa-clock"></i> {{new Date(event.date).toLocaleTimeString([], { hour: 'numeric', minute: 'numeric', hour12: true })}}</p>
                   <p><i class="fas fa-map-marker-alt"></i> {{event.location}}</p>
                 </div>
               </div>
