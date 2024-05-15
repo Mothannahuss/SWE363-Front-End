@@ -17,7 +17,7 @@ const userSchema = new Schema({
     },
 	join_date: {
         type: Date,
-        default: Date.now()
+        default: new Date().toISOString()
     },
 	interests: {
         type: [String],
