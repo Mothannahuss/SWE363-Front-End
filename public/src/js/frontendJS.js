@@ -284,6 +284,16 @@ function showClubs (clubList, User){
     })
 }
 
+function debounce(func, delay) {
+  let debounceTimer;
+  return function() {
+      const context = this;
+      const args = arguments;
+      clearTimeout(debounceTimer);
+      debounceTimer = setTimeout(() => func.apply(context, args), delay);
+  };
+}
+
 
 
 document.addEventListener("DOMContentLoaded", async function()
@@ -321,9 +331,168 @@ document.addEventListener("DOMContentLoaded", async function()
         let sec2 = document.getElementById("sec2");
         let today = new Date();
         let userId = JSON.parse(localStorage.getItem("user"))._id;
+        let search = document.getElementById("search-input");
+
 
         let myFeed= document.getElementById("sec1tog");
         let explore= document.getElementById("sec2tog");
+        let eventsToView = document.querySelectorAll(".view-event-btn");
+        eventsToView.forEach(btn =>{
+            btn.addEventListener("click",async function(e){
+
+                e.preventDefault();
+                let link = e.target.href.split("/");
+                let eventId = link[link.length - 1];
+                console.log(e.target.href);
+
+                let data = await fetchHelper(e.target.href, "GET", "");
+                let event = data[0];
+                event.date = new Date(event.date);
+
+                document.body.innerHTML = "";
+
+                document.body.innerHTML = `
+                <div class="header" id="header1">
+                <nav class="navbar">
+                  <div class="container-fluid">
+                    <div>
+                      <h2>Event details</h2>
+                      <div class="rectangle"></div>
+                    </div>
+                    <ul class="navbar-nav d-flex flex-row me-1">
+                      <li class="nav-item me-0 me-lg-0">
+                        <button
+                          class="btn"
+                          type="button"
+                          id="search-btn"
+                          style="border-radius: 90px; border-style: solid"
+                        >
+                          <i class="bi bi-search"></i>
+                        </button>
+                      </li>
+          
+                      <li>
+                        <button
+                          class="navbar-toggler"
+                          type="button"
+                          data-bs-toggle="offcanvas"
+                          data-bs-target="#offcanvasNavbar"
+                          aria-controls="offcanvasNavbar"
+                          aria-label="Toggle navigation"
+                        >
+                          <span class="navbar-toggler-icon"></span>
+                        </button>
+                      </li>
+                    </ul>
+                    <div
+                      class="offcanvas offcanvas-end"
+                      tabindex="-1"
+                      id="offcanvasNavbar"
+                      aria-labelledby="offcanvasNavbarLabel"
+                    >
+                      <div class="offcanvas-header">
+                        <button
+                          type="button"
+                          class="btn-close"
+                          data-bs-dismiss="offcanvas"
+                          aria-label="Close"
+                        ></button>
+                      </div>
+                      <div class="offcanvas-body">
+                        <ul class="navbar-nav justify-content-end flex-grow-1">
+                          <li class="nav-item">
+                            <a class="nav-link" href="/home">Home</a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link" href="/myclubs">My Clubs</a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link" href="/savedevents">Saved Events</a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link" href="/browse">Browse Clubs</a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link" href="/notifications">Notifications</a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link" href="/settings">Settings</a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link" href="/myprofile">My Profile</a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </nav>
+                <div class="container">
+                <div id="contentHolder">
+                  <div class="event-card row">
+                    <div class="row d-flex">
+                      <img
+                      >
+                      <div class="event-content col-8">
+                        <div class="event-details">
+          
+                          <h2 class="event-title fs-3">${event.title}</h2>
+                          <div class="event-info">
+                            <p><i class="fas fa-calendar-alt"></i> ${ event.date.toLocaleDateString("en-us", { weekday: 'long' }) }, ${event.date.getDate() +"/" + (event.date.getMonth() + 1 )}</p>
+                            <p><i class="fas fa-clock"></i> ${event.date.toLocaleTimeString([], { hour: 'numeric', minute: 'numeric', hour12: true })}</p>
+                            <p><i class="fas fa-map-marker-alt"></i> ${event.location}</p>
+                          </div>
+                        </div>
+                        <div class="col-2">
+                          <button id="saveEventButton" type="button">Save Event</button>
+                        </div>
+                      </div>
+                    </div>
+                    <h2 class="event-club mt-2 fs-5">Description</h2>
+                    <div class="row">
+                      <div id="descriptionBox" class="h-25">
+                        <p class="text-wrap">${event.description}</p>
+                      </div>
+                    </div>
+                    <h2 class="event-club mt-2 fs-5">Posters</h2>
+                    <div class="row h-25">
+                        <img src=${event.poster} alt="Event Poster" class="col-auto imageBackground m-1">
+                    </div>
+                    
+                    <div class="d-flex align-self-center justify-content-center row mt-1">
+                      <button onclick='window.open("${event.link}", "_blank");' id="registerButton" class="col-4" type="button">
+                        Register
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>`
+            });
+        });
+
+        search.addEventListener('input', debounce(async function(event) {
+          let query = event.target.value;
+          document.getElementById("sec1").innerHTML = "";
+          document.getElementById("sec2").innerHTML = "";
+
+          if (query)
+              {
+                  query = query.trim().toLowerCase();
+              }
+          else if (!myFeed.hidden){
+              showEvents(myFeed[0], "sec1");
+              return;
+
+          }
+          else
+          {
+              showEvents(explore[0], "sec2");
+              return;
+          }
+          let response = await fetch("/search/" + query + "?option=0");
+          let data = await response.json();
+          console.log(data);
+          showEvents(data,"sec1");
+      }, 500));
 
         myFeed.addEventListener("click", async function()
         {
@@ -341,12 +510,72 @@ document.addEventListener("DOMContentLoaded", async function()
             sec2.hidden = false;
             await getExplore();
 
-        })
-
     }
     else if (page == "browse")
     {
+	    await getClubs("null");
 
+        let search = document.getElementById("search-input");
+        let categories = document.getElementById("categories");
+        let u = localStorage.getItem("user");
+        u = JSON.parse(u);
+
+
+        // search.addEventListener('input', debounce(async function(event) {
+        //     let query = event.target.value;
+        //     document.getElementById("myClubs").innerHTML = "";
+
+        //     if (query)
+        //         {
+        //             query = query.trim().toLowerCase();
+        //         }
+        //     else if (query == ""){
+        //         showClubs(allClub,u);
+        //         return;
+        //     }
+        //     console.log(query);
+        //     let response = await fetch("/search/" + query + "?option=1");
+        //     let data = await response.json();
+        //     console.log(data);
+        //     showClubs(data,u);
+        // }, 500));
+
+
+
+        all_interests.forEach(interest => {
+            categories.innerHTML += `
+            <option value="${interest}">${interest}</option>
+            `;
+        });
+
+        categories.addEventListener("change", async function(){
+            let category = categories.value == "All" ? "null" : categories.value.trim();
+
+            await getClubs(category);
+
+        });
+
+        let forms = document.querySelectorAll("form");
+
+        forms.forEach(form => {
+            form.addEventListener("submit", async function(e)
+        {
+            e.preventDefault();
+            const newUrl = url + "/follow";
+
+            let res = await fetchHelper(newUrl, "POST", 
+            JSON.stringify({userId: e.target.elements.userId.value, club_name: e.target.elements.club_name.value, 
+                toggle: e.target.elements.toggle.value}));
+
+
+            console.log("follow");
+            console.log(res);
+
+            localStorage.setItem("user", JSON.stringify(res[0]));
+
+            window.location.href = url + "/browse";
+        });
+        });
     }
 })
 
