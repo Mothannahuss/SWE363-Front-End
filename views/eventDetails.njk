@@ -33,11 +33,11 @@
         <div class="event-card row">
           <div class="row d-flex">
             <img
-              class="event-avatar-lg d-flex justify-content-center align-self-center col-2" src = {{club.avatar}}
+              class="event-avatar-lg d-flex justify-content-center align-self-center col-2" src = "{{club.avatar}}"
             >
             <div class="event-content col-8">
               <div class="event-details">
-                <a href="/profile/{{club.handler}}" class="event-club">{{club.name}}</a>
+                <a href="/club?clubId={{club._id}}" class="event-club">{{club.name}}</a>
 
                 <h2 class="event-title fs-3">{{title}}</h2>
                 <div class="event-info">
@@ -60,7 +60,7 @@
           {% if event.poster != "" %}
           <h2 class="event-club mt-2 fs-5">Posters</h2>
           <div class="row h-25">
-              <img src={{event.poster}} alt="Event Poster" class="col-auto imageBackground m-1">
+              <img src="{{event.poster}}" alt="Event Poster" class="col-auto imageBackground m-1">
           </div>
           {% else %}
            <div class="m-5"></div>
