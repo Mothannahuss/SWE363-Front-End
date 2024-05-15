@@ -17,7 +17,7 @@
       crossorigin="anonymous"
     ></script>
     <script src="/src/js/post-val.js"></script>
-    <script src="/src/js/editPost.js"></script>
+    <script src="/src/js/editProfile.js"></script>
   </head>
 
   <body>
@@ -58,6 +58,13 @@
                   value="{{club.handler}}"
                   required
                 />
+                <input
+                type="hidden"
+                name="_id"
+                id="_id"
+                value="{{ club._id }}"
+                required
+              />
                 <div class="invalid-feedback"></div>
               </div>
             </div>

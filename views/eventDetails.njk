@@ -39,10 +39,10 @@
               <div class="event-details">
                 <a href="/club?clubId={{club._id}}" class="event-club">{{club.name}}</a>
 
-                <h2 class="event-title fs-3">{{title}}</h2>
+                <h2 class="event-title fs-3">{{event.title}}</h2>
                 <div class="event-info">
-                  <p><i class="fas fa-calendar-alt"></i> {{ event.date.toLocaleDateString(locale, { weekday: 'long' }) }}, {{event.date.getDate() +"/" + (event.date.getMonth() + 1 )}}</p>
-                  <p><i class="fas fa-clock"></i> {{event.date.toLocaleTimeString([], { hour: 'numeric', minute: 'numeric', hour12: true })}}</p>
+                  <p><i class="fas fa-calendar-alt"></i> {{ event.date.substring(8, 10) + "/" +event.date.substring(5, 7) +"/" + event.date.substring(2, 4)  }} </p>
+                  <p><i class="fas fa-clock"></i> {{ event.date.substring(11, 16) }}</p>
                   <p><i class="fas fa-map-marker-alt"></i> {{event.location}}</p>
                 </div>
               </div>
